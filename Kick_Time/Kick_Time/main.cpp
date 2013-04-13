@@ -70,7 +70,7 @@ int main()
 		//frameTime = pf.restart();
 		//float pd = pf.getElapsedTime.asMilliseconds;
 
-		if(framerate == 60){
+		if(framerate == 9){
 			if(persoState == Stance){
 				posXSprite = posXSprite + 48 + 14;
 				i++;
