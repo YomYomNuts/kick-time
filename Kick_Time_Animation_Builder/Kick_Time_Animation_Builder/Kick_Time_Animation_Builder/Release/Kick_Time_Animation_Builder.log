@@ -1,20 +1,24 @@
-﻿La génération a démarré 14/04/2013 23:09:45.
-     1>Projet "C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder.vcxproj" sur le nœud 2 (Build cible(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AnimationLine.cpp main.cpp
-         AnimationLine.cpp
+﻿La génération a démarré 15/04/2013 00:30:21.
+     1>Projet "C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>InitializeBuildStatus:
+         Création de "Release\Kick_Time_Animation_Builder.unsuccessfulbuild", car "AlwaysCreate" a été spécifié.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>main.cpp(375): warning C4018: '<' : incompatibilité signed/unsigned
-     1>main.cpp(427): warning C4018: '<' : incompatibilité signed/unsigned
+     1>main.cpp(377): warning C4018: '<' : incompatibilité signed/unsigned
+     1>main.cpp(429): warning C4018: '<' : incompatibilité signed/unsigned
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.lib" /MACHINE:X86 /SAFESEH Release\AnimationLine.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.lib" /MACHINE:X86 /SAFESEH Release\AnimationLine.obj
          Release\functions.obj
          Release\main.obj
          Génération de code en cours
          Fin de la génération du code
-         Kick_Time_Animation_Builder.vcxproj -> C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.exe
-     1>Génération du projet "C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder.vcxproj" terminée (Build cible(s)).
+         Kick_Time_Animation_Builder.vcxproj -> C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Release\Kick_Time_Animation_Builder.exe
+       FinalizeBuildStatus:
+         Suppression du fichier "Release\Kick_Time_Animation_Builder.unsuccessfulbuild".
+         Mise à jour de l'horodatage "Release\Kick_Time_Animation_Builder.lastbuildstate".
+     1>Génération du projet "C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder\Kick_Time_Animation_Builder.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:03.90
+Temps écoulé 00:00:01.92

@@ -350,6 +350,7 @@ int main(int argc,const char * argv[]){
 		headerContent = headerContent + "	bool animationLoop;\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
+		headerContent = headerContent + "	AnimationLine::AnimationLine();\n";
 		headerContent = headerContent + "	Animation(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);\n";
 		headerContent = headerContent + "	char* getFileName();\n";
 		headerContent = headerContent + "	char* getAnimationName();\n";
@@ -360,11 +361,12 @@ int main(int argc,const char * argv[]){
 		headerContent = headerContent + "	int getFramerate();\n";
 		headerContent = headerContent + "	int getSpriteNb();\n";
 		headerContent = headerContent + "	bool getAnimationLoop();\n";
+		headerContent = headerContent + "	~AnimationLine(void);\n";
 		headerContent = headerContent + "};\n";
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#define animationNb " + animationData.str() + "\n";
+		headerContent = headerContent + "#define NUMBER_ANIMATION " + animationData.str() + "\n";
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "extend const Animation animationArray[" + animationData.str() + "];\n";
+		headerContent = headerContent + "extend const Animation animationArray[NUMBER_ANIMATION];\n";
 		headerContent = headerContent + "\n";
 		
 
@@ -417,7 +419,7 @@ int main(int argc,const char * argv[]){
 
 		animationData.str("");
 		animationData << animArray.size();
-		cppContent = cppContent + "const Animation animationArray[" + animationData.str() + "] =\n";
+		cppContent = cppContent + "const Animation animationArray[NUMBER_ANIMATION] =\n";
 		cppContent =cppContent + "{\n";
 
 		// Go to the beginning of the list
@@ -432,7 +434,7 @@ int main(int argc,const char * argv[]){
 			// Put : fileName
 			animationData.str("");
 			animationData << it->getFileName();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			cppContent = cppContent + "		\"" + animationData.str() + "\",\n";
 
 			// Put : animatioName
 			animationData.str("");
@@ -486,6 +488,33 @@ int main(int argc,const char * argv[]){
 		
 		cppContent =cppContent + "}\n";
 		cppContent =cppContent + "\n";
+		cppContent =cppContent + "AnimationLine::AnimationLine(){\n";
+		cppContent =cppContent + "	this->fileName = \"\";\n";
+		cppContent =cppContent + "	this->animationName = \"\";\n";
+		cppContent =cppContent + "	this->posX = 0;\n";
+		cppContent =cppContent + "	this->posY = 0;\n";
+		cppContent =cppContent + "	this->spriteWidth = 0;\n";
+		cppContent =cppContent + "	this->spriteHeight = 0;\n";
+		cppContent =cppContent + "	this->framerate = 0;\n";
+		cppContent =cppContent + "	this->spriteNb = 0;\n";
+		cppContent =cppContent + "	this->animationLoop = \"\";\n";
+		cppContent =cppContent + "}\n";
+		cppContent =cppContent + "\n";
+		cppContent =cppContent + "AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop){\n";
+		cppContent =cppContent + "	this->fileName = new char[strlen(fileName)+1];\n";
+		cppContent =cppContent + "	strcpy_s(this->fileName,strlen(fileName)+1, fileName);\n\n";
+		cppContent =cppContent + "	this->animationName = new char[strlen(animationName)+1];\n";
+		cppContent =cppContent + "	strcpy_s(this->animationName,strlen(animationName)+1, animationName);\n";
+		cppContent =cppContent + "	this->posX = posX;\n";
+		cppContent =cppContent + "	this->posY = posY;\n";
+		cppContent =cppContent + "	this->spriteWidth = spriteWidth;\n";
+		cppContent =cppContent + "	this->spriteHeight = spriteHeight;\n";
+		cppContent =cppContent + "	this->framerate = framerate;\n";
+		cppContent =cppContent + "	this->spriteNb = spriteNb;\n\n";
+		cppContent =cppContent + "	this->animationLoop = new char[strlen(animationLoop)+1];\n";
+		cppContent =cppContent + "	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);\n";
+		cppContent =cppContent + "}\n";
+		cppContent =cppContent + "\n";
 		cppContent =cppContent + "char* Animation::getFileName(){\n";
 		cppContent =cppContent + "	return fileName;\n";
 		cppContent =cppContent + "}\n";
@@ -520,6 +549,11 @@ int main(int argc,const char * argv[]){
 		cppContent =cppContent + "\n";
 		cppContent =cppContent + "bool Animation::getAnimationLoop(){\n";
 		cppContent =cppContent + "	return animationLoop;\n";
+		cppContent =cppContent + "}\n";
+		cppContent =cppContent + "AnimationLine::~AnimationLine(void){\n";
+		cppContent =cppContent + "	delete[] this->fileName;\n";
+		cppContent =cppContent + "	delete[] this->animationName;\n";
+		cppContent =cppContent + "	delete[] this->animationLoop;\n";
 		cppContent =cppContent + "}\n";
 		
 		cppFile << cppContent;
