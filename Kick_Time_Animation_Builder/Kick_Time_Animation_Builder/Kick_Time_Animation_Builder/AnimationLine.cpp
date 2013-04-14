@@ -1,5 +1,18 @@
 #include "AnimationLine.h"
 
+AnimationLine::AnimationLine()
+{
+       this->fileName = "";
+       this->animationName = "";
+       this->posX = 0;
+       this->posY = 0;
+       this->spriteWidth = 0;
+       this->spriteHeight = 0;
+       this->framerate = 0;
+       this->spriteNb = 0;
+       this->animationLoop = "";
+}
+
 AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop){
 
 	this->fileName = new char[strlen(fileName)+1];
@@ -53,4 +66,11 @@ int AnimationLine::getSpriteNb(){
 
 char* AnimationLine::getAnimationLoop(){
 	return animationLoop;
+}
+
+AnimationLine::~AnimationLine(void)
+{
+       delete[] this->fileName;
+       delete[] this->animationName;
+       delete[] this->animationLoop;
 }

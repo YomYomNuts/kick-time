@@ -319,6 +319,7 @@ int main(int argc,const char * argv[]){
 	/*********************/
 
 	// Set the location of the file
+	headerOutputLocation = new char[strlen(outputLocation) + 2 + strlen(className) + 3];
 	strcpy_s(headerOutputLocation,strlen(outputLocation)+1,outputLocation);
 	strcat_s(headerOutputLocation,strlen(headerOutputLocation)+2,"\\");
 	strcat_s(headerOutputLocation,strlen(headerOutputLocation)+strlen(className)+1,className);
@@ -397,6 +398,7 @@ int main(int argc,const char * argv[]){
 	/***********************/
 
 	// Set the location of the file
+	cppOutputLocation = new char[strlen(outputLocation) + 2 + strlen(className) + 5];
 	strcpy_s(cppOutputLocation,strlen(outputLocation)+1,outputLocation);
 	strcat_s(cppOutputLocation,strlen(cppOutputLocation)+2,"\\");
 	strcat_s(cppOutputLocation,strlen(cppOutputLocation)+strlen(className)+1,className);
