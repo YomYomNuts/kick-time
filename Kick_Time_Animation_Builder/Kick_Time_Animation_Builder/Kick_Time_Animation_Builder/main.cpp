@@ -36,8 +36,8 @@ int main(int argc,const char * argv[]){
 	int spriteHeight;
 	int framerate;
 	int spriteNb;
-	bool animationLoop;
-	char* animationLoopStr;
+	//char* animationLoop = new char[];
+	char* animationLoopStr = new char[];
 	// Header file
 	ofstream headerFile;
 	ostringstream animationData;
@@ -154,7 +154,7 @@ int main(int argc,const char * argv[]){
 
 				posDelimStart++;
 
-				fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd);
+				fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
 				if(fileName == ""){
 					cout << "ERROR GD002 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
 					system("Pause");
@@ -172,7 +172,7 @@ int main(int argc,const char * argv[]){
 
 				posDelimStart++;
 
-				animationName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd);
+				animationName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
 				if(animationName == ""){
 					cout << "ERROR GD004 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
 					system("Pause");
@@ -294,13 +294,7 @@ int main(int argc,const char * argv[]){
 
 				transform(currentLine.begin(),currentLine.end(),currentLine.begin(),::tolower);
 				animationLoopStr = mySubStringToChar(currentLine,posDelimStart,currentLine.at(currentLine.length()-1));			
-				if(strcmp(animationLoopStr,"true") == 0){
-					animationLoop = true;
-				}
-				else if(strcmp(animationLoopStr,"false") == 0){
-					animationLoop = false;
-				}
-				else{
+				if((strcmp(animationLoopStr,"true") != 0) && (strcmp(animationLoopStr,"false") != 0)){
 					cout << "ERROR GD017 - A problem occured while getting the loop animation value in this line:\n	" << currentLine << endl;
 					system("Pause");
 					return 1;
@@ -310,7 +304,7 @@ int main(int argc,const char * argv[]){
 				cout << "spriteWidth : " << spriteWidth << endl << "spriteHeight : " << spriteHeight << endl << "framerate : " << framerate << endl;
 				cout << "spriteNb : " << spriteNb << endl << "animationLoop : " << animationLoop << endl;*/
 			
-				animArray.push_back(*new AnimationLine(fileName,animationName,posX,posY,spriteWidth,spriteHeight,framerate,spriteNb,animationLoop));
+				animArray.push_back(*new AnimationLine(fileName,animationName,posX,posY,spriteWidth,spriteHeight,framerate,spriteNb,animationLoopStr));
 			}
 		}
 	}
@@ -538,7 +532,7 @@ int main(int argc,const char * argv[]){
 	/* Final message */
 	/*****************/
 
-	cout << endl << endl << "The 2 following files have been generated successfully:" << endl;
+	cout << endl << endl << "The following 2 files have been successfully generated :" << endl;
 	cout << "	- " << className << ".h" << endl;
 	cout << "	- " << className << ".cpp" << endl;
 	cout << "into the folder :" << endl;

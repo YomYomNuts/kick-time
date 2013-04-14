@@ -15,10 +15,10 @@ private:
 	int spriteHeight;
 	int framerate;
 	int spriteNb;
-	bool animationLoop;
+	char* animationLoop;
 
 public:
-	AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);
+	AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop);
 	char* getFileName();
 	char* getAnimationName();
 	int getPosX();
@@ -27,7 +27,7 @@ public:
 	int getSpriteHeight();
 	int getFramerate();
 	int getSpriteNb();
-	bool getAnimationLoop();
+	char* getAnimationLoop();
 };
 
 #endif __ANIMATIONLINE__

@@ -1,6 +1,6 @@
 #include "AnimationLine.h"
 
-AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop){
+AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop){
 
 	this->fileName = new char[strlen(fileName)+1];
 	strcpy_s(this->fileName,strlen(fileName)+1, fileName);
@@ -14,7 +14,9 @@ AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int 
 	this->spriteHeight = spriteHeight;
 	this->framerate = framerate;
 	this->spriteNb = spriteNb;
-	this->animationLoop = animationLoop;
+
+	this->animationLoop = new char[strlen(animationLoop)+1];
+	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);
 }
 
 char* AnimationLine::getFileName(){
@@ -49,6 +51,6 @@ int AnimationLine::getSpriteNb(){
 	return spriteNb;
 }
 
-bool AnimationLine::getAnimationLoop(){
+char* AnimationLine::getAnimationLoop(){
 	return animationLoop;
 }
