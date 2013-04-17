@@ -497,10 +497,10 @@ int main(int argc,const char * argv[]){
 		cppContent =cppContent + "	this->spriteHeight = 0;\n";
 		cppContent =cppContent + "	this->framerate = 0;\n";
 		cppContent =cppContent + "	this->spriteNb = 0;\n";
-		cppContent =cppContent + "	this->animationLoop = \"\";\n";
+		cppContent =cppContent + "	this->animationLoop = false;\n";
 		cppContent =cppContent + "}\n";
 		cppContent =cppContent + "\n";
-		cppContent =cppContent + "AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop){\n";
+		cppContent =cppContent + "AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop){\n";
 		cppContent =cppContent + "	this->fileName = new char[strlen(fileName)+1];\n";
 		cppContent =cppContent + "	strcpy_s(this->fileName,strlen(fileName)+1, fileName);\n\n";
 		cppContent =cppContent + "	this->animationName = new char[strlen(animationName)+1];\n";
@@ -511,8 +511,7 @@ int main(int argc,const char * argv[]){
 		cppContent =cppContent + "	this->spriteHeight = spriteHeight;\n";
 		cppContent =cppContent + "	this->framerate = framerate;\n";
 		cppContent =cppContent + "	this->spriteNb = spriteNb;\n\n";
-		cppContent =cppContent + "	this->animationLoop = new char[strlen(animationLoop)+1];\n";
-		cppContent =cppContent + "	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);\n";
+		cppContent =cppContent + "	this->animationLoop = animationLoop;\n";
 		cppContent =cppContent + "}\n";
 		cppContent =cppContent + "\n";
 		cppContent =cppContent + "char* Animation::getFileName(){\n";
@@ -553,7 +552,7 @@ int main(int argc,const char * argv[]){
 		cppContent =cppContent + "AnimationLine::~AnimationLine(void){\n";
 		cppContent =cppContent + "	delete[] this->fileName;\n";
 		cppContent =cppContent + "	delete[] this->animationName;\n";
-		cppContent =cppContent + "	delete[] this->animationLoop;\n";
+		//cppContent =cppContent + "	delete[] this->animationLoop;\n";
 		cppContent =cppContent + "}\n";
 		
 		cppFile << cppContent;
