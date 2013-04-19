@@ -1,34 +1,29 @@
 #ifndef _GAMEMANAGER_H
 #define _GAMEMANAGER_H
 
-#include "Mode.h"
+#include "ModeManager.h"
 #include "SaveManager.h"
 #include "InputManager.h"
 #include "SoundManager.h"
 #include "MenuManager.h"
 #include "HudManager.h"
 #include "RenderManager.h"
-#include "Level.h"
-#include "Character.h"
+#include "LevelManager.h"
+#include "CharacterManager.h"
 #include "GameManager_Defines.h"
-
-#include <vector>
 
 class GameManager
 {
 private:
-	std::vector<Mode> listModes;
+	ModeManager modeManager;
 	SaveManager saveManager;
 	InputManager inputManager;
 	SoundManager soundManager;
 	MenuManager menuManager;
 	HudManager hudManager;
 	RenderManager renderManager;
-	std::vector<Level> listLevels;
-	std::vector<Character> listCharacters;
-	Mode * modeSelected;
-	Level * levelSelected;
-	Character * characterSelected[NUMBER_CHARACTERS];
+	LevelManager levelManager;
+	CharacterManager characterManager;
 public:
 	GameManager(void);
 	~GameManager(void);

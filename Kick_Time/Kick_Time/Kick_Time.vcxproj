@@ -80,14 +80,18 @@
   <ItemGroup>
     <ClCompile Include="BattleMode.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HudManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Mode.cpp" />
+    <ClCompile Include="ModeManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -95,14 +99,18 @@
   <ItemGroup>
     <ClInclude Include="BattleMode.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameManager_Defines.h" />
     <ClInclude Include="HudManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
+    <ClInclude Include="ModeManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SaveManager.h" />

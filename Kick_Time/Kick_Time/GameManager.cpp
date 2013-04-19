@@ -3,43 +3,41 @@
 
 GameManager::GameManager(void)
 {
-	this->listModes = new std::vector<Mode>();
+	this->modeManager = new ModeManager();
 	this->saveManager = new SaveManager();
 	this->inputManager = new InputManager();
 	this->soundManager = new SoundManager();
 	this->menuManager = new MenuManager();
 	this->hudManager = new HudManager();
 	this->renderManager = new RenderManager();
-	this->listLevels = new std::vector<Level>();
-	this->listCharacters = new std::vector<Character>();
-	this->modeSelected = NULL;
-	this->levelSelected = NULL;
-	for(int index = 0; index < NUMBER_CHARACTERS; ++i)
-		this->characterSelected[index] = NULL;
+	this->levelManager = new LevelManager();
+	this->characterManager = new CharacterManager();
 }
 
 GameManager::~GameManager(void)
 {
-	delete[] this->modeSelected;
-	delete[] this->levelSelected;
-	for(int index = 0; index < NUMBER_CHARACTERS; ++i)
-		delete[] this->characterSelected[index];
 }
 
 void GameManager::InitializeGameManager()
 {
+	this->modeManager.InitializeModeManager();
 	this->inputManager.InitializeInputManager();
 	this->menuManager.InitializeMenuManager();
 	this->soundManager.InitializeSoundManager();
 	this->saveManager.InitializeSaveManager();
 	this->hudManager.InitializeHudManager();
 	this->renderManager.InitializeRenderManager();
+	this->levelManager.InitializeLevelManager();
+	this->characterManager.InitializeCharacterManager();
 }
 
 void GameManager::UpdateGameManager()
 {
 	this->inputManager.UpdateInputManager();
 	this->menuManager.UpdateMenuManager();
+	this->modeManager.UpdateModeManager();
+	this->levelManager.UpdateLevelManager();
+	this->characterManager.UpdateCharacterManager();
 	this->soundManager.UpdateSoundManager();
 	this->saveManager.UpdateSaveManager();
 	this->hudManager.UpdateHudManager();
