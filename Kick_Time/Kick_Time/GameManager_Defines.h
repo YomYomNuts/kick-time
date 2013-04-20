@@ -1,6 +1,0 @@
-#ifndef _GAMEMANAGER_DEFINES_H
-#define _GAMEMANAGER_DEFINES_H
-
-#define NUMBER_CHARACTERS	2
-
-#endif

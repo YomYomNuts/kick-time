@@ -17,7 +17,7 @@ int main()
 	sf::Font MyFont;
 
 	// Chargement à partir d'un fichier sur le disque
-	if (!MyFont.loadFromFile("../Fonts/arial.ttf"))
+	if (!MyFont.loadFromFile("../Ressources/Fonts/arial.ttf"))
 	{
 		cout << "Unable to open font" << endl;
 	}
@@ -30,7 +30,7 @@ int main()
 	
 
 	sf::Texture scorpionSheet;
-	if (!scorpionSheet.loadFromFile("../Sprites/MK/Scorpion/Scorpion.png"))
+	if (!scorpionSheet.loadFromFile("../Ressources/Characters/MK/Scorpion/Scorpion.png"))
 	{
 		cout << "Sprite didn't find!" << endl;
 	}

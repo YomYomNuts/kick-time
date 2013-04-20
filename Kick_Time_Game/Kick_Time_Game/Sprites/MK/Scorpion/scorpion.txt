@@ -1,2 +1,0 @@
-scorpion.png SCORPION_STAND_RIGHT 364 108 48 100 9 4 true
-scorpion.png SCORPION_STAND_LEFT 0 108 48 100 9 4 false
