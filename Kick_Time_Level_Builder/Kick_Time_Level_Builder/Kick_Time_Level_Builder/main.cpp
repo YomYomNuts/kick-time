@@ -10,9 +10,12 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
+	// Random variables
+	int count;
+
 	// Variables to get/set data for locations
-	char* levelLocation = new char[1024];
-	char* outputLocation = new char[1024];
+	char* levelLocation = new char[];
+	char* outputLocation = new char[];
 	char confirm = 'n';
 	bool resetData = false;
 
@@ -51,7 +54,10 @@ int main(int argc, const char * argv[])
 		if(argc == 3)
 		{
 			// Put the arguments into the variables
+			levelLocation = new char[strlen(argv[1])+1];
 			strcpy_s(levelLocation,strlen(argv[1])+1,argv[1]);
+
+			outputLocation = new char[strlen(argv[2])+1];
 			strcpy_s(outputLocation,strlen(argv[2])+1,argv[2]);
 		}
 		else
@@ -107,7 +113,7 @@ int main(int argc, const char * argv[])
 
 	// Check the animation file
 	// Check if it's a text file
-	if(strcmp(subChar(levelLocation,findChar(levelLocation,'.',LAST),4),".txt") != 0){
+	if(strcmp(subChar(levelLocation,findChar(levelLocation,'.',LAST),strlen(levelLocation)-1),".txt") != 0){
 		cout << "Please select an level file as a '.txt' file" << endl;
 		system("Pause");
 		return 1;
@@ -241,6 +247,8 @@ int main(int argc, const char * argv[])
 	else
 	{
 		cout << "ERROR OP001 - Can't open the level file." << endl;
+		system("Pause");
+		return 1;
 	}
 
 	levelFile.close();
@@ -290,17 +298,17 @@ int main(int argc, const char * argv[])
 		
 
 		// Go to the beginning of the list
-		std::list<LevelLine>::iterator it = listLevel.begin();
+		std::list<LevelLine>::iterator it;
+		count = 0;
 
 		// Define the animations' name
-		for(position = 0; position < listLevel.size(); position++)
+		for(it = listLevel.begin(); it != listLevel.end(); it++)
 		{
-			std::advance(it, position);
 			levelData.str("");
 			levelData << it->getLevelID();
 			headerContent = headerContent + "#define " + levelData.str() + " ";
 			levelData.str("");
-			levelData << position;
+			levelData << count++;
 			headerContent = headerContent + levelData.str() + "\n";
 		}
 
@@ -312,6 +320,8 @@ int main(int argc, const char * argv[])
 	else
 	{
 		cout << "ERROR OP002 - Can't create the header file." << endl;
+		system("Pause");
+		return 1;
 	}
 
 	headerFile.close();
@@ -342,13 +352,12 @@ int main(int argc, const char * argv[])
 		cppContent = cppContent + "{\n";
 
 		// Go to the beginning of the list
-		std::list<LevelLine>::iterator it = listLevel.begin();
+		std::list<LevelLine>::iterator it;
+		count = 0;
 
 		// Put all the data into the animationArray in the cpp file
-		for(position = 0; position < listLevel.size(); position++)
+		for(it = listLevel.begin(); it != listLevel.end(); it++)
 		{
-			std::advance(it, position);
-
 			cppContent = cppContent + "	{\n";
 			
 			// Put : fileName
@@ -380,7 +389,7 @@ int main(int argc, const char * argv[])
 
 			if(listLevel.size() > 1)
 			{
-				if(position != listLevel.size()-1)
+				if(count++ != listLevel.size()-1)
 					cppContent = cppContent + ",";
 			}
 
@@ -447,6 +456,8 @@ int main(int argc, const char * argv[])
 	}
 	else{
 		cout << "ERROR OP003 - Can't create the .cpp file." << endl;
+		system("Pause");
+		return 1;
 	}
 
 	cppFile.close();
