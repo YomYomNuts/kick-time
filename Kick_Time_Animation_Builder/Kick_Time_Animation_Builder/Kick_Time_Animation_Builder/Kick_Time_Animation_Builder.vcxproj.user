@@ -5,7 +5,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Game\Kick_Time_Game\Sprites\MK\Scorpion\scorpion.txt" "C:\Users\Fabien\Desktop" Animation</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Game\Kick_Time_Game\Sprites\MK\Scorpion\scorpion.txt" "C:\Users\Fabien\Desktop"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

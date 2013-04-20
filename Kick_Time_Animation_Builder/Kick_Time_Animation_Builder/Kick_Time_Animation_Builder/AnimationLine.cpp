@@ -1,5 +1,8 @@
 #include "AnimationLine.h"
 
+#include <iostream>
+using namespace std;
+
 AnimationLine::AnimationLine()
 {
        this->fileName = "";
@@ -13,8 +16,8 @@ AnimationLine::AnimationLine()
        this->animationLoop = "";
 }
 
-AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop){
-
+AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop)
+{
 	this->fileName = new char[strlen(fileName)+1];
 	strcpy_s(this->fileName,strlen(fileName)+1, fileName);
 
@@ -32,39 +35,48 @@ AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int 
 	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);
 }
 
-char* AnimationLine::getFileName(){
+char* AnimationLine::getFileName()
+{
 	return fileName;
 }
 
-char* AnimationLine::getAnimationName(){
+char* AnimationLine::getAnimationName()
+{
 	return animationName;
 }
 
-int AnimationLine::getPosX(){
+int AnimationLine::getPosX()
+{
 	return posX;
 }
 
-int AnimationLine::getPosY(){
+int AnimationLine::getPosY()
+{
 	return posY;
 }
 
-int AnimationLine::getSpriteWidth(){
+int AnimationLine::getSpriteWidth()
+{
 	return spriteWidth;
 }
 
-int AnimationLine::getSpriteHeight(){
+int AnimationLine::getSpriteHeight()
+{
 	return spriteHeight;
 }
 
-int AnimationLine::getFramerate(){
+int AnimationLine::getFramerate()
+{
 	return framerate;
 }
 
-int AnimationLine::getSpriteNb(){
+int AnimationLine::getSpriteNb()
+{
 	return spriteNb;
 }
 
-char* AnimationLine::getAnimationLoop(){
+char* AnimationLine::getAnimationLoop()
+{
 	return animationLoop;
 }
 

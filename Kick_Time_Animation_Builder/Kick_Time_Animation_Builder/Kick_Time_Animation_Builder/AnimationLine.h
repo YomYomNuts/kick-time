@@ -1,11 +1,8 @@
 #ifndef __ANIMATIONLINE__
 #define __ANIMATIONLINE__
 
-#include <iostream>
-using namespace std;
-
-class AnimationLine{
-
+class AnimationLine
+{
 private:
 	char* fileName;
 	char* animationName;
