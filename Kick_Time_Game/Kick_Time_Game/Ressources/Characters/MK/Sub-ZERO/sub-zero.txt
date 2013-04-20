@@ -1,0 +1,2 @@
+sub-zero.png SUB-ZERO_STAND_RIGHT 34 19 38 120 9 64 true
+sub-zero.png SUB-ZERO_STAND_LEFT 40 8 418 910 92 43 false

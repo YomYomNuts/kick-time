@@ -6,13 +6,21 @@
 #include <sstream>
 #include <algorithm>
 
+
 using namespace std;
+
+
 
 int main(int argc,const char * argv[])
 {
+	
+	// Random variables
+	int i;
+	int count;
+
 	// Variables to get/set data for locations
-	char* animLocation = new char[1024];
-	char* outputLocation = new char[1024];
+	char* animLocation = new char[];
+	char* outputLocation = new char[];
 	char confirm = 'n';
 	bool resetData = false;
 
@@ -22,6 +30,7 @@ int main(int argc,const char * argv[])
 
 	// Variable to open/read/create/write files
 	// Animation file
+	list<char*> animFilesList;
 	list <AnimationLine> animArray;
 	ifstream animFile;
 	string currentLine;
@@ -56,7 +65,9 @@ int main(int argc,const char * argv[])
 		if(argc == 3)
 		{
 			// Put the arguments into the variables
+			animLocation = new char[strlen(argv[1])+1];
 			strcpy_s(animLocation,strlen(argv[1])+1,argv[1]);
+			outputLocation = new char [strlen(argv[2])+1];
 			strcpy_s(outputLocation,strlen(argv[2])+1,argv[2]);
 		}
 		else
@@ -110,220 +121,233 @@ int main(int argc,const char * argv[])
 		}
 	}
 
-	// Check the animation file
-	// Check if it's a text file
-	if(strcmp(subChar(animLocation,findChar(animLocation,'.',LAST),4),".txt") != 0)
-	{
-		cout << "Please select an animation file as a '.txt' file" << endl;
+	/**********************************************************/
+	/* Get the location and the name of the animation's files */
+	/**********************************************************/
+
+	getAnimFilesLocation(animLocation, animFilesList);
+	
+	// Check if at least one file has been found
+	if(animFilesList.size() == 0){
 		system("Pause");
 		return 1;
 	}
-
+	
 	/***************************/
 	/* Read the animation file */
 	/***************************/
 
-	// Open the animation file
-	animFile.open(animLocation,ios::in);
-
-	if(animFile)
+	// Go to the beginning of the list
+	list<char*>::iterator iteratorFile;
+	
+	for(iteratorFile = animFilesList.begin();iteratorFile != animFilesList.end(); iteratorFile++)
 	{
-		while(!animFile.eof())
+		// Open the animation file
+		animFile.open(*iteratorFile,ios::in);
+
+		if(animFile)
 		{
-			// Get the full current line
-			getline(animFile,currentLine);
-
-			if(!currentLine.empty())
+			while(!animFile.eof())
 			{
-				posDelimStart = -1;
+				// Get the full current line
+				getline(animFile,currentLine);
 
-				/****************************/
-				/* Get the different values */
-				/****************************/
-
-				// Get fileName
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
+				if(!currentLine.empty())
 				{
-					cout << "ERROR GD001 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
+					posDelimStart = -1;
+
+					/****************************/
+					/* Get the different values */
+					/****************************/
+
+					// Get fileName
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD001 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
+					if(fileName == "")
+					{
+						cout << "ERROR GD002 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get animationName
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD003 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					animationName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
+					if(animationName == "")
+					{
+						cout << "ERROR GD004 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get posX
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD005 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					posX = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(posX == -1)
+					{
+						cout << "ERROR GD006 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get posY
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD007 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					posY = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(posY == -1)
+					{
+						cout << "ERROR GD008 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get spriteWidth
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD009 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					spriteWidth = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(spriteWidth == -1)
+					{
+						cout << "ERROR GD010 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get spriteHeight
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD011 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					spriteHeight = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(spriteHeight == -1)
+					{
+						cout << "ERROR GD012 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get framerate
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD013 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					framerate = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(framerate == -1)
+					{
+						cout << "ERROR GD014 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get spriteNb
+					posDelimStart = posDelimEnd;
+					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					if(posDelimEnd == -1)
+					{
+						cout << "ERROR GD015 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					posDelimStart++;
+
+					spriteNb = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					if(spriteNb == -1)
+					{
+						cout << "ERROR GD016 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					// Get animationLoop
+					posDelimStart = posDelimEnd;
+
+					posDelimStart++;
+
+					transform(currentLine.begin(),currentLine.end(),currentLine.begin(),::tolower);
+					animationLoopStr = mySubStringToChar(currentLine,posDelimStart,currentLine.at(currentLine.length()-1));			
+					if((strcmp(animationLoopStr,"true") != 0) && (strcmp(animationLoopStr,"false") != 0))
+					{
+						cout << "ERROR GD017 - A problem occured while getting the loop animation value in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					animArray.push_back(*new AnimationLine(fileName,animationName,posX,posY,spriteWidth,spriteHeight,framerate,spriteNb,animationLoopStr));
 				}
-
-				posDelimStart++;
-
-				fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
-				if(fileName == "")
-				{
-					cout << "ERROR GD002 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get animationName
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD003 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				animationName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
-				if(animationName == "")
-				{
-					cout << "ERROR GD004 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get posX
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD005 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				posX = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(posX == -1)
-				{
-					cout << "ERROR GD006 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get posY
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD007 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				posY = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(posY == -1)
-				{
-					cout << "ERROR GD008 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get spriteWidth
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD009 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				spriteWidth = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(spriteWidth == -1)
-				{
-					cout << "ERROR GD010 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get spriteHeight
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD011 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				spriteHeight = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(spriteHeight == -1)
-				{
-					cout << "ERROR GD012 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get framerate
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD013 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				framerate = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(framerate == -1)
-				{
-					cout << "ERROR GD014 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get spriteNb
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD015 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				spriteNb = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(spriteNb == -1)
-				{
-					cout << "ERROR GD016 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get animationLoop
-				posDelimStart = posDelimEnd;
-
-				posDelimStart++;
-
-				transform(currentLine.begin(),currentLine.end(),currentLine.begin(),::tolower);
-				animationLoopStr = mySubStringToChar(currentLine,posDelimStart,currentLine.at(currentLine.length()-1));			
-				if((strcmp(animationLoopStr,"true") != 0) && (strcmp(animationLoopStr,"false") != 0))
-				{
-					cout << "ERROR GD017 - A problem occured while getting the loop animation value in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				animArray.push_back(*new AnimationLine(fileName,animationName,posX,posY,spriteWidth,spriteHeight,framerate,spriteNb,animationLoopStr));
 			}
+
+			animFile.close();
+
+		}
+		else
+		{
+			cout << "ERROR OP001 - Can't open the animation file." << endl;
+			system("Pause");
+			return 1;
 		}
 	}
-	else
-	{
-		cout << "ERROR OP001 - Can't open the animation file." << endl;
-	}
 
-	animFile.close();
 
 	/*********************/
 	/* Set the '.h' file */
@@ -378,17 +402,18 @@ int main(int argc,const char * argv[])
 		
 
 		// Go to the beginning of the list
-		std::list<AnimationLine>::iterator it = animArray.begin();
+		list<AnimationLine>::iterator it;
+		count = 0;
 
 		// Define the animations' name
-		for(position = 0; position < animArray.size(); position++)
+		for(it = animArray.begin(); it != animArray.end(); it++)
 		{
-			std::advance(it, position);
+			//advance(it, position);
 			animationData.str("");
 			animationData << it->getAnimationName();
 			headerContent = headerContent + "#define " + animationData.str() + " ";
 			animationData.str("");
-			animationData << position;
+			animationData << count++;
 			headerContent = headerContent + animationData.str() + "\n";
 		}
 
@@ -400,6 +425,8 @@ int main(int argc,const char * argv[])
 	else
 	{
 		cout << "ERROR OP002 - Can't create the header file." << endl;
+		system("Pause");
+		return 1;
 	}
 
 	headerFile.close();
@@ -430,12 +457,13 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "{\n";
 
 		// Go to the beginning of the list
-		std::list<AnimationLine>::iterator it = animArray.begin();
+		std::list<AnimationLine>::iterator it;
+		count = 0;
 
 		// Put all the data into the animationArray in the cpp file
-		for(position = 0; position < animArray.size(); position++)
+		for(it = animArray.begin(); it != animArray.end(); it++)
 		{
-			std::advance(it, position);
+			//std::advance(it, position);
 
 			cppContent = cppContent + "	{\n";
 			
@@ -488,7 +516,7 @@ int main(int argc,const char * argv[])
 
 			if(animArray.size() > 1)
 			{
-				if(position != animArray.size()-1)
+				if(count++ != animArray.size()-1)
 					cppContent = cppContent + ",";
 			}
 
@@ -580,6 +608,8 @@ int main(int argc,const char * argv[])
 	else
 	{
 		cout << "ERROR OP003 - Can't create the .cpp file." << endl;
+		system("Pause");
+		return 1;
 	}
 
 	cppFile.close();
@@ -597,3 +627,4 @@ int main(int argc,const char * argv[])
 	system("Pause");
 	return 0;
 }
+
