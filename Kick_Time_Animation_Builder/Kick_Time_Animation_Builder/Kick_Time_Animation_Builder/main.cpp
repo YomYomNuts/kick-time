@@ -6,18 +6,10 @@
 #include <sstream>
 #include <algorithm>
 
-
 using namespace std;
-
-
 
 int main(int argc,const char * argv[])
 {
-	
-	// Random variables
-	int i;
-	int count;
-
 	// Variables to get/set data for locations
 	char* animLocation = new char[];
 	char* outputLocation = new char[];
@@ -44,13 +36,13 @@ int main(int argc,const char * argv[])
 	int spriteHeight;
 	int framerate;
 	int spriteNb;
-	//char* animationLoop = new char[];
 	char* animationLoopStr = new char[];
 	// Header file
 	ofstream headerFile;
-	ostringstream animationData;
 	string headerContent;
 	int position;
+	char buffer [500];
+	list<AnimationLine>::iterator it;
 	// CPP file
 	ofstream cppFile;
 	string cppContent;
@@ -66,9 +58,9 @@ int main(int argc,const char * argv[])
 		{
 			// Put the arguments into the variables
 			animLocation = new char[strlen(argv[1])+1];
-			strcpy_s(animLocation,strlen(argv[1])+1,argv[1]);
+			strcpy_s(animLocation, strlen(argv[1])+1, argv[1]);
 			outputLocation = new char [strlen(argv[2])+1];
-			strcpy_s(outputLocation,strlen(argv[2])+1,argv[2]);
+			strcpy_s(outputLocation, strlen(argv[2])+1, argv[2]);
 		}
 		else
 		{
@@ -140,7 +132,7 @@ int main(int argc,const char * argv[])
 	// Go to the beginning of the list
 	list<char*>::iterator iteratorFile;
 	
-	for(iteratorFile = animFilesList.begin();iteratorFile != animFilesList.end(); iteratorFile++)
+	for(iteratorFile = animFilesList.begin(); iteratorFile != animFilesList.end(); iteratorFile++)
 	{
 		// Open the animation file
 		animFile.open(*iteratorFile,ios::in);
@@ -150,7 +142,7 @@ int main(int argc,const char * argv[])
 			while(!animFile.eof())
 			{
 				// Get the full current line
-				getline(animFile,currentLine);
+				getline(animFile, currentLine);
 
 				if(!currentLine.empty())
 				{
@@ -161,7 +153,7 @@ int main(int argc,const char * argv[])
 					/****************************/
 
 					// Get fileName
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD001 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
@@ -171,7 +163,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
+					fileName = mySubStringToChar(currentLine, posDelimStart, posDelimEnd-1);
 					if(fileName == "")
 					{
 						cout << "ERROR GD002 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
@@ -181,7 +173,7 @@ int main(int argc,const char * argv[])
 
 					// Get animationName
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD003 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
@@ -191,7 +183,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					animationName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
+					animationName = mySubStringToChar(currentLine, posDelimStart, posDelimEnd-1);
 					if(animationName == "")
 					{
 						cout << "ERROR GD004 - A problem occured while getting the animation's name in this line:\n	" << currentLine << endl;
@@ -201,7 +193,7 @@ int main(int argc,const char * argv[])
 
 					// Get posX
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD005 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
@@ -211,7 +203,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					posX = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					posX = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(posX == -1)
 					{
 						cout << "ERROR GD006 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
@@ -221,7 +213,7 @@ int main(int argc,const char * argv[])
 
 					// Get posY
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1,' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD007 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
@@ -231,7 +223,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					posY = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					posY = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(posY == -1)
 					{
 						cout << "ERROR GD008 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
@@ -241,7 +233,7 @@ int main(int argc,const char * argv[])
 
 					// Get spriteWidth
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD009 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
@@ -251,7 +243,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					spriteWidth = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					spriteWidth = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(spriteWidth == -1)
 					{
 						cout << "ERROR GD010 - A problem occured while getting the sprite's width in this line:\n	" << currentLine << endl;
@@ -261,7 +253,7 @@ int main(int argc,const char * argv[])
 
 					// Get spriteHeight
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD011 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
@@ -271,7 +263,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					spriteHeight = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					spriteHeight = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(spriteHeight == -1)
 					{
 						cout << "ERROR GD012 - A problem occured while getting the sprite's height in this line:\n	" << currentLine << endl;
@@ -281,7 +273,7 @@ int main(int argc,const char * argv[])
 
 					// Get framerate
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD013 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
@@ -291,7 +283,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					framerate = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					framerate = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(framerate == -1)
 					{
 						cout << "ERROR GD014 - A problem occured while getting the framerate in this line:\n	" << currentLine << endl;
@@ -301,7 +293,7 @@ int main(int argc,const char * argv[])
 
 					// Get spriteNb
 					posDelimStart = posDelimEnd;
-					posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
+					posDelimEnd = findFrom(currentLine, posDelimStart+1, ' ');
 					if(posDelimEnd == -1)
 					{
 						cout << "ERROR GD015 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
@@ -311,7 +303,7 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					spriteNb = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
+					spriteNb = myAtoi(mySubStringToChar(currentLine, posDelimStart, posDelimEnd));
 					if(spriteNb == -1)
 					{
 						cout << "ERROR GD016 - A problem occured while getting the number of sprites in this line:\n	" << currentLine << endl;
@@ -324,8 +316,8 @@ int main(int argc,const char * argv[])
 
 					posDelimStart++;
 
-					transform(currentLine.begin(),currentLine.end(),currentLine.begin(),::tolower);
-					animationLoopStr = mySubStringToChar(currentLine,posDelimStart,currentLine.at(currentLine.length()-1));			
+					transform(currentLine.begin(), currentLine.end(), currentLine.begin(), ::tolower);
+					animationLoopStr = mySubStringToChar(currentLine, posDelimStart, currentLine.at(currentLine.length()-1));			
 					if((strcmp(animationLoopStr,"true") != 0) && (strcmp(animationLoopStr,"false") != 0))
 					{
 						cout << "ERROR GD017 - A problem occured while getting the loop animation value in this line:\n	" << currentLine << endl;
@@ -333,7 +325,7 @@ int main(int argc,const char * argv[])
 						return 1;
 					}
 
-					animArray.push_back(*new AnimationLine(fileName,animationName,posX,posY,spriteWidth,spriteHeight,framerate,spriteNb,animationLoopStr));
+					animArray.push_back(*new AnimationLine(fileName, animationName, posX, posY, spriteWidth, spriteHeight, framerate, spriteNb, animationLoopStr));
 				}
 			}
 
@@ -360,10 +352,10 @@ int main(int argc,const char * argv[])
 	
 	// Create and open the file
 	headerFile.open(headerOutputLocation, ios::out|ios::trunc);
-	animationData << animArray.size();
 
 	if(headerFile)
 	{
+		sprintf_s(buffer, "%d", animArray.size());
 		headerContent = "#ifndef __ANIMATIONDATA__\n";
 		headerContent = headerContent + "#define __ANIMATIONDATA__\n";
 		headerContent = headerContent + "\n";
@@ -379,10 +371,10 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "	int framerate;\n";
 		headerContent = headerContent + "	int spriteNb;\n";
 		headerContent = headerContent + "	bool animationLoop;\n";
-		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "	AnimationData();\n";
 		headerContent = headerContent + "	AnimationData(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);\n";
+		headerContent = headerContent + "	~AnimationData(void);\n";
 		headerContent = headerContent + "	char* getFileName();\n";
 		headerContent = headerContent + "	char* getAnimationName();\n";
 		headerContent = headerContent + "	int getPosX();\n";
@@ -392,29 +384,21 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "	int getFramerate();\n";
 		headerContent = headerContent + "	int getSpriteNb();\n";
 		headerContent = headerContent + "	bool getAnimationLoop();\n";
-		headerContent = headerContent + "	~AnimationData(void);\n";
 		headerContent = headerContent + "};\n";
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#define NUMBER_ANIMATIONDATA " + animationData.str() + "\n";
+		headerContent = headerContent + "#define NUMBER_ANIMATIONDATA " + buffer + "\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "extend const AnimationData animationDataArray[NUMBER_ANIMATIONDATA];\n";
 		headerContent = headerContent + "\n";
 		
 
-		// Go to the beginning of the list
-		list<AnimationLine>::iterator it;
-		count = 0;
-
 		// Define the animations' name
-		for(it = animArray.begin(); it != animArray.end(); it++)
+		position = 0;
+		for(it = animArray.begin(); it != animArray.end(); ++it)
 		{
-			//advance(it, position);
-			animationData.str("");
-			animationData << it->getAnimationName();
-			headerContent = headerContent + "#define " + animationData.str() + " ";
-			animationData.str("");
-			animationData << count++;
-			headerContent = headerContent + animationData.str() + "\n";
+			sprintf_s(buffer, "%d", position);
+			headerContent = headerContent + "#define " + it->getAnimationName() + " " + buffer + "\n";
+			++position;
 		}
 
 		headerContent = headerContent + "\n";
@@ -445,80 +429,51 @@ int main(int argc,const char * argv[])
 
 	if(cppFile)
 	{
-		animationData.str("");
-		animationData << "AnimationData";
-
-		cppContent = "#include \"" + animationData.str() + ".h\"\n";
+		cppContent = "#include \"AnimationData.h\"\n";
 		cppContent = cppContent + "\n";
 
-		animationData.str("");
-		animationData << animArray.size();
 		cppContent = cppContent + "const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =\n";
 		cppContent = cppContent + "{\n";
 
-		// Go to the beginning of the list
-		std::list<AnimationLine>::iterator it;
-		count = 0;
-
 		// Put all the data into the animationArray in the cpp file
-		for(it = animArray.begin(); it != animArray.end(); it++)
+		for(it = animArray.begin(); it != animArray.end(); ++it)
 		{
-			//std::advance(it, position);
-
 			cppContent = cppContent + "	{\n";
 			
 			// Put : fileName
-			animationData.str("");
-			animationData << it->getFileName();
-			cppContent = cppContent + "		\"" + animationData.str() + "\",\n";
+			cppContent = cppContent + "		\"" + it->getFileName() + "\",\n";
 
 			// Put : animatioName
-			animationData.str("");
-			animationData << it->getAnimationName();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			cppContent = cppContent + "		" + it->getAnimationName() + ",\n";
 
 			// Put : posX
-			animationData.str("");
-			animationData << it->getPosX();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getPosX());
+			cppContent = cppContent + "		" + buffer + ",\n";
 
 			// Put : posY
-			animationData.str("");
-			animationData << it->getPosY();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getPosY());
+			cppContent = cppContent + "		" + buffer + ",\n";
 			
 			// Put : spriteWidth
-			animationData.str("");
-			animationData << it->getSpriteWidth();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getSpriteWidth());
+			cppContent = cppContent + "		" + buffer + ",\n";
 			
 			// Put : spriteHeight
-			animationData.str("");
-			animationData << it->getSpriteHeight();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getSpriteHeight());
+			cppContent = cppContent + "		" + buffer + ",\n";
 
 			// Put : framerate
-			animationData.str("");
-			animationData << it->getFramerate();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getFramerate());
+			cppContent = cppContent + "		" + buffer + ",\n";
 
 			// Put : spriteNb
-			animationData.str("");
-			animationData << it->getSpriteNb();
-			cppContent = cppContent + "		" + animationData.str() + ",\n";
+			sprintf_s(buffer, "%d", it->getSpriteNb());
+			cppContent = cppContent + "		" + buffer + ",\n";
 
 			// Put : animationLoop
-			animationData.str("");
-			animationData << it->getAnimationLoop();
-			cppContent = cppContent + "		" + animationData.str() + "\n";
+			cppContent = cppContent + "		" + it->getAnimationLoop() + ",\n";
 
-			cppContent = cppContent + "	}";
-
-			if(animArray.size() > 1)
-			{
-				if(count++ != animArray.size()-1)
-					cppContent = cppContent + ",";
-			}
+			cppContent = cppContent + "	},";
 
 			cppContent = cppContent + "\n";
 		}
@@ -543,7 +498,7 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->fileName = new char[strlen(fileName)+1];\n";
 		cppContent = cppContent + "\tstrcpy_s(this->fileName,strlen(fileName)+1, fileName);\n\n";
 		cppContent = cppContent + "\tthis->animationName = new char[strlen(animationName)+1];\n";
-		cppContent = cppContent + "\tstrcpy_s(this->animationName,strlen(animationName)+1, animationName);\n";
+		cppContent = cppContent + "\tstrcpy_s(this->animationName,strlen(animationName)+1, animationName);\n\n";
 		cppContent = cppContent + "\tthis->posX = posX;\n";
 		cppContent = cppContent + "\tthis->posY = posY;\n";
 		cppContent = cppContent + "\tthis->spriteWidth = spriteWidth;\n";
@@ -551,6 +506,12 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->framerate = framerate;\n";
 		cppContent = cppContent + "\tthis->spriteNb = spriteNb;\n\n";
 		cppContent = cppContent + "\tthis->animationLoop = animationLoop;\n";
+		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "\n";
+		cppContent = cppContent + "AnimationData::~AnimationData(void)\n";
+		cppContent = cppContent + "{\n";
+		cppContent = cppContent + "\tdelete[] this->fileName;\n";
+		cppContent = cppContent + "\tdelete[] this->animationName;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "char* AnimationData::getFileName()\n";
@@ -596,11 +557,6 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "bool AnimationData::getAnimationLoop()\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->animationLoop;\n";
-		cppContent = cppContent + "}\n";
-		cppContent = cppContent + "AnimationData::~AnimationData(void)\n";
-		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\tdelete[] this->fileName;\n";
-		cppContent = cppContent + "\tdelete[] this->animationName;\n";
 		cppContent = cppContent + "}\n";
 		
 		cppFile << cppContent;

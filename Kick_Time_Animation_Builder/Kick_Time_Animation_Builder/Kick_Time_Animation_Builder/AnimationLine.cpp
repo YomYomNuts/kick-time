@@ -35,6 +35,13 @@ AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int 
 	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);
 }
 
+AnimationLine::~AnimationLine(void)
+{
+       delete[] this->fileName;
+       delete[] this->animationName;
+       delete[] this->animationLoop;
+}
+
 char* AnimationLine::getFileName()
 {
 	return fileName;
@@ -78,11 +85,4 @@ int AnimationLine::getSpriteNb()
 char* AnimationLine::getAnimationLoop()
 {
 	return animationLoop;
-}
-
-AnimationLine::~AnimationLine(void)
-{
-       delete[] this->fileName;
-       delete[] this->animationName;
-       delete[] this->animationLoop;
 }

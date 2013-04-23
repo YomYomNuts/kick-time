@@ -1,24 +1,17 @@
-﻿La génération a démarré 21/04/2013 00:37:58.
-     1>Projet "C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder.vcxproj" sur le nœud 2 (Build cible(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\External_Librairies\boost\\" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt functions.cpp LevelLine.cpp main.cpp
-         main.cpp
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\main.cpp(42): warning C4101: 'position' : variable locale non référencée
-         LevelLine.cpp
-         functions.cpp
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\functions.cpp(11): warning C4018: '<' : incompatibilité signed/unsigned
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\functions.cpp(28): warning C4018: '<' : incompatibilité signed/unsigned
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\functions.cpp(53): warning C4018: '<' : incompatibilité signed/unsigned
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\functions.cpp(71): warning C4018: '<' : incompatibilité signed/unsigned
-     1>c:\users\fabien\documents\cours\4ème années\c++\pa\kick_time\kick_time_level_builder\kick_time_level_builder\kick_time_level_builder\functions.cpp(89): warning C4018: '<' : incompatibilité signed/unsigned
-         Génération de code en cours...
+﻿La génération a démarré 24/04/2013 01:49:20.
+     1>Projet "C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>InitializeBuildStatus:
+         Création de "Debug\Kick_Time_Level_Builder.unsuccessfulbuild", car "AlwaysCreate" a été spécifié.
+       ClCompile:
+         Toutes les sorties sont à jour.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Debug\Kick_Time_Level_Builder.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Debug\Kick_Time_Level_Builder.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Debug\Kick_Time_Level_Builder.lib" /MACHINE:X86 Debug\functions.obj
-         Debug\LevelLine.obj
-         Debug\main.obj
-         Kick_Time_Level_Builder.vcxproj -> C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Debug\Kick_Time_Level_Builder.exe
-     1>Génération du projet "C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder.vcxproj" terminée (Build cible(s)).
+         Toutes les sorties sont à jour.
+         Kick_Time_Level_Builder.vcxproj -> C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Debug\Kick_Time_Level_Builder.exe
+       FinalizeBuildStatus:
+         Suppression du fichier "Debug\Kick_Time_Level_Builder.unsuccessfulbuild".
+         Mise à jour de l'horodatage "Debug\Kick_Time_Level_Builder.lastbuildstate".
+     1>Génération du projet "C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder\Kick_Time_Level_Builder.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:03.36
+Temps écoulé 00:00:00.06

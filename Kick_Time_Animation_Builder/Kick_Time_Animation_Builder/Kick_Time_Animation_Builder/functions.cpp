@@ -121,7 +121,6 @@ void getAnimFilesLocation(char* folder, list<char*> &filesNameList) {
 	char* name = new char [];
 	DIR *dir;
 	struct dirent *entry;
-	int count;
 	char* path = new char []; 
 	struct stat info;
 
