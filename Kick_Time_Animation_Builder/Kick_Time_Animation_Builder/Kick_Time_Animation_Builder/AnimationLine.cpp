@@ -1,8 +1,5 @@
 #include "AnimationLine.h"
 
-#include <iostream>
-using namespace std;
-
 AnimationLine::AnimationLine()
 {
        this->fileName = "";
@@ -13,41 +10,32 @@ AnimationLine::AnimationLine()
        this->spriteHeight = 0;
        this->framerate = 0;
        this->spriteNb = 0;
-       this->animationLoop = "";
+       this->animationLoop = false;
 }
 
-AnimationLine::AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop)
+AnimationLine::AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop)
 {
-	this->fileName = new char[strlen(fileName)+1];
-	strcpy_s(this->fileName,strlen(fileName)+1, fileName);
-	
-	this->animationName = new char[strlen(animationName)+1];
-	strcpy_s(this->animationName,strlen(animationName)+1, animationName);
-
+	this->fileName = fileName;
+	this->animationName = animationName;
 	this->posX = posX;
 	this->posY = posY;
 	this->spriteWidth = spriteWidth;
 	this->spriteHeight = spriteHeight;
 	this->framerate = framerate;
 	this->spriteNb = spriteNb;
-
-	this->animationLoop = new char[strlen(animationLoop)+1];
-	strcpy_s(this->animationLoop,strlen(animationLoop)+1, animationLoop);
+	this->animationLoop = animationLoop;
 }
 
 AnimationLine::~AnimationLine(void)
 {
-       delete[] this->fileName;
-       delete[] this->animationName;
-       delete[] this->animationLoop;
 }
 
-char* AnimationLine::getFileName()
+string AnimationLine::getFileName()
 {
 	return fileName;
 }
 
-char* AnimationLine::getAnimationName()
+string AnimationLine::getAnimationName()
 {
 	return animationName;
 }
@@ -82,7 +70,7 @@ int AnimationLine::getSpriteNb()
 	return spriteNb;
 }
 
-char* AnimationLine::getAnimationLoop()
+bool AnimationLine::getAnimationLoop()
 {
 	return animationLoop;
 }

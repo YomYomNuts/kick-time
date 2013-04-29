@@ -9,10 +9,10 @@ HudManager::~HudManager(void)
 {
 }
 
-void HudManager::InitializeHudManager()
+void HudManager::initializeHudManager()
 {
 }
 
-void HudManager::UpdateHudManager()
+void HudManager::updateHudManager()
 {
 }

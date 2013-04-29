@@ -1,5 +1,7 @@
 #include "functions.h"
 
+#include <sstream>
+
 // Return a part of a char*
 char* subChar(char* string, int startPos,int size){
 
@@ -43,60 +45,44 @@ int findChar(char* string, char toFind, position type){
 	}
 }
 
-// Return part of a string into a char* format
-char* mySubStringToChar(string str, int posStart, int posEnd){
+// Return the vector that contains all terms split by the delimiter
+vector<string> split(string initString, string delimiter)
+{
+	vector<string> listSplit;
+	size_t pos = 0;
+	string token;
 
-	char* finalString = new char[posEnd-posStart+2];
-	unsigned int i;
-	int counter = 0;
-	
-	for(i = posStart; i < posEnd+1; i++){
-		if(i < str.size()){
-			finalString[counter] = str[i];
-			counter++;
-		}
+	while ((pos = initString.find(delimiter)) != string::npos) {
+		token = initString.substr(0, pos);
+		listSplit.push_back(token);
+		initString.erase(0, pos + delimiter.length());
 	}
-
-	finalString[counter] = '\0';
-
-	return finalString;
-
+	listSplit.push_back(initString);
+	return listSplit;
 }
 
-// Find a char in string from a specific position
-int findFrom(string str, int posStart, char toFind){
+// Verify if the string is a number in the base (8, 10 or 16)
+bool isNumeric(const char* pszInput, int nNumberBase)
+{
+	istringstream iss(pszInput);
 
-	int i;
-
-	for( i = posStart; i < str.size(); i++)
+	if (nNumberBase == 10)
 	{
-		if(str[i] == toFind){
-			return i;
-		}
+		double dTestSink;
+		iss >> dTestSink;
 	}
-
-	return -1;
-}
-
-// Return the int value of a char* value, return -1 if can't convert
-// This function has been redifined to do not get 0 if the function can't convert, but -1 instead
-int myAtoi(char* str){
-
-	int i;
-	int coefficient = 1;
-	int finalNumber = 0;
-
-	for( i = 0 ; i < strlen(str); i++)
+	else if (nNumberBase == 8 || nNumberBase == 16)
 	{
-		if((str[i] - 48) >= 0 && (str[i] - 48) <= 9){
-			finalNumber *= coefficient;
-			finalNumber += str[i] - 48;
-			coefficient = 10;
-		}
-		else if(str[i] != '\0' && str[i] != ' '){
-			return -1;
-		}
+		int nTestSink;
+		iss >> ((nNumberBase == 8) ? oct : hex) >> nTestSink;
 	}
+	else
+		return false;
 
-	return finalNumber;
+	// was any input successfully consumed/converted?
+	if (!iss)
+		return false;
+
+	// was all the input successfully consumed/converted?
+	return (iss.rdbuf()->in_avail() == 0);
 }

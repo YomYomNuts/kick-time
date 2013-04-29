@@ -9,10 +9,10 @@ SaveManager::~SaveManager(void)
 {
 }
 
-void SaveManager::InitializeSaveManager()
+void SaveManager::initializeSaveManager()
 {
 }
 
-void SaveManager::UpdateSaveManager()
+void SaveManager::updateSaveManager()
 {
 }

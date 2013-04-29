@@ -1,52 +1,45 @@
 #include "LevelLine.h"
 
+#include <iostream>
+
+using namespace std;
 
 LevelLine::LevelLine(void)
 {
 	this->fileName = "";
-	this->levelID = "";
 	this->levelName = "";
-	this->posX = 0;
-	this->posY = 0;
+	this->levelID = "";
+	this->posYCharacter = 0;
 }
 
-LevelLine::LevelLine(char * fileName, char * levelID, char * levelName, int posX, int posY)
+LevelLine::LevelLine(string fileName, string levelID, string levelName, int posYCharacter)
 {
 	this->fileName = fileName;
-	this->levelID = levelID;
 	this->levelName = levelName;
-	this->posX = posX;
-	this->posY = posY;
+	this->levelID = levelID;
+	this->posYCharacter = posYCharacter;
 }
 
 LevelLine::~LevelLine(void)
 {
-	delete[] this->fileName;
-	delete[] this->levelID;
-	delete[] this->levelName;
 }
 
-char* LevelLine::getFileName()
+string LevelLine::getFileName()
 {
 	return this->fileName;
 }
 
-char* LevelLine::getLevelID()
-{
-	return this->levelID;
-}
-
-char* LevelLine::getLevelName()
+string LevelLine::getLevelName()
 {
 	return this->levelName;
 }
 
-int LevelLine::getPosX()
+string LevelLine::getLevelID()
 {
-	return this->posX;
+	return this->levelID;
 }
 
-int LevelLine::getPosY()
+int LevelLine::getPosYCharacter()
 {
-	return this->posY;
+	return this->posYCharacter;
 }

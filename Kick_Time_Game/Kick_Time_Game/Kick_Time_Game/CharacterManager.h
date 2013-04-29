@@ -6,8 +6,8 @@ class CharacterManager
 public:
 	CharacterManager(void);
 	~CharacterManager(void);
-	void InitializeCharacterManager();
-	void UpdateCharacterManager();
+	void initializeCharacterManager();
+	void updateCharacterManager();
 };
 
 #endif

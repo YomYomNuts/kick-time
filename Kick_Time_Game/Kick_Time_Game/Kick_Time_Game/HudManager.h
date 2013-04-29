@@ -6,8 +6,8 @@ class HudManager
 public:
 	HudManager(void);
 	~HudManager(void);
-	void InitializeHudManager();
-	void UpdateHudManager();
+	void initializeHudManager();
+	void updateHudManager();
 };
 
 #endif

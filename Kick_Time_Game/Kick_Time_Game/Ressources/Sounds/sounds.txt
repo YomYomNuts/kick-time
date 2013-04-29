@@ -1,0 +1,1 @@
+../Ressources/Sounds/19 Triangle X2.wav;SOUND_LEVEL_SCORPION;true;true

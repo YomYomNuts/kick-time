@@ -1,23 +1,25 @@
-#ifndef __LEVELLINE__
-#define __LEVELLINE__
+#ifndef _LEVELLINE_H
+#define _LEVELLINE_H
+
+#include <string>
+
+using namespace std;
 
 class LevelLine
 {
 private:
-	char * fileName;
-	char * levelID;
-	char * levelName;
-	int posX;
-	int posY;
+	string fileName;
+	string levelID;
+	string levelName;
+	int posYCharacter;
 public:
 	LevelLine(void);
-	LevelLine(char * fileName, char * levelID, char * levelName, int posX, int posY);
+	LevelLine(string fileName, string levelID, string levelName, int posYCharacter);
 	~LevelLine(void);
-	char* getFileName();
-	char* getLevelID();
-	char* getLevelName();
-	int getPosX();
-	int getPosY();
+	string getFileName();
+	string getLevelID();
+	string getLevelName();
+	int getPosYCharacter();
 };
 
 #endif

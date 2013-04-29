@@ -10,10 +10,10 @@ ModeManager::~ModeManager(void)
 {
 }
 
-void ModeManager::InitializeModeManager()
+void ModeManager::initializeModeManager()
 {
 }
 
-void ModeManager::UpdateModeManager()
+void ModeManager::updateModeManager()
 {
 }

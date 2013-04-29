@@ -1,32 +1,35 @@
-#ifndef __ANIMATIONLINE__
-#define __ANIMATIONLINE__
+#ifndef _ANIMATIONLINE_H
+#define _ANIMATIONLINE_H
+
+#include <string>
+
+using namespace std;
 
 class AnimationLine
 {
 private:
-	char* fileName;
-	char* animationName;
+	string fileName;
+	string animationName;
 	int posX;
 	int posY;
 	int spriteWidth;
 	int spriteHeight;
 	int framerate;
 	int spriteNb;
-	char* animationLoop;
-
+	bool animationLoop;
 public:
 	AnimationLine::AnimationLine();
-	AnimationLine(char* fileName, char* animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, char* animationLoop);
+	AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);
 	~AnimationLine(void);
-	char* getFileName();
-	char* getAnimationName();
+	string getFileName();
+	string getAnimationName();
 	int getPosX();
 	int getPosY();
 	int getSpriteWidth();
 	int getSpriteHeight();
 	int getFramerate();
 	int getSpriteNb();
-	char* getAnimationLoop();
+	bool getAnimationLoop();
 };
 
 #endif __ANIMATIONLINE__

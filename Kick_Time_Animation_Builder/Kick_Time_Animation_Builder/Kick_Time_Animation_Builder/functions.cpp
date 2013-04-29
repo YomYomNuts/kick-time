@@ -1,9 +1,9 @@
 #include "functions.h"
 
-
+#include <sstream>
 
 // Return a part of a char*
-char* subChar(char* string, int startPos,int size)
+char* subChar(char* string, int startPos, int size)
 {
 	int i;
 	int counter = 0;
@@ -52,71 +52,50 @@ int findChar(char* string, char toFind, position type)
 	}
 }
 
-// Return part of a string into a char* format
-char* mySubStringToChar(string str, int posStart, int posEnd)
+// Return the vector that contains all terms split by the delimiter
+vector<string> split(string initString, string delimiter)
 {
-	char* finalString = new char[posEnd-posStart+2];
-	unsigned int i;
-	int counter = 0;
-	
-	for(i = posStart; i < posEnd+1; i++)
-	{
-		if(i < str.size())
-		{
-			finalString[counter] = str[i];
-			counter++;
-		}
+	vector<string> listSplit;
+	size_t pos = 0;
+	string token;
+
+	while ((pos = initString.find(delimiter)) != string::npos) {
+		token = initString.substr(0, pos);
+		listSplit.push_back(token);
+		initString.erase(0, pos + delimiter.length());
 	}
-
-	finalString[counter] = '\0';
-
-	return finalString;
-
+	listSplit.push_back(initString);
+	return listSplit;
 }
 
-// Find a char in string from a specific position
-int findFrom(string str, int posStart, char toFind)
+// Verify if the string is a number in the base (8, 10 or 16)
+bool isNumeric(const char* pszInput, int nNumberBase)
 {
-	int i;
+	istringstream iss(pszInput);
 
-	for( i = posStart; i < str.size(); i++)
+	if (nNumberBase == 10)
 	{
-		if(str[i] == toFind)
-		{
-			return i;
-		}
+		double dTestSink;
+		iss >> dTestSink;
 	}
-
-	return -1;
-}
-
-// Return the int value of a char* value, return -1 if can't convert
-// This function has been redifined to do not get 0 if the function can't convert, but -1 instead
-int myAtoi(char* str)
-{
-	int i;
-	int coefficient = 1;
-	int finalNumber = 0;
-
-	for( i = 0 ; i < strlen(str); i++)
+	else if (nNumberBase == 8 || nNumberBase == 16)
 	{
-		if((str[i] - 48) >= 0 && (str[i] - 48) <= 9)
-		{
-			finalNumber *= coefficient;
-			finalNumber += str[i] - 48;
-			coefficient = 10;
-		}
-		else if(str[i] != '\0' && str[i] != ' ')
-		{
-			return -1;
-		}
+		int nTestSink;
+		iss >> ((nNumberBase == 8) ? oct : hex) >> nTestSink;
 	}
+	else
+		return false;
 
-	return finalNumber;
+	// was any input successfully consumed/converted?
+	if (!iss)
+		return false;
+
+	// was all the input successfully consumed/converted?
+	return (iss.rdbuf()->in_avail() == 0);
 }
 
 // Put in a list all the .txt files found in the directory sent. It will also check all the sub-directories
-void getAnimFilesLocation(char* folder, list<char*> &filesNameList) {
+void getAnimFilesLocation(char* folder, vector<char*> &filesNameList) {
 	
 	char* name = new char [];
 	DIR *dir;
@@ -124,22 +103,26 @@ void getAnimFilesLocation(char* folder, list<char*> &filesNameList) {
 	char* path = new char []; 
 	struct stat info;
 
-	if ((dir = opendir(folder)) == NULL){
+	if ((dir = opendir(folder)) == NULL)
+	{
 		perror("opendir() error");
 	}
-	else {
-		while ((entry = readdir(dir)) != NULL) {
-			
+	else
+	{
+		while ((entry = readdir(dir)) != NULL)
+		{
 			// If the current file is a .txt file, we add it to the list
-			if(strcmp(subChar(entry->d_name,findChar(entry->d_name,'.',LAST),strlen(entry->d_name)-1),".txt") == 0){
+			if(strcmp(subChar(entry->d_name, findChar(entry->d_name, '.', LAST), strlen(entry->d_name)-1), ".txt") == 0)
+			{
 				name = new char [strlen(folder)+1];
 				strcpy_s(name, strlen(folder)+1, folder);
 				strcat_s(name,strlen(name)+2, "/");
-				strcat_s(name, strlen(name)+strlen(entry->d_name)+1,entry->d_name);
+				strcat_s(name, strlen(name)+strlen(entry->d_name)+1, entry->d_name);
 				filesNameList.push_back(name);
 			}
 			
-			if (entry->d_name[0] != '.') {
+			if (entry->d_name[0] != '.')
+			{
 				path = new char[strlen(folder)+1];
 
 				strcpy_s(path,strlen(folder)+1, folder);
@@ -148,7 +131,7 @@ void getAnimFilesLocation(char* folder, list<char*> &filesNameList) {
 				stat(path, &info);
 				// If the current file is a directory, we go in and check the content
 				if (S_ISDIR(info.st_mode))
-						getAnimFilesLocation(path,filesNameList);
+					getAnimFilesLocation(path, filesNameList);
 			}
 		}
 		closedir(dir);

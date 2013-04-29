@@ -6,8 +6,8 @@ class ModeManager
 public:
 	ModeManager(void);
 	~ModeManager(void);
-	void InitializeModeManager();
-	void UpdateModeManager();
+	void initializeModeManager();
+	void updateModeManager();
 };
 
 #endif

@@ -10,6 +10,7 @@
 #include "RenderManager.h"
 #include "LevelManager.h"
 #include "CharacterManager.h"
+#include "AnimationManager.h"
 #include "GameManager_Defines.h"
 
 class GameManager
@@ -24,11 +25,24 @@ private:
 	RenderManager * renderManager;
 	LevelManager * levelManager;
 	CharacterManager * characterManager;
-public:
+	AnimationManager * animationManager;
+	static GameManager  * _singleton;
 	GameManager(void);
+public:
 	~GameManager(void);
-	void InitializeGameManager();
-	void UpdateGameManager();
+	static GameManager* getInstance();
+	void initializeGameManager();
+	void updateGameManager();
+	ModeManager* getModeManager();
+	SaveManager* getSaveManager();
+	InputManager* getInputManager();
+	SoundManager* getSoundManager();
+	MenuManager* getMenuManager();
+	HudManager* getHudManager();
+	RenderManager* getRenderManager();
+	LevelManager* getLevelManager();
+	CharacterManager* getCharacterManager();
+	AnimationManager* getAnimationManager();
 };
 
 #endif

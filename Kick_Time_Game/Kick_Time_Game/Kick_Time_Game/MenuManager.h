@@ -6,8 +6,8 @@ class MenuManager
 public:
 	MenuManager(void);
 	~MenuManager(void);
-	void InitializeMenuManager();
-	void UpdateMenuManager();
+	void initializeMenuManager();
+	void updateMenuManager();
 };
 
 #endif

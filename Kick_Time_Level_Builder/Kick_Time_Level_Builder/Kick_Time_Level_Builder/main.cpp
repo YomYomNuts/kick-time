@@ -2,9 +2,11 @@
 #include "functions.h"
 
 #include <iostream>
-#include <list>
+#include <vector>
 #include <fstream>
 #include <sstream>
+#include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -22,21 +24,20 @@ int main(int argc, const char * argv[])
 
 	// Variable to open/read/create/write files
 	// Level file
-	list<LevelLine> listLevel;
+	vector<LevelLine> listLevels;
+	vector<LevelLine>::iterator it;
 	ifstream levelFile;
 	string currentLine;
-	int posDelimStart = -1;
-	int posDelimEnd = 0;
-	char* fileName = new char[];
-	char* levelName = new char[];
-	char* levelID = new char[];
-	int posX;
-	int posY;
+	string delimiter = ";";
+	vector<string> tempInformations;
+	string fileName;
+	string levelName;
+	string levelID;
+	int posYCharacter;
 	// Header file
 	ofstream headerFile;
 	string headerContent;
 	int position;
-	list<LevelLine>::iterator it;
 	char buffer[500];
 	// CPP file
 	ofstream cppFile;
@@ -109,9 +110,10 @@ int main(int argc, const char * argv[])
 		}
 	}
 
-	// Check the animation file
+	// Check the level file
 	// Check if it's a text file
-	if(strcmp(subChar(levelLocation, findChar(levelLocation,'.',LAST), strlen(levelLocation)-1), ".txt") != 0){
+	if(strcmp(subChar(levelLocation, findChar(levelLocation,'.',LAST), strlen(levelLocation)-1), ".txt") != 0)
+	{
 		cout << "Please select an level file as a '.txt' file" << endl;
 		system("Pause");
 		return 1;
@@ -133,112 +135,33 @@ int main(int argc, const char * argv[])
 
 			if(!currentLine.empty())
 			{
-				posDelimStart = -1;
-
 				/****************************/
 				/* Get the different values */
 				/****************************/
-
-				// Get fileName
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
+				tempInformations = split(currentLine, delimiter);
+				if (tempInformations.size() == 4)
 				{
-					cout << "ERROR GD001 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
+					fileName = tempInformations[0];
+					levelID = tempInformations[1];
+					levelName = tempInformations[2];
+					posYCharacter = 0;
+					if (isNumeric(tempInformations[3].c_str(), 10))
+						posYCharacter = strtol(tempInformations[3].c_str(), NULL, 10);
+					else
+					{
+						cout << "ERROR GD002 - A problem occured while getting the Y position of the character in this line:\n	" << currentLine << endl;
+						system("Pause");
+						return 1;
+					}
+
+					listLevels.push_back(*new LevelLine(fileName, levelID, levelName, posYCharacter));
+				}
+				else
+				{
+					cout << "ERROR GD001 - A problem occured while getting the informations of a level in this line:\n	" << currentLine << endl;
 					system("Pause");
 					return 1;
 				}
-
-				posDelimStart++;
-
-				fileName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
-				if(fileName == "")
-				{
-					cout << "ERROR GD002 - A problem occured while getting the file's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get levelID
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD003 - A problem occured while getting the level's id in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				levelID = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
-				if(levelID == "")
-				{
-					cout << "ERROR GD004 - A problem occured while getting the level's id in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get levelName
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD003 - A problem occured while getting the level's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				levelName = mySubStringToChar(currentLine,posDelimStart,posDelimEnd-1);
-				if(levelName == "")
-				{
-					cout << "ERROR GD004 - A problem occured while getting the level's name in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get posX
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD005 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				posX = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(posX == -1)
-				{
-					cout << "ERROR GD006 - A problem occured while getting the X position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				// Get posY
-				posDelimStart = posDelimEnd;
-				posDelimEnd = findFrom(currentLine,posDelimStart+1,' ');
-				if(posDelimEnd == -1)
-				{
-					cout << "ERROR GD007 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				posDelimStart++;
-
-				posY = myAtoi(mySubStringToChar(currentLine,posDelimStart,posDelimEnd));
-				if(posY == -1)
-				{
-					cout << "ERROR GD008 - A problem occured while getting the Y position in this line:\n	" << currentLine << endl;
-					system("Pause");
-					return 1;
-				}
-
-				listLevel.push_back(*new LevelLine(fileName, levelID, levelName, posX, posY));
 			}
 		}
 	}
@@ -265,38 +188,39 @@ int main(int argc, const char * argv[])
 
 	if(headerFile)
 	{
-		sprintf_s(buffer, "%d", listLevel.size());
-		headerContent = "#ifndef __LEVELDATA__\n";
-		headerContent = headerContent + "#define __LEVELDATA__\n";
+		sprintf_s(buffer, "%d", listLevels.size());
+		headerContent = "#ifndef _LEVELDATA_H\n";
+		headerContent = headerContent + "#define _LEVELDATA_H\n";
+		headerContent = headerContent + "\n";
+		headerContent = headerContent + "#include <string>\n\n";
+		headerContent = headerContent + "using namespace std;\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "class LevelData\n";
 		headerContent = headerContent + "{\n";
 		headerContent = headerContent + "private:\n";
-		headerContent = headerContent + "	char* fileName;\n";
-		headerContent = headerContent + "	char* levelID;\n";
-		headerContent = headerContent + "	char* levelName;\n";
-		headerContent = headerContent + "	int posX;\n";
-		headerContent = headerContent + "	int posY;\n";
+		headerContent = headerContent + "\tstring fileName;\n";
+		headerContent = headerContent + "\tstring levelName;\n";
+		headerContent = headerContent + "\tint levelID;\n";
+		headerContent = headerContent + "\tint posYCharacter;\n";
 		headerContent = headerContent + "public:\n";
-		headerContent = headerContent + "	LevelData();\n";
-		headerContent = headerContent + "	LevelData(char* fileName, char* levelID, char* levelName, int posX, int posY);\n";
-		headerContent = headerContent + "	~LevelData(void);\n";
-		headerContent = headerContent + "	char* getFileName();\n";
-		headerContent = headerContent + "	char* getLevelID();\n";
-		headerContent = headerContent + "	char* getLevelName();\n";
-		headerContent = headerContent + "	int getPosX();\n";
-		headerContent = headerContent + "	int getPosY();\n";
+		headerContent = headerContent + "\tLevelData();\n";
+		headerContent = headerContent + "\tLevelData(string fileName, string levelName, int levelID, int posYCharacter);\n";
+		headerContent = headerContent + "\t~LevelData(void);\n";
+		headerContent = headerContent + "\tstring getFileName() const;\n";
+		headerContent = headerContent + "\tstring getLevelName() const;\n";
+		headerContent = headerContent + "\tint getLevelID() const;\n";
+		headerContent = headerContent + "\tint getPosYCharacter() const;\n";
 		headerContent = headerContent + "};\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "#define NUMBER_LEVELDATA " + buffer + "\n";
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "extend const LevelData levelDataArray[NUMBER_LEVELDATA];\n";
+		headerContent = headerContent + "extern const LevelData levelDataArray[NUMBER_LEVELDATA];\n";
 		headerContent = headerContent + "\n";
 		
 
 		// Define the animations' name
 		position = 0;
-		for(it = listLevel.begin(); it != listLevel.end(); ++it)
+		for(it = listLevels.begin(); it != listLevels.end(); ++it)
 		{
 			sprintf_s(buffer, "%d", position);
 			headerContent = headerContent + "#define " + it->getLevelID() + " " + buffer + "\n";
@@ -304,7 +228,7 @@ int main(int argc, const char * argv[])
 		}
 
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#endif __LEVELDATA__\n";
+		headerContent = headerContent + "#endif _LEVELDATA_H\n";
 
 		headerFile << headerContent;
 	}
@@ -338,86 +262,54 @@ int main(int argc, const char * argv[])
 		cppContent = cppContent + "{\n";
 
 		// Put all the data into the animationArray in the cpp file
-		for(it = listLevel.begin(); it != listLevel.end(); it++)
+		for(it = listLevels.begin(); it != listLevels.end(); it++)
 		{
-			cppContent = cppContent + "	{\n";
-			
-			// Put : fileName
-			cppContent = cppContent + "		\"" + it->getFileName() + "\",\n";
-
-			// Put : levelID
-			cppContent = cppContent + "		" + it->getLevelID() + ",\n";
-
-			// Put : levelName
-			cppContent = cppContent + "		\"" + it->getLevelName() + "\",\n";
-
-			// Put : posX
-			sprintf_s(buffer, "%d", it->getPosX());
-			cppContent = cppContent + "		" + buffer + ",\n";
-
-			// Put : posY
-			sprintf_s(buffer, "%d", it->getPosY());
-			cppContent = cppContent + "		" + buffer + ",\n";
-			
-			cppContent = cppContent + "	},";
-
-			cppContent = cppContent + "\n";
+			// Put : LevelData
+			sprintf_s(buffer, "%d", it->getPosYCharacter());
+			cppContent = cppContent + "\tLevelData(\"" + it->getFileName() + "\", \"" + it->getLevelName() + "\", " +
+				it->getLevelID() + ", " + buffer + "),\n";
 		}
 		
-		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "};\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "LevelData::LevelData()\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\tthis->fileName = \"\";\n";
-		cppContent = cppContent + "\tthis->levelID = \"\";\n";
 		cppContent = cppContent + "\tthis->levelName = \"\";\n";
-		cppContent = cppContent + "\tthis->posX = 0;\n";
-		cppContent = cppContent + "\tthis->posY = 0;\n";
+		cppContent = cppContent + "\tthis->levelID = 0;\n";
+		cppContent = cppContent + "\tthis->posYCharacter = 0;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "LevelData::LevelData(char* fileName, char* levelID, char* levelName, int posX, int posY)\n";
+		cppContent = cppContent + "LevelData::LevelData(string fileName, string levelName, int levelID, int posYCharacter)\n";
 		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\tthis->fileName = new char[strlen(fileName)+1];\n";
-		cppContent = cppContent + "\tstrcpy_s(this->fileName, strlen(fileName)+1, fileName);\n\n";
-		cppContent = cppContent + "\tthis->levelID = new char[strlen(levelID)+1];\n";
-		cppContent = cppContent + "\tstrcpy_s(this->levelID, strlen(levelID)+1, levelID);\n\n";
-		cppContent = cppContent + "\tthis->levelName = new char[strlen(levelName)+1];\n";
-		cppContent = cppContent + "\tstrcpy_s(this->levelName, strlen(levelName)+1, levelName);\n\n";
-		cppContent = cppContent + "\tthis->posX = posX;\n";
-		cppContent = cppContent + "\tthis->posY = posY;\n";
+		cppContent = cppContent + "\tthis->fileName = fileName;\n";
+		cppContent = cppContent + "\tthis->levelName = levelName;\n";
+		cppContent = cppContent + "\tthis->levelID = levelID;\n";
+		cppContent = cppContent + "\tthis->posYCharacter = posYCharacter;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "LevelData::~LevelData(void)\n";
 		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\tdelete[] this->fileName;\n";
-		cppContent = cppContent + "\tdelete[] this->levelID;\n";
-		cppContent = cppContent + "\tdelete[] this->levelName;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "char* LevelData::getFileName()\n";
+		cppContent = cppContent + "string LevelData::getFileName() const\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->fileName;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "char* LevelData::getLevelID()\n";
-		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\treturn this->levelID;\n";
-		cppContent = cppContent + "}\n";
-		cppContent = cppContent + "\n";
-		cppContent = cppContent + "char* LevelData::getLevelName()\n";
+		cppContent = cppContent + "string LevelData::getLevelName() const\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->levelName;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "int LevelData::getPosX()\n";
+		cppContent = cppContent + "int LevelData::getLevelID() const\n";
 		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\treturn this->posX;\n";
+		cppContent = cppContent + "\treturn this->levelID;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "int LevelData::getPosY()\n";
+		cppContent = cppContent + "int LevelData::getPosYCharacter() const\n";
 		cppContent = cppContent + "{\n";
-		cppContent = cppContent + "\treturn this->posY;\n";
+		cppContent = cppContent + "\treturn this->posYCharacter;\n";
 		cppContent = cppContent + "}\n";
 		
 		cppFile << cppContent;

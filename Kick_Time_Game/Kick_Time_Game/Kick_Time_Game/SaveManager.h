@@ -6,8 +6,8 @@ class SaveManager
 public:
 	SaveManager(void);
 	~SaveManager(void);
-	void InitializeSaveManager();
-	void UpdateSaveManager();
+	void initializeSaveManager();
+	void updateSaveManager();
 };
 
 #endif

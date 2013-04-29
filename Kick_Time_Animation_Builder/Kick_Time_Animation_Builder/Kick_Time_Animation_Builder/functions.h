@@ -1,7 +1,7 @@
 #include <string>
-#define _OPEN_SYS
 #include <iostream>
-#include <list>
+#include <vector>
+#define _OPEN_SYS
 #include <dirent.h>
 #include <errno.h>
 #include <sys/stat.h>
@@ -11,9 +11,8 @@
 using namespace std;
 
 enum position{FIRST,LAST};
-char* subChar(char* string, int startPos,int size);
+char* subChar(char* string, int startPos, int size);
 int findChar(char* string, char toFind, position type);
-char* mySubStringToChar(string str, int posStart, int posEnd);
-int findFrom(string str, int posStart, char toFind);
-int myAtoi(char* str);
-void getAnimFilesLocation(char* folder, list<char*> &filesNameList);
+vector<string> split(string initString, string delimiter);
+bool isNumeric(const char* pszInput, int nNumberBase);
+void getAnimFilesLocation(char* folder, vector<char*> &filesNameList);

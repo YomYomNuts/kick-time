@@ -12,6 +12,7 @@ GameManager::GameManager(void)
 	this->renderManager = new RenderManager();
 	this->levelManager = new LevelManager();
 	this->characterManager = new CharacterManager();
+	this->animationManager = new AnimationManager();
 }
 
 GameManager::~GameManager(void)
@@ -25,30 +26,94 @@ GameManager::~GameManager(void)
 	delete[] this->renderManager;
 	delete[] this->levelManager;
 	delete[] this->characterManager;
+	delete[] this->animationManager;
 }
 
-void GameManager::InitializeGameManager()
+GameManager* GameManager::getInstance()
 {
-	this->modeManager->InitializeModeManager();
-	this->inputManager->InitializeInputManager();
-	this->menuManager->InitializeMenuManager();
-	this->soundManager->InitializeSoundManager();
-	this->saveManager->InitializeSaveManager();
-	this->hudManager->InitializeHudManager();
-	this->renderManager->InitializeRenderManager();
-	this->levelManager->InitializeLevelManager();
-	this->characterManager->InitializeCharacterManager();
+	if (GameManager::_singleton == NULL)
+		GameManager::_singleton =  new GameManager();
+
+	return GameManager::_singleton;
 }
 
-void GameManager::UpdateGameManager()
+void GameManager::initializeGameManager()
 {
-	this->inputManager->UpdateInputManager();
-	this->menuManager->UpdateMenuManager();
-	this->modeManager->UpdateModeManager();
-	this->levelManager->UpdateLevelManager();
-	this->characterManager->UpdateCharacterManager();
-	this->soundManager->UpdateSoundManager();
-	this->saveManager->UpdateSaveManager();
-	this->hudManager->UpdateHudManager();
-	this->renderManager->UpdateRenderManager();
+	this->modeManager->initializeModeManager();
+	this->inputManager->initializeInputManager();
+	this->menuManager->initializeMenuManager();
+	this->soundManager->initializeSoundManager();
+	this->saveManager->initializeSaveManager();
+	this->hudManager->initializeHudManager();
+	this->renderManager->initializeRenderManager();
+	this->levelManager->initializeLevelManager();
+	this->characterManager->initializeCharacterManager();
+	this->animationManager->initializeAnimationManager();
+}
+
+void GameManager::updateGameManager()
+{
+    while (this->renderManager->getWindow()->isOpen())
+	{
+		this->inputManager->updateInputManager();
+		this->menuManager->updateMenuManager();
+		this->modeManager->updateModeManager();
+		this->levelManager->updateLevelManager();
+		this->characterManager->updateCharacterManager();
+		this->soundManager->updateSoundManager();
+		this->saveManager->updateSaveManager();
+		this->hudManager->updateHudManager();
+		this->animationManager->updateAnimationManager();
+		this->renderManager->updateRenderManager();
+	}
+}
+
+ModeManager* GameManager::getModeManager()
+{
+	return this->modeManager;
+}
+
+SaveManager* GameManager::getSaveManager()
+{
+	return this->saveManager;
+}
+
+InputManager* GameManager::getInputManager()
+{
+	return this->inputManager;
+}
+
+SoundManager* GameManager::getSoundManager()
+{
+	return this->soundManager;
+}
+
+MenuManager* GameManager::getMenuManager()
+{
+	return this->menuManager;
+}
+
+HudManager* GameManager::getHudManager()
+{
+	return this->hudManager;
+}
+
+RenderManager* GameManager::getRenderManager()
+{
+	return this->renderManager;
+}
+
+LevelManager* GameManager::getLevelManager()
+{
+	return this->levelManager;
+}
+
+CharacterManager* GameManager::getCharacterManager()
+{
+	return this->characterManager;
+}
+
+AnimationManager* GameManager::getAnimationManager()
+{
+	return this->animationManager;
 }

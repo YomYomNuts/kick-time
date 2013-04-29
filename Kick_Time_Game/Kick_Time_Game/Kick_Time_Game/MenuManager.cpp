@@ -9,10 +9,10 @@ MenuManager::~MenuManager(void)
 {
 }
 
-void MenuManager::InitializeMenuManager()
+void MenuManager::initializeMenuManager()
 {
 }
 
-void MenuManager::UpdateMenuManager()
+void MenuManager::updateMenuManager()
 {
 }
