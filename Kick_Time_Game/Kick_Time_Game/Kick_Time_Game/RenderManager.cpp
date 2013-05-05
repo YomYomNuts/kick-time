@@ -18,8 +18,18 @@ void RenderManager::initializeRenderManager()
 
 void RenderManager::updateRenderManager()
 {
-    window->clear();
-	GameManager::getInstance()->getLevelManager()->RenderLevelManager();
+	// Close the window
+	sf::Event event;
+    while (this->window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+			this->window->close();
+    }
+
+
+    this->window->clear();
+	GameManager::getInstance()->getLevelManager()->renderLevelManager();
+	GameManager::getInstance()->getCharacterManager()->renderCharacterManager();
     window->display();
 }
 sf::RenderWindow* RenderManager::getWindow()

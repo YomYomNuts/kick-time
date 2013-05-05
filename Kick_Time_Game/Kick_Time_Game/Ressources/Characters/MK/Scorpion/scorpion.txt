@@ -1,3 +1,4 @@
-../Ressources/Characters/MK/Scorpion/scorpion.png;SCORPION_STAND_RIGHT;364;108;48;100;9;4;true
+../Ressources/Characters/MK/Scorpion/scorpion.png;SCORPION_STAND_RIGHT;76;17;53;103;6;6;true
 ../Ressources/Characters/MK/Scorpion/scorpion.png;SCORPION_STAND_LEFT;0;108;48;100;9;4;false
+../Ressources/Characters/MK/Scorpion/scorpion.png;SCORPION_DEFENSE_RIGHT;411;17;45;103;6;2;false
 ../Ressources/Characters/MK/Scorpion/scorpion.png;SCORPION_KICK_LEFT;12;18;48;145;8;7;true

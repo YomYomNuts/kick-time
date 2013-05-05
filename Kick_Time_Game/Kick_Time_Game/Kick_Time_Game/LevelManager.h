@@ -15,7 +15,7 @@ public:
 	~LevelManager(void);
 	void initializeLevelManager();
 	void updateLevelManager();
-	void RenderLevelManager();
+	void renderLevelManager();
 };
 
 #endif

@@ -1,2 +1,2 @@
-../Ressources/Characters/MK/Sub-ZERO/sub-zero.png;SUB_ZERO_STAND_RIGHT;34;19;38;120;9;64;true
-../Ressources/Characters/MK/Sub-ZERO/sub-zero.png;SUB_ZERO_STAND_LEFT;40;8;418;910;92;43;false
+../Ressources/Characters/MK/Sub-ZERO/SubZero.png;SUB_ZERO_STAND_RIGHT;34;19;38;120;9;64;true
+../Ressources/Characters/MK/Sub-ZERO/SubZero.png;SUB_ZERO_STAND_LEFT;40;8;418;910;92;43;false

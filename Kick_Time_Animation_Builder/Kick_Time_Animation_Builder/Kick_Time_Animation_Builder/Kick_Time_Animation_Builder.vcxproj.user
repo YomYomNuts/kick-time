@@ -6,7 +6,7 @@
     <LocalDebuggerDebuggerType>Auto</LocalDebuggerDebuggerType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>"C:\Users\Administrateur\Documents\M1 Jeux Video\c++\kick-time\Kick_Time_Game\Kick_Time_Game\Ressources\Characters" "C:\Users\Administrateur\Desktop"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Game\Kick_Time_Game\Ressources\Characters" "C:\Users\Fabien\Documents\Cours\4ème années\C++\PA\Kick_Time\Kick_Time_Game\Kick_Time_Game\Kick_Time_Game"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

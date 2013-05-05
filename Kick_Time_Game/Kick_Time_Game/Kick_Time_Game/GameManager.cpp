@@ -13,6 +13,7 @@ GameManager::GameManager(void)
 	this->levelManager = new LevelManager();
 	this->characterManager = new CharacterManager();
 	this->animationManager = new AnimationManager();
+	this->textureManager = new TextureManager();
 }
 
 GameManager::~GameManager(void)
@@ -27,6 +28,7 @@ GameManager::~GameManager(void)
 	delete[] this->levelManager;
 	delete[] this->characterManager;
 	delete[] this->animationManager;
+	delete[] this->textureManager;
 }
 
 GameManager* GameManager::getInstance()
@@ -39,6 +41,7 @@ GameManager* GameManager::getInstance()
 
 void GameManager::initializeGameManager()
 {
+	this->textureManager->initializeTextureManager();
 	this->modeManager->initializeModeManager();
 	this->inputManager->initializeInputManager();
 	this->menuManager->initializeMenuManager();
@@ -49,12 +52,14 @@ void GameManager::initializeGameManager()
 	this->levelManager->initializeLevelManager();
 	this->characterManager->initializeCharacterManager();
 	this->animationManager->initializeAnimationManager();
+	this->characterManager->addCharacter();
 }
 
 void GameManager::updateGameManager()
 {
     while (this->renderManager->getWindow()->isOpen())
 	{
+		this->textureManager->updateTextureManager();
 		this->inputManager->updateInputManager();
 		this->menuManager->updateMenuManager();
 		this->modeManager->updateModeManager();
@@ -116,4 +121,9 @@ CharacterManager* GameManager::getCharacterManager()
 AnimationManager* GameManager::getAnimationManager()
 {
 	return this->animationManager;
+}
+
+TextureManager* GameManager::getTextureManager()
+{
+	return this->textureManager;
 }

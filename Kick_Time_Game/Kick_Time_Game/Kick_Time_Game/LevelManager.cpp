@@ -29,8 +29,8 @@ void LevelManager::updateLevelManager()
 		//this->activeLevel->updateLevel();
 }
 
-void LevelManager::RenderLevelManager()
+void LevelManager::renderLevelManager()
 {
 	if (this->activeLevel != NULL)
-		this->activeLevel->RenderLevel();
+		this->activeLevel->renderLevel();
 }

@@ -16,7 +16,7 @@ public:
 	Level(void);
 	Level(const LevelData * levelData);
 	~Level(void);
-	void RenderLevel();
+	void renderLevel();
 };
 
 #endif

@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="BattleMode.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -31,8 +33,11 @@
     <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SoundData.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationData.h" />
     <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="BattleMode.h" />
     <ClInclude Include="Character.h" />
@@ -55,6 +60,7 @@
     <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D97CC8D9-0639-41DF-B742-EA6BE8CBFF04}</ProjectGuid>

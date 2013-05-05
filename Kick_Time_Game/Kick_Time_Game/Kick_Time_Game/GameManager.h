@@ -1,6 +1,7 @@
 #ifndef _GAMEMANAGER_H
 #define _GAMEMANAGER_H
 
+#include "TextureManager.h"
 #include "ModeManager.h"
 #include "SaveManager.h"
 #include "InputManager.h"
@@ -16,6 +17,7 @@
 class GameManager
 {
 private:
+	TextureManager * textureManager;
 	ModeManager * modeManager;
 	SaveManager * saveManager;
 	InputManager * inputManager;
@@ -43,6 +45,7 @@ public:
 	LevelManager* getLevelManager();
 	CharacterManager* getCharacterManager();
 	AnimationManager* getAnimationManager();
+	TextureManager* getTextureManager();
 };
 
 #endif

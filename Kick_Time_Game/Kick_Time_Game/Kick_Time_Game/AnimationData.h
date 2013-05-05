@@ -32,14 +32,15 @@ public:
 	bool getAnimationLoop() const;
 };
 
-#define NUMBER_ANIMATIONDATA 5
+#define NUMBER_ANIMATIONDATA 6
 
 extern const AnimationData animationDataArray[NUMBER_ANIMATIONDATA];
 
 #define SCORPION_STAND_RIGHT 0
 #define SCORPION_STAND_LEFT 1
-#define SCORPION_KICK_LEFT 2
-#define SUB_ZERO_STAND_RIGHT 3
-#define SUB_ZERO_STAND_LEFT 4
+#define SCORPION_DEFENSE_RIGHT 2
+#define SCORPION_KICK_LEFT 3
+#define SUB_ZERO_STAND_RIGHT 4
+#define SUB_ZERO_STAND_LEFT 5
 
 #endif _ANIMATIONDATA_H

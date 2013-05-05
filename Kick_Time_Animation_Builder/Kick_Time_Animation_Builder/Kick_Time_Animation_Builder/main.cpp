@@ -390,7 +390,7 @@ int main(int argc,const char * argv[])
 			cppContent = cppContent + "),\n";
 		}
 		
-		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "};\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "AnimationData::AnimationData()\n";
 		cppContent = cppContent + "{\n";

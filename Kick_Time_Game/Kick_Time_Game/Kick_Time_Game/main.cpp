@@ -1,19 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+
 using namespace std;
 
 #include "GameManager.h"
+#include "Animation.h"
 
 GameManager * GameManager::_singleton = NULL;
+int Animation::animationNumber = 0;
 
 int main()
 {
 	GameManager * gameManager = GameManager::getInstance();
 	gameManager->initializeGameManager();
 	gameManager->updateGameManager();
-
-    /*sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+	
+	/*
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
     sf::CircleShape greenCircle(100.f);
@@ -24,7 +28,7 @@ int main()
 
 	sf::Font MyFont;
 
-	 Chargement à partir d'un fichier sur le disque
+	// Chargement à partir d'un fichier sur le disque
 	if (!MyFont.loadFromFile("../Ressources/Fonts/arial.ttf"))
 	{
 		cout << "Unable to open font" << endl;
@@ -76,7 +80,7 @@ int main()
 		
 		sf::Clock pf;
 		frameTime = pf.restart();
-		float pd = pf.getElapsedTime.asMilliseconds;
+		float pd = pf.getElapsedTime().asMilliseconds();
 
 		if(framerate == 9){
 			if(persoState == Stance){
@@ -97,7 +101,7 @@ int main()
 		framerate++;
 
 		
-    }*/
-
+    }
+	*/
     return 0;
 }

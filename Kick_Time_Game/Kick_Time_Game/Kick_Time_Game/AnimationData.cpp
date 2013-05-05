@@ -2,12 +2,13 @@
 
 const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =
 {
-	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_STAND_RIGHT, 364, 108, 48, 100, 9, 4, true),
+	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_STAND_RIGHT, 76, 17, 53, 103, 4, 6, true),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_STAND_LEFT, 0, 108, 48, 100, 9, 4, false),
+	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_DEFENSE_RIGHT, 411, 17, 45, 103, 6, 2, false),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_KICK_LEFT, 12, 18, 48, 145, 8, 7, true),
-	AnimationData("../Ressources/Characters/MK/Sub-ZERO/sub-zero.png", SUB_ZERO_STAND_RIGHT, 34, 19, 38, 120, 9, 64, true),
-	AnimationData("../Ressources/Characters/MK/Sub-ZERO/sub-zero.png", SUB_ZERO_STAND_LEFT, 40, 8, 418, 910, 92, 43, false),
-}
+	AnimationData("../Ressources/Characters/MK/Sub-ZERO/SubZero.png", SUB_ZERO_STAND_RIGHT, 34, 19, 38, 120, 9, 64, true),
+	AnimationData("../Ressources/Characters/MK/Sub-ZERO/SubZero.png", SUB_ZERO_STAND_LEFT, 40, 8, 418, 910, 92, 43, false),
+};
 
 AnimationData::AnimationData()
 {

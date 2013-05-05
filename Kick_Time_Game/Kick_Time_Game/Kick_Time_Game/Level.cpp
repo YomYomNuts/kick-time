@@ -35,7 +35,7 @@ Level::~Level(void)
 	delete[] this->spriteLevel;
 }
 
-void Level::RenderLevel()
+void Level::renderLevel()
 {
 	//Draw
 	spriteLevel->setPosition((float)this->positionDisplay->getX(), (float)this->positionDisplay->getY());
