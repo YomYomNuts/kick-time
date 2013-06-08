@@ -5,11 +5,14 @@
 
 #include <vector>
 
+using namespace std;
+
 class LevelManager
 {
 private:
-	std::vector<Level> * listLevels;
+	vector<Level> * listLevels;
 	Level * activeLevel;
+
 public:
 	LevelManager(void);
 	~LevelManager(void);

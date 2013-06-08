@@ -2,18 +2,19 @@
 
 AnimationLine::AnimationLine()
 {
-       this->fileName = "";
-       this->animationName = "";
-       this->posX = 0;
-       this->posY = 0;
-       this->spriteWidth = 0;
-       this->spriteHeight = 0;
-       this->framerate = 0;
-       this->spriteNb = 0;
-       this->animationLoop = false;
+	this->fileName = "";
+	this->animationName = "";
+	this->posX = 0;
+	this->posY = 0;
+	this->spriteWidth = 0;
+	this->spriteHeight = 0;
+	this->framerate = 0;
+	this->spriteNb = 0;
+	this->animationLoop = false;
+	this->colliderName = "COLLIDER_NULL";
 }
 
-AnimationLine::AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop)
+AnimationLine::AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, string colliderName)
 {
 	this->fileName = fileName;
 	this->animationName = animationName;
@@ -24,6 +25,7 @@ AnimationLine::AnimationLine(string fileName, string animationName, int posX, in
 	this->framerate = framerate;
 	this->spriteNb = spriteNb;
 	this->animationLoop = animationLoop;
+	this->colliderName = colliderName;
 }
 
 AnimationLine::~AnimationLine(void)
@@ -32,45 +34,50 @@ AnimationLine::~AnimationLine(void)
 
 string AnimationLine::getFileName()
 {
-	return fileName;
+	return this->fileName;
 }
 
 string AnimationLine::getAnimationName()
 {
-	return animationName;
+	return this->animationName;
 }
 
 int AnimationLine::getPosX()
 {
-	return posX;
+	return this->posX;
 }
 
 int AnimationLine::getPosY()
 {
-	return posY;
+	return this->posY;
 }
 
 int AnimationLine::getSpriteWidth()
 {
-	return spriteWidth;
+	return this->spriteWidth;
 }
 
 int AnimationLine::getSpriteHeight()
 {
-	return spriteHeight;
+	return this->spriteHeight;
 }
 
 int AnimationLine::getFramerate()
 {
-	return framerate;
+	return this->framerate;
 }
 
 int AnimationLine::getSpriteNb()
 {
-	return spriteNb;
+	return this->spriteNb;
 }
 
 bool AnimationLine::getAnimationLoop()
 {
-	return animationLoop;
+	return this->animationLoop;
+}
+
+string AnimationLine::getColliderName()
+{
+	return this->colliderName;
 }

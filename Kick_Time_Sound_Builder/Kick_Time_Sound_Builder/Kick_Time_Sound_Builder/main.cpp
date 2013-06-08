@@ -225,6 +225,7 @@ int main(int argc, const char * argv[])
 		headerContent = headerContent + "\tint soundID;\n";
 		headerContent = headerContent + "\tbool isMusic;\n";
 		headerContent = headerContent + "\tbool isLoop;\n";
+		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "\tSoundData();\n";
 		headerContent = headerContent + "\tSoundData(string fileName, int soundID, bool isMusic, bool isLoop);\n";

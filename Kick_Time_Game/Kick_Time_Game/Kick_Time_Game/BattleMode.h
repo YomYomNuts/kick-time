@@ -5,6 +5,8 @@
 
 class BattleMode : Mode
 {
+private:
+
 public:
 	BattleMode(void);
 	~BattleMode(void);

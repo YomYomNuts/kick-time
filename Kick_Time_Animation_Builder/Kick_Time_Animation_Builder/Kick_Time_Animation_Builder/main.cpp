@@ -40,6 +40,7 @@ int main(int argc,const char * argv[])
 	int framerate;
 	int spriteNb;
 	bool animationLoop;
+	string colliderName;
 	// Header file
 	ofstream headerFile;
 	string headerContent;
@@ -119,7 +120,7 @@ int main(int argc,const char * argv[])
 	/* Get the location and the name of the animation's files */
 	/**********************************************************/
 
-	getAnimFilesLocation(animLocation, animFilesList);
+	getFilesLocation(animLocation, animFilesList, "anim.txt");
 	
 	// Check if at least one file has been found
 	if(animFilesList.size() == 0){
@@ -152,7 +153,7 @@ int main(int argc,const char * argv[])
 					/* Get the different values */
 					/****************************/
 					tempInformations = split(currentLine, delimiter);
-					if (tempInformations.size() == 9)
+					if (tempInformations.size() >= 9)
 					{
 						fileName = tempInformations[0];
 						animationName = tempInformations[1];
@@ -232,12 +233,16 @@ int main(int argc,const char * argv[])
 							else
 								animationLoop = false;
 						}
+						// Get colliderName
+						colliderName = "COLLIDER_NULL";
+						if (tempInformations.size() > 9)
+							colliderName = tempInformations[9];
 
-						animArray.push_back(*new AnimationLine(fileName, animationName, posX, posY, spriteWidth, spriteHeight, framerate, spriteNb, animationLoop));
+						animArray.push_back(*new AnimationLine(fileName, animationName, posX, posY, spriteWidth, spriteHeight, framerate, spriteNb, animationLoop, colliderName));
 					}
 					else
 					{
-						cout << "ERROR GD001 - A problem occured while getting the informations of a level in this line:\n	" << currentLine << endl;
+						cout << "ERROR GD001 - A problem occured while getting the informations of an animation in this line:\n	" << currentLine << endl;
 						system("Pause");
 						return 1;
 					}
@@ -287,9 +292,11 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "\tint framerate;\n";
 		headerContent = headerContent + "\tint spriteNb;\n";
 		headerContent = headerContent + "\tbool animationLoop;\n";
+		headerContent = headerContent + "\tint colliderID;\n";
+		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "\tAnimationData();\n";
-		headerContent = headerContent + "\tAnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);\n";
+		headerContent = headerContent + "\tAnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID);\n";
 		headerContent = headerContent + "\t~AnimationData(void);\n";
 		headerContent = headerContent + "\tstring getFileName() const;\n";
 		headerContent = headerContent + "\tint getAnimationName() const;\n";
@@ -300,6 +307,7 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "\tint getFramerate() const;\n";
 		headerContent = headerContent + "\tint getSpriteNb() const;\n";
 		headerContent = headerContent + "\tbool getAnimationLoop() const;\n";
+		headerContent = headerContent + "\tint getColliderID() const;\n";
 		headerContent = headerContent + "};\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "#define NUMBER_ANIMATIONDATA " + buffer + "\n";
@@ -346,6 +354,7 @@ int main(int argc,const char * argv[])
 	if(cppFile)
 	{
 		cppContent = "#include \"AnimationData.h\"\n";
+		cppContent = cppContent + "#include \"ColliderData.h\"\n";
 		cppContent = cppContent + "\n";
 
 		cppContent = cppContent + "const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =\n";
@@ -383,9 +392,12 @@ int main(int argc,const char * argv[])
 
 			// Put : animationLoop
 			if (it->getAnimationLoop())
-				cppContent = cppContent + "true";
+				cppContent = cppContent + "true, ";
 			else
-				cppContent = cppContent + "false";
+				cppContent = cppContent + "false, ";
+
+			// Put : colliderName
+			cppContent = cppContent + it->getColliderName();
 
 			cppContent = cppContent + "),\n";
 		}
@@ -403,9 +415,10 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->framerate = 0;\n";
 		cppContent = cppContent + "\tthis->spriteNb = 0;\n";
 		cppContent = cppContent + "\tthis->animationLoop = false;\n";
+		cppContent = cppContent + "\tthis->colliderID = COLLIDER_NULL;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "AnimationData::AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop)\n";
+		cppContent = cppContent + "AnimationData::AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID)\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\tthis->fileName = fileName;\n";
 		cppContent = cppContent + "\tthis->animationName = animationName;\n";
@@ -416,6 +429,7 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->framerate = framerate;\n";
 		cppContent = cppContent + "\tthis->spriteNb = spriteNb;\n";
 		cppContent = cppContent + "\tthis->animationLoop = animationLoop;\n";
+		cppContent = cppContent + "\tthis->colliderID = colliderID;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "AnimationData::~AnimationData(void)\n";
@@ -465,6 +479,11 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "bool AnimationData::getAnimationLoop() const\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->animationLoop;\n";
+		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "\n";
+		cppContent = cppContent + "int AnimationData::getColliderID() const\n";
+		cppContent = cppContent + "{\n";
+		cppContent = cppContent + "\treturn this->colliderID;\n";
 		cppContent = cppContent + "}\n";
 		
 		cppFile << cppContent;

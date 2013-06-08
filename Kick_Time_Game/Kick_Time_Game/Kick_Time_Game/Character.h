@@ -1,6 +1,9 @@
 #ifndef _CHARACTER_H
 #define _CHARACTER_H
+
 #include "Animation.h"
+#include "Collider.h"
+
 #include <SFML/Graphics.hpp>
 
 using namespace std;
@@ -8,10 +11,11 @@ using namespace std;
 class Character
 {
 private:
+	sf::Sprite * spriteCharacter;
 	Animation * animation;
+	Collider * collider;
 	int posCharacterX;
 	int posCharacterY;
-	sf::Sprite * spriteCharacter;
 	int state;
 	int totalHp;
 	int hp;

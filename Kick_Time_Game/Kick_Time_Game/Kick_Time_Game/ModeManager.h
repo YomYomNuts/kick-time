@@ -7,6 +7,7 @@ class ModeManager
 {
 private:
 	Mode * activeMode;
+
 public:
 	ModeManager(void);
 	~ModeManager(void);

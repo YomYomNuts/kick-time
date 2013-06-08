@@ -202,6 +202,7 @@ int main(int argc, const char * argv[])
 		headerContent = headerContent + "\tstring levelName;\n";
 		headerContent = headerContent + "\tint levelID;\n";
 		headerContent = headerContent + "\tint posYCharacter;\n";
+		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "\tLevelData();\n";
 		headerContent = headerContent + "\tLevelData(string fileName, string levelName, int levelID, int posYCharacter);\n";

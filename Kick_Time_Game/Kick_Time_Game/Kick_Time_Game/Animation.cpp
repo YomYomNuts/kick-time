@@ -22,6 +22,11 @@ Animation::Animation(int indexAnimationData)
 	this->id = this->animationNumber++;
 }
 
+Animation::~Animation(void)
+{
+	delete this->animationData;
+}
+
 void Animation::update()
 {
 	if(frameCounter == animationData->getFramerate())
@@ -52,11 +57,6 @@ void Animation::update()
 	++this->frameCounter;
 }
 
-Animation::~Animation(void)
-{
-	delete this->animationData;
-}
-
 int Animation::getPosX()
 {
 	return this->posX;
@@ -65,6 +65,11 @@ int Animation::getPosX()
 int Animation::getCurrentFrame()
 {
 	return this->currentFrame;
+}
+
+int Animation::getId()
+{
+	return this->id;
 }
 
 void Animation::setPosX(int x)
@@ -77,9 +82,11 @@ void Animation::setCurrentFrame(int frame)
 	this->currentFrame = frame;
 }
 
-void Animation::setAnimation(AnimationData* anim)
+void Animation::resetAnimation()
 {
-	this->animationData = anim;
+	this->posX = this->animationData->getPosX();
+	this->currentFrame = 0;
+	this->frameCounter = 0;
 }
 
 void Animation::changeAnimation(int indexAnimationData)
@@ -94,36 +101,4 @@ void Animation::changeAnimation(int indexAnimationData)
 const AnimationData* Animation::getAnimationData()
 {
 	return this->animationData;
-}
-
-void Animation::resetAnimation()
-{
-	this->posX = this->animationData->getPosX();
-	this->currentFrame = 0;
-	this->frameCounter = 0;
-}
-
-int Animation::getId()
-{
-	return this->id;
-}
-
-string Animation::getAnimationDataName()
-{
-	return this->animationData->getFileName();
-}
-
-int Animation::getPosY()
-{
-	return this->animationData->getPosY();
-}
-
-int Animation::getAnimationDataWidth()
-{
-	return this->animationData->getSpriteWidth();
-}
-
-int Animation::getAnimationDataHeight()
-{
-	return this->animationData->getSpriteHeight();
 }

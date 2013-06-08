@@ -32,6 +32,7 @@ private:
 	AnimationManager * animationManager;
 	static GameManager  * _singleton;
 	GameManager(void);
+
 public:
 	~GameManager(void);
 	static GameManager* getInstance();

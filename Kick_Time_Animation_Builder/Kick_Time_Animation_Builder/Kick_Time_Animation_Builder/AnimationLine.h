@@ -17,9 +17,10 @@ private:
 	int framerate;
 	int spriteNb;
 	bool animationLoop;
+	string colliderName;
 public:
-	AnimationLine::AnimationLine();
-	AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);
+	AnimationLine();
+	AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, string colliderName);
 	~AnimationLine(void);
 	string getFileName();
 	string getAnimationName();
@@ -30,6 +31,7 @@ public:
 	int getFramerate();
 	int getSpriteNb();
 	bool getAnimationLoop();
+	string getColliderName();
 };
 
-#endif __ANIMATIONLINE__
+#endif _ANIMATIONLINE_H

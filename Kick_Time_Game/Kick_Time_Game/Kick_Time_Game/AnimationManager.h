@@ -1,7 +1,9 @@
 #ifndef _ANIMATIONMANAGER_H
 #define _ANIMATIONMANAGER_H
-#include <vector>
+
 #include "Animation.h"
+
+#include <vector>
 
 using namespace std;
 

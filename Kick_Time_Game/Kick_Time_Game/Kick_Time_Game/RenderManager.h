@@ -7,6 +7,7 @@ class RenderManager
 {
 private:
 	sf::RenderWindow * window;
+
 public:
 	RenderManager(void);
 	~RenderManager(void);

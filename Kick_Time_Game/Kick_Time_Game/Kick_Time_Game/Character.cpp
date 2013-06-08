@@ -8,10 +8,11 @@
 
 Character::Character(void)
 {
+	this->spriteCharacter = new sf::Sprite();
 	this->state = STATE_CHARACTER_STAND_RIGHT;
 	this->animation = new Animation(this->state);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->spriteCharacter = new sf::Sprite();
+	this->collider = new Collider(this->animation->getAnimationData()->getColliderID());
 	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
 	this->posCharacterY = SCREEN_SIZE_HEIGHT;
 	this->totalHp = 100;
@@ -100,15 +101,23 @@ void Character::updateJump()
 void Character::renderCharacter()
 {
 	int posX = this->animation->getPosX();
-	int posY = this->animation->getPosY();
-	int width = this->animation->getAnimationDataWidth();
-	int height = this->animation->getAnimationDataHeight();
+	int posY = this->animation->getAnimationData()->getPosY();
+	int width = this->animation->getAnimationData()->getSpriteWidth();
+	int height = this->animation->getAnimationData()->getSpriteHeight();
 
-	this->spriteCharacter->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->animation->getAnimationDataName()));
+	this->spriteCharacter->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->animation->getAnimationData()->getFileName()));
 	this->spriteCharacter->setTextureRect(sf::IntRect(posX, posY, width, height));
 	this->spriteCharacter->setPosition(this->posCharacterX, this->posCharacterY - height);
 
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteCharacter);
+
+	// Debug collider
+	sf::RectangleShape rectangle;
+	rectangle.setSize(sf::Vector2f(this->collider->getColliderData()->getHalfSizeX()*2, this->collider->getColliderData()->getHalfSizeY()*2));
+	rectangle.setOutlineColor(sf::Color::Red);
+	rectangle.setOutlineThickness(5);
+	rectangle.setPosition(this->posCharacterX + this->collider->getColliderData()->getPosX(), this->posCharacterY - height + this->collider->getColliderData()->getPosY());
+	GameManager::getInstance()->getRenderManager()->getWindow()->draw(rectangle);
 }
 
 

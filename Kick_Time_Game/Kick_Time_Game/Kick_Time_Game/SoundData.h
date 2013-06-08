@@ -12,6 +12,7 @@ private:
 	int soundID;
 	bool isMusic;
 	bool isLoop;
+
 public:
 	SoundData();
 	SoundData(string fileName, int soundID, bool isMusic, bool isLoop);

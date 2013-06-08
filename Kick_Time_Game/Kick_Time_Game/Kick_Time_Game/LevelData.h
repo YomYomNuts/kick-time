@@ -12,6 +12,7 @@ private:
 	string levelName;
 	int levelID;
 	int posYCharacter;
+
 public:
 	LevelData();
 	LevelData(string fileName, string levelName, int levelID, int posYCharacter);

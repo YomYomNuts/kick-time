@@ -17,9 +17,11 @@ private:
 	int framerate;
 	int spriteNb;
 	bool animationLoop;
+	int colliderID;
+
 public:
 	AnimationData();
-	AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop);
+	AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID);
 	~AnimationData(void);
 	string getFileName() const;
 	int getAnimationName() const;
@@ -30,9 +32,10 @@ public:
 	int getFramerate() const;
 	int getSpriteNb() const;
 	bool getAnimationLoop() const;
+	int getColliderID() const;
 };
 
-#define NUMBER_ANIMATIONDATA 20
+#define NUMBER_ANIMATIONDATA 18
 
 extern const AnimationData animationDataArray[NUMBER_ANIMATIONDATA];
 
@@ -54,7 +57,5 @@ extern const AnimationData animationDataArray[NUMBER_ANIMATIONDATA];
 #define SCORPION_BLOCKINGDOWN_RIGHT 15
 #define SCORPION_HIT_RIGHT 16
 #define SCORPION_HITDOWN_RIGHT 17
-#define SUB_ZERO_STAND_RIGHT 18
-#define SUB_ZERO_STAND_LEFT 19
 
 #endif _ANIMATIONDATA_H

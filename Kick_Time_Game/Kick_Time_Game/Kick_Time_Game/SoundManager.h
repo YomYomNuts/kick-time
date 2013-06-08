@@ -5,11 +5,14 @@
 
 #include <vector>
 
+using namespace std;
+
 class SoundManager
 {
 private:
-    std::vector<sf::SoundBuffer> * soundBuffer;
+    vector<sf::SoundBuffer> * soundBuffer;
 	sf::Sound * sound;
+
 public:
 	SoundManager(void);
 	~SoundManager(void);
