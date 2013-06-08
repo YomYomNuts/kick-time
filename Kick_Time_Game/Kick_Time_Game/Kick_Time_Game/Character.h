@@ -12,10 +12,14 @@ private:
 	int posCharacterX;
 	int posCharacterY;
 	sf::Sprite * spriteCharacter;
+	int state;
+	void updateStand();
+	void updateJump();
 
 public:
 	Character(void);
 	~Character(void);
+	void updateCharacter();
 	void renderCharacter();
 };
 
