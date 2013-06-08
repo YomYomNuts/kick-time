@@ -14,6 +14,8 @@ Character::Character(void)
 	this->spriteCharacter = new sf::Sprite();
 	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
 	this->posCharacterY = SCREEN_SIZE_HEIGHT;
+	this->totalHp = 100;
+	this->hp = 50;
 }
 
 Character::~Character(void)
@@ -103,13 +105,12 @@ void Character::renderCharacter()
 	int height = this->animation->getAnimationDataHeight();
 
 	this->spriteCharacter->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->animation->getAnimationDataName()));
-	
 	this->spriteCharacter->setTextureRect(sf::IntRect(posX, posY, width, height));
-
 	this->spriteCharacter->setPosition(this->posCharacterX, this->posCharacterY - height);
 
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteCharacter);
 }
+
 
 void Character::setPosCharacterX(int posX)
 {
@@ -129,4 +130,14 @@ int Character::getPosCharacterX()
 int Character::getPosCharacterY()
 {
 	return this->posCharacterY;
+}
+
+int Character::getTotalHp()
+{
+	return this->totalHp;
+}
+
+int Character::getHp()
+{
+	return this->hp;
 }

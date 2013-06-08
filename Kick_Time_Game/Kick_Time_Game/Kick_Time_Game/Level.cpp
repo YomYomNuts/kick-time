@@ -31,7 +31,6 @@ Level::Level(const LevelData * levelData)
 Level::~Level(void)
 {
 	delete this->positionDisplay;
-	delete this->levelData;
 	delete this->spriteLevel;
 }
 

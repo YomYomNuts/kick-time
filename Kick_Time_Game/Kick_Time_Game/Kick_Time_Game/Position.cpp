@@ -17,7 +17,7 @@ Position::~Position(void)
 {
 }
 
-int Position::getX()
+int Position::getX() const
 {
 	return this->x;
 }
@@ -27,7 +27,7 @@ void Position::setX(int x)
 	this->x = x;
 }
 
-int Position::getY()
+int Position::getY() const
 {
 	return this->y;
 }

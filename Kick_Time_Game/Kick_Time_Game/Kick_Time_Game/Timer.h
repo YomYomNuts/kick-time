@@ -5,12 +5,12 @@ class Timer
 {
 private:
 	bool reverseTime;
-	int timerStart;
+	int timerLimit;
 	int timerFrame;
 
 public:
 	Timer();
-	Timer(bool reverseTime, int timerStart);
+	Timer(bool reverseTime, int timerLimit);
 	~Timer(void);
 	void updateTimer();
 	int getTime();

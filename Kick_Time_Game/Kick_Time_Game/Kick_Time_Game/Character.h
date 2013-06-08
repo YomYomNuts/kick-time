@@ -13,6 +13,8 @@ private:
 	int posCharacterY;
 	sf::Sprite * spriteCharacter;
 	int state;
+	int totalHp;
+	int hp;
 	void updateStand();
 	void updateJump();
 
@@ -26,6 +28,8 @@ public:
 	void setPosCharacterY(int posY);
 	int getPosCharacterX();
 	int getPosCharacterY();
+	int getTotalHp();
+	int getHp();
 };
 
 #endif

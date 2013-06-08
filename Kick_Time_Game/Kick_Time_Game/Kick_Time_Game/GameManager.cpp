@@ -58,6 +58,7 @@ void GameManager::initializeGameManager()
 
 	// Initialise test
 	this->characterManager->addCharacter();
+	this->characterManager->addCharacter();
 	this->matchManager->setMatch(new Match());
 }
 

@@ -4,7 +4,7 @@
 // Position Life bar
 #define LIFE_BAR_POSITION_P1_X	10
 #define LIFE_BAR_POSITION_P1_Y	20
-#define LIFE_BAR_POSITION_P2_X	210
+#define LIFE_BAR_POSITION_P2_X	221
 #define LIFE_BAR_POSITION_P2_Y	20
 
 // Position Time
@@ -22,6 +22,16 @@
 #define LIFE_BAR_Y				0
 #define LIFE_BAR_WIDTH			168
 #define LIFE_BAR_HEIGHT			16
+
+// Life frame
+#define LIFE_FRAME_SIZE_X		3
+#define LIFE_FRAME_SIZE_Y		3
+
+// Life
+#define LIFE_X					173
+#define LIFE_Y					3
+#define LIFE_WIDTH				162
+#define LIFE_HEIGHT				10
 
 // Time
 #define TIME_X					0
