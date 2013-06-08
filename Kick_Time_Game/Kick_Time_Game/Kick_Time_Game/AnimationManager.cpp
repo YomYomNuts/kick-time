@@ -8,7 +8,7 @@ AnimationManager::AnimationManager(void)
 
 AnimationManager::~AnimationManager(void)
 {
-	delete[] this->animationList;
+	delete this->animationList;
 }
 
 void AnimationManager::initializeAnimationManager()
@@ -17,9 +17,7 @@ void AnimationManager::initializeAnimationManager()
 
 void AnimationManager::updateAnimationManager()
 {
-	int i;
-
-	for(i = 0; i < this->animationList->size(); ++i)
+	for(unsigned int i = 0; i < this->animationList->size(); ++i)
 	{
 		this->animationList->at(i)->update();
 	}
@@ -32,10 +30,9 @@ void AnimationManager::addAnimation(Animation* anim)
 
 void AnimationManager::removeAnimation(Animation* anim)
 {
-	int i;
-	int j;
+	unsigned int j = 0;
 
-	for(i = 0; i < this->animationList->size(); ++i)
+	for(unsigned int i = 0; i < this->animationList->size(); ++i)
 	{
 		if(this->animationList->at(i)->getId() == anim->getId())
 			j = i;

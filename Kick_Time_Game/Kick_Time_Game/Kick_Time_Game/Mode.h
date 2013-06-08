@@ -3,9 +3,12 @@
 
 class Mode
 {
+private:
+
 public:
 	Mode(void);
 	~Mode(void);
+	void updateMode();
 };
 
 #endif

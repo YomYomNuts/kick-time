@@ -54,7 +54,7 @@ void Animation::update()
 
 Animation::~Animation(void)
 {
-	delete[] this->animationData;
+	delete this->animationData;
 }
 
 int Animation::getPosX()

@@ -1,1 +1,1 @@
-../Ressources/Levels/MK/warriorshrine2.png;LEVEL_0;WARRIOR_SHRINE;195
+../Ressources/Levels/MK/TheTower.png;LEVEL_0;THE_TOWER;290

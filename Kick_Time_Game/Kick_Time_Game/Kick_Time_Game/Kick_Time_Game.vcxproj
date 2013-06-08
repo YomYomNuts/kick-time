@@ -24,6 +24,8 @@
     <ClCompile Include="LevelData.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Match.cpp" />
+    <ClCompile Include="MatchManager.cpp" />
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Mode.cpp" />
     <ClCompile Include="ModeManager.cpp" />
@@ -34,6 +36,7 @@
     <ClCompile Include="SoundData.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -45,11 +48,14 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameManager_Defines.h" />
     <ClInclude Include="HudManager.h" />
+    <ClInclude Include="HudManager_Defines.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputManager_Defines.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Match.h" />
+    <ClInclude Include="MatchManager.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />
@@ -61,6 +67,7 @@
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D97CC8D9-0639-41DF-B742-EA6BE8CBFF04}</ProjectGuid>
