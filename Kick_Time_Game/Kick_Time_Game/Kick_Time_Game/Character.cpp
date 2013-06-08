@@ -8,6 +8,8 @@ Character::Character(void)
 {
 	this->animation = new Animation(0);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
+	this->animation = new Animation(2);
+	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->spriteCharacter = new sf::Sprite();
 	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
 	this->posCharacterY = SCREEN_SIZE_HEIGHT;
