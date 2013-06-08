@@ -9,8 +9,8 @@ LevelManager::LevelManager(void)
 
 LevelManager::~LevelManager(void)
 {
-	delete[] this->listLevels;
-	delete[] this->activeLevel;
+	delete this->listLevels;
+	delete this->activeLevel;
 }
 
 void LevelManager::initializeLevelManager()

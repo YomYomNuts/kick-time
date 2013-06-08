@@ -11,8 +11,8 @@ SoundManager::SoundManager(void)
 
 SoundManager::~SoundManager(void)
 {
-	delete[] this->soundBuffer;
-	delete[] this->sound;
+	delete this->soundBuffer;
+	delete this->sound;
 }
 
 void SoundManager::initializeSoundManager()

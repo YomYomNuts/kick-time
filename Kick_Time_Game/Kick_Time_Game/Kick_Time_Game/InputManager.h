@@ -10,7 +10,7 @@
 class InputManager
 {
 private:
-	sf::Keyboard::Key listInputs[NUMBER_OF_FIGHTERS][NUMBER_INPUTS];
+	sf::Keyboard::Key listInputs[NUMBER_FIGHTERS][NUMBER_INPUTS];
 public:
 	InputManager(void);
 	~InputManager(void);
