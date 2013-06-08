@@ -45,6 +45,7 @@
     <ClInclude Include="BattleMode.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
+    <ClInclude Include="Character_Defines.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameManager_Defines.h" />
     <ClInclude Include="HudManager.h" />

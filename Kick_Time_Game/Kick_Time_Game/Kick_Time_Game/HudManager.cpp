@@ -4,7 +4,7 @@
 
 HudManager::HudManager(void)
 {
-	this->doRenderLifeBar = false;
+	this->doRenderLifeBar = true;
 	this->doRenderTime = true;
 	this->spriteHUD = new sf::Sprite();
 }
