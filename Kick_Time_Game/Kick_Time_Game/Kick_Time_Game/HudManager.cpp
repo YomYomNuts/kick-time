@@ -2,6 +2,9 @@
 #include "HudManager_Defines.h"
 #include "GameManager.h"
 
+
+const Position listPositions[NUMBER_FIGHTERS] = { Position(LIFE_BAR_POSITION_P1_X, LIFE_BAR_POSITION_P1_Y), Position(LIFE_BAR_POSITION_P2_X, LIFE_BAR_POSITION_P2_Y)};
+
 HudManager::HudManager(void)
 {
 	this->doRenderLifeBar = true;
@@ -27,14 +30,30 @@ void HudManager::renderHudManager()
 	if (this->doRenderTime)
 		this->renderTime();
 	if (this->doRenderLifeBar)
-	{
-		for(int i = 0; i < NUMBER_FIGHTERS; ++i)
-			this->renderLifeBar(i);
-	}
+		this->renderLifeBar();
 }
 
-void HudManager::renderLifeBar(int indexCharacter)
+void HudManager::renderLifeBar()
 {
+	vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
+	Character * character;
+	int percent;
+	for(unsigned int i = 0; i < listCharacters->size(); ++i)
+	{
+		character = listCharacters->at(i);
+		percent = (int)((LIFE_WIDTH * character->getHp()) / character->getTotalHp());
+		// Empty life bar
+		this->spriteHUD->setTextureRect(sf::IntRect(LIFE_BAR_X, LIFE_BAR_Y, LIFE_BAR_WIDTH, LIFE_BAR_HEIGHT));
+		this->spriteHUD->setPosition((float)listPositions[i].getX(), (float)listPositions[i].getY());
+		GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+		//Life
+		this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
+		if (i % 2)
+			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X + LIFE_WIDTH - percent, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
+		else
+			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
+		GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+	}
 }
 
 void HudManager::renderTime()

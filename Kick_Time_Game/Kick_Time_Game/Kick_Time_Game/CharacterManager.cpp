@@ -6,7 +6,7 @@
 
 CharacterManager::CharacterManager(void)
 {
-	this->characterList = new vector<Character>();
+	this->characterList = new vector<Character*>();
 }
 
 CharacterManager::~CharacterManager(void)
@@ -26,13 +26,18 @@ void CharacterManager::updateCharacterManager()
 
 void CharacterManager::addCharacter()
 {
-	this->characterList->push_back(*new Character());
+	this->characterList->push_back(new Character());
+}
+
+vector<Character*>* CharacterManager::getCharacters()
+{
+	return this->characterList;
 }
 
 void CharacterManager::renderCharacterManager()
 {
 	for(unsigned int i = 0; i < this->characterList->size(); ++i)
 	{
-		this->characterList->at(i).renderCharacter();
+		this->characterList->at(i)->renderCharacter();
 	}
 }

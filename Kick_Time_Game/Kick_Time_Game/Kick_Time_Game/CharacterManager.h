@@ -9,13 +9,14 @@ using namespace std;
 class CharacterManager
 {
 private:
-	vector<Character> * characterList;
+	vector<Character*> * characterList;
 public:
 	CharacterManager(void);
 	~CharacterManager(void);
 	void initializeCharacterManager();
 	void updateCharacterManager();
 	void addCharacter();
+	vector<Character*>* getCharacters();
 	void renderCharacterManager();
 };
 

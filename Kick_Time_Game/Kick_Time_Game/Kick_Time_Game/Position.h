@@ -10,9 +10,9 @@ public:
 	Position(void);
 	Position(int x, int y);
 	~Position(void);
-	int getX();
+	int getX() const;
 	void setX(int x);
-	int getY();
+	int getY() const;
 	void setY(int y);
 };
 

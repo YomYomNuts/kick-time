@@ -9,7 +9,7 @@ private:
 	sf::Sprite * spriteHUD;
 	bool doRenderLifeBar;
 	bool doRenderTime;
-	void renderLifeBar(int indexCharacter);
+	void renderLifeBar();
 	void renderTime();
 
 public:

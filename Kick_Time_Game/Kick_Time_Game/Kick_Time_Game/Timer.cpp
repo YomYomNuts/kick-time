@@ -5,14 +5,14 @@
 Timer::Timer(void)
 {
 	this->reverseTime = false;
-	this->timerStart = 0;
+	this->timerLimit = 0;
 	this->timerFrame = 0;
 }
 
-Timer::Timer(bool reverseTime, int timerStart)
+Timer::Timer(bool reverseTime, int timerLimit)
 {
 	this->reverseTime = reverseTime;
-	this->timerStart = timerStart;
+	this->timerLimit = timerLimit;
 	this->timerFrame = 0;
 }
 
@@ -28,7 +28,13 @@ void Timer::updateTimer()
 int Timer::getTime()
 {
 	if (this->reverseTime)
-		return this->timerStart - (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
+	{
+		int time = this->timerLimit - (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
+		return time < 0 ? 0 : time ;
+	}
 	else
-		return this->timerStart + (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
+	{
+		int time = (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
+		return time > this->timerLimit ? this->timerLimit : time ;
+	}
 }
