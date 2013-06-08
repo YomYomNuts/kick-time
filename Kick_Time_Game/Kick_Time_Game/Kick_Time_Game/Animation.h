@@ -33,6 +33,7 @@ public:
 	void resetAnimation();
 	void changeAnimation(int indexAnimationData);
 	const AnimationData* getAnimationData();
+	bool getAnimationDoneState();
 };
 
 #endif

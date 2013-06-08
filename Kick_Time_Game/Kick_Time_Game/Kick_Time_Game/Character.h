@@ -5,6 +5,8 @@
 
 using namespace std;
 
+enum characterDirection{RIGHT, LEFT};
+
 class Character
 {
 private:
@@ -17,6 +19,7 @@ private:
 	int hp;
 	void updateStand();
 	void updateJump();
+	characterDirection toward;
 
 public:
 	Character(void);
@@ -30,6 +33,8 @@ public:
 	int getPosCharacterY();
 	int getTotalHp();
 	int getHp();
+	void moveForward();
+	void moveBackward();
 };
 
 #endif

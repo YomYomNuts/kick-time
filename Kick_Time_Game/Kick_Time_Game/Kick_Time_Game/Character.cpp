@@ -16,6 +16,11 @@ Character::Character(void)
 	this->posCharacterY = SCREEN_SIZE_HEIGHT;
 	this->totalHp = 100;
 	this->hp = 50;
+
+	if(GameManager::getInstance()->getCharacterManager()->getCharacters()->size() == 0)
+		this->toward = RIGHT;
+	else
+		this->toward = LEFT;
 }
 
 Character::~Character(void)
@@ -140,4 +145,20 @@ int Character::getTotalHp()
 int Character::getHp()
 {
 	return this->hp;
+}
+
+void Character::moveForward()
+{
+	if(toward == RIGHT)
+		setPosCharacterX(getPosCharacterX() + MOVE_SPEED);
+	else
+		setPosCharacterX(getPosCharacterX() - MOVE_SPEED);
+}
+
+void Character::moveBackward()
+{
+	if(toward == RIGHT)
+		setPosCharacterX(getPosCharacterX() - MOVE_SPEED);
+	else
+		setPosCharacterX(getPosCharacterX() + MOVE_SPEED);
 }

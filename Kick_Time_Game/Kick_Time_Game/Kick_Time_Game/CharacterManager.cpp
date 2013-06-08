@@ -30,18 +30,22 @@ void CharacterManager::updateCharacterManager()
 		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 2)
 			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(2);
 		
-		posX = GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX();
+		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveForward();
 
-		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->setPosCharacterX(posX + MOVE_SPEED);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_LEFT, -1))
 	{
 		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 3)
 			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(3);
 	
-		posX = GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX();
-
-		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->setPosCharacterX(posX - MOVE_SPEED);
+		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_DOWN, -1))
+	{
+		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 4)
+			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(4);
+	
+		//GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
 	}
 	else
 	{

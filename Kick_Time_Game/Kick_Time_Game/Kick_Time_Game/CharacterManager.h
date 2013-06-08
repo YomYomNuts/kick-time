@@ -10,6 +10,7 @@ class CharacterManager
 {
 private:
 	vector<Character*> * characterList;
+
 public:
 	CharacterManager(void);
 	~CharacterManager(void);

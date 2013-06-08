@@ -127,3 +127,8 @@ int Animation::getAnimationDataHeight()
 {
 	return this->animationData->getSpriteHeight();
 }
+
+bool Animation::getAnimationDoneState()
+{
+	return this->animationDone;
+}
