@@ -4,8 +4,8 @@ const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =
 {
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_STAND_RIGHT, 0, 0, 76, 134, 6, 7, true),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_VICTORY, 0, 134, 70, 157, 9, 4, false),
-	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_FORWARD_RIGHT, 0, 291, 87, 136, 8, 9, true),
-	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_BACKWARD_RIGHT, 0, 427, 87, 135, 8, 9, true),
+	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_FORWARD_RIGHT, 0, 291, 87, 136, 6, 9, true),
+	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_BACKWARD_RIGHT, 0, 427, 87, 135, 6, 9, true),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_STOOP_RIGHT, 0, 562, 71, 120, 8, 3, true),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_PICKUP_RIGHT, 0, 682, 71, 120, 8, 3, true),
 	AnimationData("../Ressources/Characters/MK/Scorpion/scorpion.png", SCORPION_JUMPUP_RIGHT, 0, 802, 71, 144, 8, 3, true),

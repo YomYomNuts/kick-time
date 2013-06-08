@@ -8,10 +8,8 @@
 
 Character::Character(void)
 {
-	this->state = STATE_CHARACTER_STAND;
+	this->state = STATE_CHARACTER_STAND_RIGHT;
 	this->animation = new Animation(this->state);
-	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->animation = new Animation(2);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->spriteCharacter = new sf::Sprite();
 	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
@@ -23,41 +21,68 @@ Character::~Character(void)
 	delete this->animation;
 }
 
+Animation* Character::getAnimation()
+{
+	return animation;
+}
+
 void Character::updateCharacter()
 {
 	switch (this->state)
 	{
-	case STATE_CHARACTER_STAND:
+	case STATE_CHARACTER_STAND_RIGHT:
+		break;
+	case STATE_CHARACTER_STAND_LEFT:
 		break;
 	case STATE_CHARACTER_VICTORY:
 		break;
-	case STATE_CHARACTER_FORWARD:
+	case STATE_CHARACTER_FORWARD_RIGHT:
 		break;
-	case STATE_CHARACTER_BACKWARD:
+	case STATE_CHARACTER_FORWARD_LEFT:
 		break;
-	case STATE_CHARACTER_STOOP:
+	case STATE_CHARACTER_BACKWARD_RIGHT:
 		break;
-	case STATE_CHARACTER_PICKUP:
+	case STATE_CHARACTER_BACKWARD_LEFT:
 		break;
-	case STATE_CHARACTER_PUNCHRIGHT:
+	case STATE_CHARACTER_CROUCH_RIGHT:
 		break;
-	case STATE_CHARACTER_PUNCHLEFT:
+	case STATE_CHARACTER_CROUCH_LEFT:
 		break;
-	case STATE_CHARACTER_KICKRIGHT:
+	case STATE_CHARACTER_STANDUP_RIGHT:
 		break;
-	case STATE_CHARACTER_KICKLEFT:
+	case STATE_CHARACTER_STANDUP_LEFT:
 		break;
-	case STATE_CHARACTER_KICKJUMP:
+	case STATE_CHARACTER_PUNCH_RIGHT:
 		break;
-	case STATE_CHARACTER_KICKDOWN:
+	case STATE_CHARACTER_PUNCH_LEFT:
 		break;
-	case STATE_CHARACTER_BLOCKING:
+	case STATE_CHARACTER_KICK_RIGHT:
 		break;
-	case STATE_CHARACTER_BLOCKINGDOWN:
+	case STATE_CHARACTER_KICK_LEFT:
 		break;
-	case STATE_CHARACTER_HIT:
+	case STATE_CHARACTER_KICKJUMP_RIGHT:
 		break;
-	case STATE_CHARACTER_HITDOWN:
+	case STATE_CHARACTER_KICKJUMP_LEFT:
+		break;
+	case STATE_CHARACTER_LOWKICK_RIGHT:
+		break;
+	case STATE_CHARACTER_LOWKICK_LEFT:
+		break;
+	case STATE_CHARACTER_GUARD_RIGHT:
+		break;
+	case STATE_CHARACTER_GUARD_LEFT:
+		break;
+	case STATE_CHARACTER_LOWGUARD_RIGHT:
+		break;
+	case STATE_CHARACTER_LOWGUARD_LEFT:
+		break;
+	case STATE_CHARACTER_HIT_RIGHT:
+		break;
+	case STATE_CHARACTER_HIT_LEFT:
+		break;
+	case STATE_CHARACTER_HITDOWN_RIGHT:
+		break;
+	case STATE_CHARACTER_HITDOWN_LEFT:
 		break;
 	}
 }
@@ -84,4 +109,24 @@ void Character::renderCharacter()
 	this->spriteCharacter->setPosition(this->posCharacterX, this->posCharacterY - height);
 
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteCharacter);
+}
+
+void Character::setPosCharacterX(int posX)
+{
+	this->posCharacterX = posX;
+}
+
+void Character::setPosCharacterY(int posY)
+{
+	this->posCharacterY = posY;
+}
+
+int Character::getPosCharacterX()
+{
+	return this->posCharacterX;
+}
+
+int Character::getPosCharacterY()
+{
+	return this->posCharacterY;
 }

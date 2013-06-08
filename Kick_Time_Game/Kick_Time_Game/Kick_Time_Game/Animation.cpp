@@ -82,6 +82,20 @@ void Animation::setAnimation(AnimationData* anim)
 	this->animationData = anim;
 }
 
+void Animation::changeAnimation(int indexAnimationData)
+{
+	this->animationData = &animationDataArray[indexAnimationData];
+	this->posX = this->animationData->getPosX();
+	this->currentFrame = 0;
+	this->frameCounter = 0;
+	this->animationDone = false;
+}
+
+const AnimationData* Animation::getAnimationData()
+{
+	return this->animationData;
+}
+
 void Animation::resetAnimation()
 {
 	this->posX = this->animationData->getPosX();

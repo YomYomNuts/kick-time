@@ -19,8 +19,13 @@ private:
 public:
 	Character(void);
 	~Character(void);
+	Animation* getAnimation();
 	void updateCharacter();
 	void renderCharacter();
+	void setPosCharacterX(int posX);
+	void setPosCharacterY(int posY);
+	int getPosCharacterX();
+	int getPosCharacterY();
 };
 
 #endif

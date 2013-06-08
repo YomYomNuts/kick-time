@@ -17,6 +17,7 @@ public:
 	void updateCharacterManager();
 	void addCharacter();
 	void renderCharacterManager();
+	vector<Character>* getCharacters();
 };
 
 #endif

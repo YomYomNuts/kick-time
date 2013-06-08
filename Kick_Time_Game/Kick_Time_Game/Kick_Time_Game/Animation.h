@@ -31,6 +31,8 @@ public:
 	void setCurrentFrame(int frame);
 	void setAnimation(AnimationData* anim);
 	void resetAnimation();
+	void changeAnimation(int indexAnimationData);
+	const AnimationData* getAnimationData();
 };
 
 #endif
