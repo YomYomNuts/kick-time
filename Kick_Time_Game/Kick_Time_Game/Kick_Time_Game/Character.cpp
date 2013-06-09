@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "GameManager_Defines.h"
 #include "GameManager.h"
+#include "Debug.h"
 
 #include <iostream>
 
@@ -145,6 +146,11 @@ void Character::updateStand()
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_UP;
+		this->updateAnimationCharacter();
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_KICK;
 		this->updateAnimationCharacter();
 	}
 }
@@ -295,6 +301,11 @@ void Character::updatePunch()
 
 void Character::updateKick()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateCrouchedKick()
@@ -340,13 +351,16 @@ void Character::renderCharacter()
 	this->spriteCharacter->setPosition((float)this->posCharacterX, (float)this->posCharacterY - height);
 	this->animation->renderAnimation(this->spriteCharacter);
 
+#ifdef DEBUG_SHOW_COLLIDER
 	// Debug collider
 	sf::RectangleShape rectangle;
-	rectangle.setSize(sf::Vector2f((float)this->collider->getColliderData()->getHalfSizeX()*2, (float)this->collider->getColliderData()->getHalfSizeY()*2));
+	rectangle.setFillColor(sf::Color::Transparent);
 	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(5);
-	rectangle.setPosition((float)this->posCharacterX + this->collider->getColliderData()->getPosX(), (float)this->posCharacterY - height + this->collider->getColliderData()->getPosY());
+	rectangle.setOutlineThickness(1);
+	rectangle.setSize(sf::Vector2f((float)this->collider->getColliderData()->getHalfSizeX()*2, (float)this->collider->getColliderData()->getHalfSizeY()*2));
+	rectangle.setPosition((float)this->posCharacterX + this->collider->getColliderData()->getPosX() - this->collider->getColliderData()->getHalfSizeX(), (float)this->posCharacterY - this->collider->getColliderData()->getPosY() - this->collider->getColliderData()->getHalfSizeY());
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(rectangle);
+#endif
 }
 
 void Character::setPosCharacterX(int posX)
@@ -401,7 +415,7 @@ void Character::moveDown()
 
 void Character::updateAnimationCharacter()
 {
-	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
+	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);;
 	this->collider->setColliderData(this->animation->getAnimationData()->getColliderID());
 }
 

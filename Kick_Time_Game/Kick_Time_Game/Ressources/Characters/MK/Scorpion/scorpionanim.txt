@@ -17,7 +17,7 @@
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_HIT_RIGHT;0;2203;79;136;6;3;false;COLLIDER_SCORPION_HIT_RIGHT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_LOW_HIT_RIGHT;0;2348;75;94;6;3;false;COLLIDER_SCORPION_LOW_HIT_RIGHT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_VICTORY_RIGHT;0;2455;58;167;6;3;false;COLLIDER_SCORPION_VICTORY_RIGHT
-../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_CROUCHED_RIGHT;0;2634;72;86;15;1;true;COLLIDER_SCORPION_CROUCHED_RIGHT
+../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_CROUCHED_RIGHT;0;2627;61;79;1;1;true;COLLIDER_SCORPION_CROUCHED_RIGHT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_STAND_LEFT;1912;0;-73;138;6;7;true;COLLIDER_SCORPION_STAND_LEFT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_MOVE_RIGHT_LEFT;1912;297;-73;143;6;8;true;COLLIDER_SCORPION_MOVE_RIGHT_LEFT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_MOVE_LEFT_LEFT;1912;142;-82;145;6;9;true;COLLIDER_SCORPION_MOVE_LEFT_LEFT
@@ -37,4 +37,4 @@
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_HIT_LEFT;1912;2203;-79;136;6;3;false;COLLIDER_SCORPION_HIT_LEFT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_LOW_HIT_LEFT;1912;2348;-75;94;6;3;false;COLLIDER_SCORPION_LOW_HIT_LEFT
 ../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_VICTORY_LEFT;1912;2455;-58;167;6;3;false;COLLIDER_SCORPION_VICTORY_LEFT
-../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_CROUCHED_LEFT;1912;2634;-72;86;15;1;true;COLLIDER_SCORPION_CROUCHED_LEFT
+../Ressources/Characters/MK/Scorpion/Scorpion.png;SCORPION_CROUCHED_LEFT;1912;2627;-61;79;1;1;true;COLLIDER_SCORPION_CROUCHED_LEFT
