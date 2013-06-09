@@ -266,7 +266,7 @@ void Character::updateForwardJump()
 	//	++maxFrame;
 
 	this->moveRight();
-	this->moveRight();
+	//this->moveRight();
 
 	if(currentFrame < maxFrame/2)
 		this->moveUp();
