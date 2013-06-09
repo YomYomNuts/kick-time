@@ -56,6 +56,8 @@ Animation* Character::getAnimation()
 
 void Character::updateCharacter()
 {
+	this->checkDirection();
+
 	switch (this->state)
 	{
 	case CharacterState::STATE_CHARACTER_STAND:
@@ -140,12 +142,22 @@ void Character::updateStand()
 		this->state = CharacterState::STATE_CHARACTER_CROUCH;
 		this->updateAnimationCharacter();
 	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_UP;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateMoveRight()
 {
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
+			this->updateAnimationCharacter();
+		}
 		this->moveRight();
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
@@ -218,14 +230,55 @@ void Character::updateStandUp()
 
 void Character::updateSteadyJumpUp()
 {
+	this->moveUp();
+//	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
+//	{
+		if (this->animation->getAnimationDoneState())
+		{
+			this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_DOWN;
+			this->updateAnimationCharacter();
+		}
+/*	}
+	else
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}*/
 }
 
 void Character::updateSteadyJumpDown()
 {
+	this->moveDown();
+
+	if (this->animation->getAnimationDoneState())
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateForwardJump()
 {
+	int currentFrame = this->animation->getCurrentFrame();
+	int maxFrame = this->animation->getAnimationData()->getSpriteNb();
+	
+	//if(maxFrame%2 == 0)
+	//	++maxFrame;
+
+	this->moveRight();
+	this->moveRight();
+
+	if(currentFrame < maxFrame/2)
+		this->moveUp();
+	else
+		this->moveDown();
+
+	if (this->animation->getAnimationDoneState())
+	{
+		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateGuard()
@@ -336,8 +389,106 @@ void Character::moveLeft()
 	this->setPosCharacterX(this->getPosCharacterX() - MOVE_SPEED);
 }
 
+void Character::moveUp()
+{
+	this->setPosCharacterY(this->getPosCharacterY() - 2*MOVE_SPEED);
+}
+
+void Character::moveDown()
+{
+	this->setPosCharacterY(this->getPosCharacterY() + 2*MOVE_SPEED);
+}
+
 void Character::updateAnimationCharacter()
 {
-	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);;
+	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	this->collider->setColliderData(this->animation->getAnimationData()->getColliderID());
+}
+
+void Character::checkDirection()
+{
+	CharacterDirection currentDirection = this->toward;
+
+	if(this->indexCharacter % 2 == 0)
+	{
+		if(this->posCharacterX - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(1)->getPosCharacterX() < 0)
+		{
+			if(currentDirection != RIGHT)
+			{
+				if(this->animation->getAnimationData()->getAnimationLoop() == true)
+				{
+					this->toward = RIGHT;
+					this->updateAnimationCharacter();
+				}
+				else
+				{
+					/*if (this->animation->getAnimationDoneState())
+					{
+						this->toward = RIGHT;
+						this->updateAnimationCharacter();
+					}*/
+				}
+			}
+		}
+		else
+		{
+			if(currentDirection != LEFT)
+			{
+				if(this->animation->getAnimationData()->getAnimationLoop() == true)
+				{
+					this->toward = LEFT;
+					this->updateAnimationCharacter();
+				}
+				else
+				{
+					/*if (this->animation->getAnimationDoneState())
+					{
+						this->toward = LEFT;
+						this->updateAnimationCharacter();
+					}*/
+				}
+			}
+		}
+	}
+	else
+	{
+		if(this->posCharacterX - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX() < 0)
+		{
+			if(currentDirection != RIGHT)
+			{
+				if(this->animation->getAnimationData()->getAnimationLoop() == true)
+				{
+					this->toward = RIGHT;
+					this->updateAnimationCharacter();
+				}
+				else
+				{
+					if (this->animation->getAnimationDoneState())
+					{
+						this->toward = RIGHT;
+						this->updateAnimationCharacter();
+					}
+				}
+			}
+		}
+		else
+		{
+			if(currentDirection != LEFT)
+			{
+				if(this->animation->getAnimationData()->getAnimationLoop() == true)
+				{
+					this->toward = LEFT;
+					this->updateAnimationCharacter();
+				}
+				else
+				{
+					if (this->animation->getAnimationDoneState())
+					{
+						this->toward = LEFT;
+						this->updateAnimationCharacter();
+					}
+				}
+			}
+		}
+	}
 }

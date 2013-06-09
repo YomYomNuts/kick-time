@@ -22,12 +22,12 @@ const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_HIT_RIGHT, 0, 2203, 79, 136, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_LOW_HIT_RIGHT, 0, 2348, 75, 94, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_VICTORY_RIGHT, 0, 2455, 58, 167, 6, 3, false, COLLIDER_NULL),
-	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCHED_RIGHT, 0, 2634, 72, 86, 15, 2, true, COLLIDER_NULL),
+	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCHED_RIGHT, 0, 2627, 61, 79, 1, 1, true, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_STAND_LEFT, 1912, 0, -73, 138, 6, 7, true, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_FORWARD_LEFT, 1912, 297, -73, 143, 6, 8, true, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_BACKWARD_LEFT, 1912, 142, -82, 145, 6, 9, true, COLLIDER_NULL),
-	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCH_LEFT, 1912, 443, -68, 124, 6, 3, false, COLLIDER_NULL),
-	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_STANDUP_LEFT, 1912, 576, -68, 124, 6, 3, false, COLLIDER_NULL),
+	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCH_LEFT, 1912, 443, -68, 124, 3, 3, false, COLLIDER_NULL),
+	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_STANDUP_LEFT, 1912, 576, -68, 124, 3, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_STEADY_JUMP_UP_LEFT, 1912, 709, -77, 148, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_STEADY_JUMP_DOWN_LEFT, 1912, 865, -77, 148, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_FORWARD_JUMP_LEFT, 1912, 1019, -67, 146, 6, 8, false, COLLIDER_NULL),
@@ -42,7 +42,7 @@ const AnimationData animationDataArray[NUMBER_ANIMATIONDATA] =
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_HIT_LEFT, 1912, 2203, -79, 136, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_LOW_HIT_LEFT, 1912, 2348, -75, 94, 6, 3, false, COLLIDER_NULL),
 	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_VICTORY_LEFT, 1912, 2455, -58, 167, 6, 3, false, COLLIDER_NULL),
-	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCHED_LEFT, 1912, 2634, -72, 86, 15, 2, true, COLLIDER_NULL),
+	AnimationData("../Ressources/Characters/MK/Scorpion/Scorpion.png", SCORPION_CROUCHED_LEFT, 1912, 2627, -61, 79, 1, 1, true, COLLIDER_NULL),
 };
 
 AnimationData::AnimationData()

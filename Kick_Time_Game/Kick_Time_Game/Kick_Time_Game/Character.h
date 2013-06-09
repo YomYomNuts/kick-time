@@ -72,6 +72,7 @@ private:
 	void updateLowHit();
 	void updateVictory();
 	void updateCrouched();
+	void checkDirection();
 
 public:
 	Character(void);
@@ -88,6 +89,8 @@ public:
 	int getHp();
 	void moveRight();
 	void moveLeft();
+	void moveUp();
+	void moveDown();
 	void updateAnimationCharacter();
 };
 
