@@ -57,29 +57,36 @@ Animation* Character::getAnimation()
 
 void Character::updateCharacter()
 {
-	this->checkDirection();
+	
 
 	switch (this->state)
 	{
 	case CharacterState::STATE_CHARACTER_STAND:
+		this->checkDirection();
 		this->updateStand();
 		break;
 	case CharacterState::STATE_CHARACTER_MOVE_RIGHT:
+		this->checkDirection();
 		this->updateMoveRight();
 		break;
 	case CharacterState::STATE_CHARACTER_MOVE_LEFT:
+		this->checkDirection();
 		this->updateMoveLeft();
 		break;
 	case CharacterState::STATE_CHARACTER_CROUCH:
+		this->checkDirection();
 		this->updateCrouch();
 		break;
 	case CharacterState::STATE_CHARACTER_STANDUP:
+		this->checkDirection();
 		this->updateStandUp();
 		break;
 	case CharacterState::STATE_CHARACTER_STEADY_JUMP_UP:
+		this->checkDirection();
 		this->updateSteadyJumpUp();
 		break;
 	case CharacterState::STATE_CHARACTER_STEADY_JUMP_DOWN:
+		this->checkDirection();
 		this->updateSteadyJumpDown();
 		break;
 	case CharacterState::STATE_CHARACTER_FORWARD_JUMP:
@@ -159,7 +166,7 @@ void Character::updateMoveRight()
 {
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
-		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == RIGHT)
 		{
 			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
 			this->updateAnimationCharacter();
@@ -194,6 +201,12 @@ void Character::updateMoveLeft()
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == LEFT)
+		{
+			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
+			this->updateAnimationCharacter();
+		}
+
 		this->moveLeft();
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
@@ -271,8 +284,10 @@ void Character::updateForwardJump()
 	//if(maxFrame%2 == 0)
 	//	++maxFrame;
 
-	this->moveRight();
-	//this->moveRight();
+	if(this->toward == RIGHT)
+		this->moveRight();
+	else
+		this->moveLeft();
 
 	if(currentFrame < maxFrame/2)
 		this->moveUp();
