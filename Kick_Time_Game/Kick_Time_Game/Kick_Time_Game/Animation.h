@@ -3,6 +3,8 @@
 
 #include "AnimationData.h"
 
+#include <SFML/Graphics.hpp>
+
 class Animation
 {
 private:
@@ -18,7 +20,8 @@ public:
 	Animation(void);
 	Animation(int indexAnimationData);
 	~Animation(void);
-	void update();
+	void updateAnimation();
+	void renderAnimation(sf::Sprite * sprite);
 	int getPosX();
 	int getCurrentFrame();
 	int getId();

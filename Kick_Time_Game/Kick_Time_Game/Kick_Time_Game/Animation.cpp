@@ -1,4 +1,6 @@
 #include "Animation.h"
+#include "GameManager.h"
+
 #include <iostream>
 
 
@@ -27,11 +29,10 @@ Animation::~Animation(void)
 	delete this->animationData;
 }
 
-void Animation::update()
+void Animation::updateAnimation()
 {
 	if(frameCounter == animationData->getFramerate())
 	{
-		
 		if(this->currentFrame == 0)
 			this->posX = this->animationData->getPosX();
 		else
@@ -55,6 +56,25 @@ void Animation::update()
 	}
 	
 	++this->frameCounter;
+}
+
+void Animation::renderAnimation(sf::Sprite * sprite)
+{
+	int posX = this->posX;
+	int posY = this->animationData->getPosY();
+	int width = this->animationData->getSpriteWidth();
+	int height = this->animationData->getSpriteHeight();
+	
+	if (width < 0)
+	{
+		posX += width;
+		width = -width;
+	}
+
+	sprite->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->animationData->getFileName()));
+	sprite->setTextureRect(sf::IntRect(posX, posY, width, height));
+
+	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*sprite);
 }
 
 int Animation::getPosX()

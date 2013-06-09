@@ -73,6 +73,9 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Ressources\Characters\MK\Scorpion\Scorpion.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D97CC8D9-0639-41DF-B742-EA6BE8CBFF04}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

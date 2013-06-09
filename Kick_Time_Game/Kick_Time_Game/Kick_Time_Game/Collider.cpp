@@ -20,6 +20,11 @@ const ColliderData* Collider::getColliderData()
 	return this->colliderData;
 }
 
+void Collider::setColliderData(int indexColliderData)
+{
+	this->colliderData = &colliderDataArray[indexColliderData];
+}
+
 bool Collider::AreColliding(Collider * collider) const
 {
 	if (this->colliderData == NULL || collider->colliderData == NULL)

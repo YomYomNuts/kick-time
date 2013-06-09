@@ -19,7 +19,7 @@ void AnimationManager::updateAnimationManager()
 {
 	for(unsigned int i = 0; i < this->animationList->size(); ++i)
 	{
-		this->animationList->at(i)->update();
+		this->animationList->at(i)->updateAnimation();
 	}
 }
 

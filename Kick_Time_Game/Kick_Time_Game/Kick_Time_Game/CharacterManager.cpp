@@ -21,43 +21,15 @@ void CharacterManager::initializeCharacterManager()
 
 void CharacterManager::updateCharacterManager()
 {
-	int posX;
-	int posY;
-
-	if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_RIGHT, -1))
+	for(unsigned int i = 0; i < this->characterList->size(); ++i)
 	{
-
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 2)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(2);
-		
-		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveForward();
-
+		this->characterList->at(i)->updateCharacter();
 	}
-	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_LEFT, -1))
-	{
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 3)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(3);
-	
-		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
-	}
-	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_DOWN, -1))
-	{
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 4)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(4);
-	
-		//GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
-	}
-	else
-	{
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != STATE_CHARACTER_STAND)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(STATE_CHARACTER_STAND);
-	}
-		//GameManager::getInstance()->getSoundManager()->playSound(SOUND_LEVEL_SCORPION);	
 }
 
 void CharacterManager::addCharacter()
 {
-	this->characterList->push_back(new Character());
+	this->characterList->push_back(new Character(this->characterList->size()));
 }
 
 vector<Character*>* CharacterManager::getCharacters()

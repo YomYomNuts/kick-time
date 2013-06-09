@@ -13,6 +13,7 @@ public:
 	Collider(int indexColliderData);
 	~Collider(void);
 	const ColliderData* getColliderData();
+	void setColliderData(int indexColliderData);
 	bool AreColliding(Collider * colliderData) const;
 };
 
