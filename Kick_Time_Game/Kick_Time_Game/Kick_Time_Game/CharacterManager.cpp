@@ -44,3 +44,19 @@ void CharacterManager::renderCharacterManager()
 		this->characterList->at(i)->renderCharacter();
 	}
 }
+
+Character* CharacterManager::getClosestCharacter(int withoutThisIndex, Position * position)
+{
+	double distance = (double)INT_MAX, tempDistance = 0;
+	Character * closest = NULL;
+	for(unsigned int i = 0; i < this->characterList->size(); ++i)
+	{
+		tempDistance = abs(position->getX() - this->characterList->at(i)->getPosCharacterX()) + abs(position->getY() - this->characterList->at(i)->getPosCharacterY());
+		if (this->characterList->at(i)->getIndexCharacter() != withoutThisIndex && tempDistance < distance)
+		{
+			distance = tempDistance;
+			closest = this->characterList->at(i);
+		}
+	}
+	return closest;
+}

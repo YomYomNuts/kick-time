@@ -7,7 +7,7 @@ Position::Position(void)
 	this->y = 0;
 }
 
-Position::Position(int x, int y)
+Position::Position(double x, double y)
 {
 	this->x = x;
 	this->y = y;
@@ -17,22 +17,22 @@ Position::~Position(void)
 {
 }
 
-int Position::getX() const
+double Position::getX() const
 {
 	return this->x;
 }
 
-void Position::setX(int x)
+void Position::setX(double x)
 {
 	this->x = x;
 }
 
-int Position::getY() const
+double Position::getY() const
 {
 	return this->y;
 }
 
-void Position::setY(int y)
+void Position::setY(double y)
 {
 	this->y = y;
 }

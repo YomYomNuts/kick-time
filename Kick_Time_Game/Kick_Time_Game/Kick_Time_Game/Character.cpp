@@ -19,11 +19,12 @@ Character::Character(void)
 	this->state = CharacterState::STATE_CHARACTER_STAND;
 	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->collider = new Collider(this->animation->getAnimationData()->getColliderID());
-	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
-	this->posCharacterY = SCREEN_SIZE_HEIGHT;
+	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2, SCREEN_SIZE_HEIGHT);
+	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
+	this->colliderKickPunch = new Collider();
 	this->totalHp = 100;
 	this->hp = 50;
+	this->damage = 2;
 }
 
 Character::Character(int indexCharacter)
@@ -38,16 +39,21 @@ Character::Character(int indexCharacter)
 	this->state = CharacterState::STATE_CHARACTER_STAND;
 	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->collider = new Collider(this->animation->getAnimationData()->getColliderID());
-	this->posCharacterX = SCREEN_SIZE_WIDTH / 2;
-	this->posCharacterY = SCREEN_SIZE_HEIGHT;
+	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2, SCREEN_SIZE_HEIGHT);
+	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
+	this->colliderKickPunch = new Collider();
 	this->totalHp = 100;
 	this->hp = 50;
+	this->damage = 2;
 }
 
 Character::~Character(void)
 {
+	delete this->spriteCharacter;
 	delete this->animation;
+	delete this->collider;
+	delete this->positionCharacter;
+	delete this->colliderKickPunch;
 }
 
 Animation* Character::getAnimation()
@@ -57,8 +63,6 @@ Animation* Character::getAnimation()
 
 void Character::updateCharacter()
 {
-	
-
 	switch (this->state)
 	{
 	case CharacterState::STATE_CHARACTER_STAND:
@@ -159,6 +163,8 @@ void Character::updateStand()
 	{
 		this->state = CharacterState::STATE_CHARACTER_KICK;
 		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
 	}
 }
 
@@ -320,6 +326,24 @@ void Character::updateKick()
 	{
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(NULL);
+	}
+
+	// Update position kick
+	if (this->colliderKickPunch->getPosition() != NULL)
+	{
+		Character * enemy = GameManager::getInstance()->getCharacterManager()->getClosestCharacter(this->indexCharacter, this->colliderKickPunch->getPosition());
+		if (enemy != NULL && this->colliderKickPunch->AreColliding(enemy->getCollider()))
+		{
+			enemy->hitCharacter(this->damage);
+			this->colliderKickPunch->setPosition(NULL);
+		}
+		else if (this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->colliderKickPunch->getColliderData()->getPosX())
+		{
+			double distance = this->colliderKickPunch->getColliderData()->getPosX() - this->collider->getColliderData()->getPosX();
+			double speed = this->animation->getAnimationData()->getFramerate() * this->animation->getAnimationData()->getSpriteNb();
+			this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() + distance / speed);
+		}
 	}
 }
 
@@ -341,6 +365,11 @@ void Character::updateJumpedKick()
 
 void Character::updateHit()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateLowHit()
@@ -363,39 +392,35 @@ void Character::updateCrouched()
 void Character::renderCharacter()
 {
 	int height = this->animation->getAnimationData()->getSpriteHeight();
-	this->spriteCharacter->setPosition((float)this->posCharacterX, (float)this->posCharacterY - height);
+	this->spriteCharacter->setPosition((float)this->positionCharacter->getX(), (float)this->positionCharacter->getY() - height);
 	this->animation->renderAnimation(this->spriteCharacter);
 
 #ifdef DEBUG_SHOW_COLLIDER
 	// Debug collider
-	sf::RectangleShape rectangle;
-	rectangle.setFillColor(sf::Color::Transparent);
-	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(1);
-	rectangle.setSize(sf::Vector2f((float)this->collider->getColliderData()->getHalfSizeX()*2, (float)this->collider->getColliderData()->getHalfSizeY()*2));
-	rectangle.setPosition((float)this->posCharacterX + this->collider->getColliderData()->getPosX() - this->collider->getColliderData()->getHalfSizeX(), (float)this->posCharacterY - this->collider->getColliderData()->getPosY() - this->collider->getColliderData()->getHalfSizeY());
-	GameManager::getInstance()->getRenderManager()->getWindow()->draw(rectangle);
+	this->collider->renderCollider(sf::Color::Red);
+	if (this->colliderKickPunch->getPosition() != NULL)
+		this->colliderKickPunch->renderCollider(sf::Color::Green);
 #endif
 }
 
-void Character::setPosCharacterX(int posX)
+void Character::setPosCharacterX(double posX)
 {
-	this->posCharacterX = posX;
+	this->positionCharacter->setX(posX);
 }
 
-void Character::setPosCharacterY(int posY)
+void Character::setPosCharacterY(double posY)
 {
-	this->posCharacterY = posY;
+	this->positionCharacter->setY(posY);
 }
 
-int Character::getPosCharacterX()
+double Character::getPosCharacterX()
 {
-	return this->posCharacterX;
+	return this->positionCharacter->getX();
 }
 
-int Character::getPosCharacterY()
+double Character::getPosCharacterY()
 {
-	return this->posCharacterY;
+	return this->positionCharacter->getY();
 }
 
 int Character::getTotalHp()
@@ -406,6 +431,16 @@ int Character::getTotalHp()
 int Character::getHp()
 {
 	return this->hp;
+}
+
+int Character::getIndexCharacter()
+{
+	return this->indexCharacter;
+}
+
+Collider* Character::getCollider()
+{
+	return this->collider;
 }
 
 void Character::moveRight()
@@ -431,7 +466,8 @@ void Character::moveDown()
 void Character::updateAnimationCharacter()
 {
 	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);;
-	this->collider->setColliderData(this->animation->getAnimationData()->getColliderID());
+	this->collider->changeColliderData(this->animation->getAnimationData()->getColliderID());
+	this->colliderKickPunch->changeColliderData(this->animation->getAnimationData()->getColliderKickPunchID());
 }
 
 void Character::checkDirection()
@@ -440,7 +476,7 @@ void Character::checkDirection()
 
 	if(this->indexCharacter % 2 == 0)
 	{
-		if(this->posCharacterX - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(1)->getPosCharacterX() < 0)
+		if(this->positionCharacter->getX() - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(1)->getPosCharacterX() < 0)
 		{
 			if(currentDirection != RIGHT)
 			{
@@ -481,7 +517,7 @@ void Character::checkDirection()
 	}
 	else
 	{
-		if(this->posCharacterX - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX() < 0)
+		if(this->positionCharacter->getX() - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX() < 0)
 		{
 			if(currentDirection != RIGHT)
 			{
@@ -519,5 +555,22 @@ void Character::checkDirection()
 				}
 			}
 		}
+	}
+}
+
+void Character::hitCharacter(int damage)
+{
+	if (this->state != STATE_CHARACTER_GUARD  && this->state != STATE_CHARACTER_LOW_GUARD)
+	{
+		this->hp -= damage;
+		if (this->hp < 0)
+			this->hp = 0;
+
+		if (this->state == STATE_CHARACTER_CROUCH || this->state == STATE_CHARACTER_STANDUP || this->state == STATE_CHARACTER_CROUCHED_KICK ||
+			this->state == STATE_CHARACTER_CROUCHED_PUNCH || this->state == STATE_CHARACTER_LOW_HIT || this->state == STATE_CHARACTER_CROUCHED)
+			this->state = STATE_CHARACTER_LOW_HIT;
+		else
+			this->state = STATE_CHARACTER_HIT;
+		this->updateAnimationCharacter();
 	}
 }

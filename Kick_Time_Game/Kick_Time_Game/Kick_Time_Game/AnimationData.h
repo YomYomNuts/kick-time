@@ -18,10 +18,11 @@ private:
 	int spriteNb;
 	bool animationLoop;
 	int colliderID;
+	int colliderKickPunchID;
 
 public:
 	AnimationData();
-	AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID);
+	AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID, int colliderKickPunchID);
 	~AnimationData(void);
 	string getFileName() const;
 	int getAnimationName() const;
@@ -33,6 +34,7 @@ public:
 	int getSpriteNb() const;
 	bool getAnimationLoop() const;
 	int getColliderID() const;
+	int getColliderKickPunchID() const;
 };
 
 #define NUMBER_ANIMATIONDATA 40
