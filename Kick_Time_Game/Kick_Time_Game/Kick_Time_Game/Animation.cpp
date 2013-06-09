@@ -102,3 +102,8 @@ const AnimationData* Animation::getAnimationData()
 {
 	return this->animationData;
 }
+
+bool Animation::getAnimationDoneState()
+{
+	return this->animationDone;
+}
