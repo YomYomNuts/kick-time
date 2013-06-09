@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "GameManager_Defines.h"
 #include "GameManager.h"
+#include "Debug.h"
 
 #include <iostream>
 
@@ -287,13 +288,16 @@ void Character::renderCharacter()
 	this->spriteCharacter->setPosition((float)this->posCharacterX, (float)this->posCharacterY - height);
 	this->animation->renderAnimation(this->spriteCharacter);
 
+#ifdef DEBUG_SHOW_COLLIDER
 	// Debug collider
 	sf::RectangleShape rectangle;
-	rectangle.setSize(sf::Vector2f((float)this->collider->getColliderData()->getHalfSizeX()*2, (float)this->collider->getColliderData()->getHalfSizeY()*2));
+	rectangle.setFillColor(sf::Color::Transparent);
 	rectangle.setOutlineColor(sf::Color::Red);
-	rectangle.setOutlineThickness(5);
-	rectangle.setPosition((float)this->posCharacterX + this->collider->getColliderData()->getPosX(), (float)this->posCharacterY - height + this->collider->getColliderData()->getPosY());
+	rectangle.setOutlineThickness(1);
+	rectangle.setSize(sf::Vector2f((float)this->collider->getColliderData()->getHalfSizeX()*2, (float)this->collider->getColliderData()->getHalfSizeY()*2));
+	rectangle.setPosition((float)this->posCharacterX + this->collider->getColliderData()->getPosX() - this->collider->getColliderData()->getHalfSizeX(), (float)this->posCharacterY - this->collider->getColliderData()->getPosY() - this->collider->getColliderData()->getHalfSizeY());
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(rectangle);
+#endif
 }
 
 void Character::setPosCharacterX(int posX)
