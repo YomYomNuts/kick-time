@@ -27,23 +27,23 @@ void CharacterManager::updateCharacterManager()
 	if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
 
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 2)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(2);
+		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != STATE_CHARACTER_FORWARD_RIGHT)
+			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(STATE_CHARACTER_FORWARD_RIGHT);
 		
 		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveForward();
 
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_LEFT, -1))
 	{
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 3)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(3);
+		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != STATE_CHARACTER_BACKWARD_RIGHT)
+			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(STATE_CHARACTER_BACKWARD_RIGHT);
 	
 		GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(0, POSITION_INPUT_MOVE_DOWN, -1))
 	{
-		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != 4)
-			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(4);
+		if(GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->getAnimationData()->getAnimationName() != STATE_CHARACTER_CROUCH_RIGHT)
+			GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getAnimation()->changeAnimation(STATE_CHARACTER_CROUCH_RIGHT);
 	
 		//GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->moveBackward();
 	}
