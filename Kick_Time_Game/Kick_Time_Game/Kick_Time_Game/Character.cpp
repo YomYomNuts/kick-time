@@ -66,41 +66,43 @@ void Character::updateCharacter()
 	switch (this->state)
 	{
 	case CharacterState::STATE_CHARACTER_STAND:
-		this->checkDirection();
 		this->updateStand();
 		break;
 	case CharacterState::STATE_CHARACTER_MOVE_RIGHT:
-		this->checkDirection();
 		this->updateMoveRight();
 		break;
 	case CharacterState::STATE_CHARACTER_MOVE_LEFT:
-		this->checkDirection();
 		this->updateMoveLeft();
 		break;
 	case CharacterState::STATE_CHARACTER_CROUCH:
-		this->checkDirection();
 		this->updateCrouch();
 		break;
 	case CharacterState::STATE_CHARACTER_STANDUP:
-		this->checkDirection();
 		this->updateStandUp();
 		break;
 	case CharacterState::STATE_CHARACTER_STEADY_JUMP_UP:
-		this->checkDirection();
 		this->updateSteadyJumpUp();
 		break;
 	case CharacterState::STATE_CHARACTER_STEADY_JUMP_DOWN:
-		this->checkDirection();
 		this->updateSteadyJumpDown();
 		break;
 	case CharacterState::STATE_CHARACTER_FORWARD_JUMP:
 		this->updateForwardJump();
 		break;
+	case CharacterState::STATE_CHARACTER_BACKWARD_JUMP:
+		this->updateBackwardJump();
+		break;
 	case CharacterState::STATE_CHARACTER_GUARD:
 		this->updateGuard();
 		break;
+	case CharacterState::STATE_CHARACTER_GUARD_ON:
+		this->updateGuardOn();
+		break;
 	case CharacterState::STATE_CHARACTER_LOW_GUARD:
 		this->updateLowGuard();
+		break;
+	case CharacterState::STATE_CHARACTER_LOW_GUARD_ON:
+		this->updateLowGuardOn();
 		break;
 	case CharacterState::STATE_CHARACTER_PUNCH:
 		this->updatePunch();
@@ -137,17 +139,19 @@ void Character::updateCharacter()
 
 void Character::updateStand()
 {
+	this->checkDirection();
+
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
 		this->updateAnimationCharacter();
-		this->moveRight();
+		this->moveRight(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
 		this->updateAnimationCharacter();
-		this->moveLeft();
+		this->moveLeft(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
 	{
@@ -166,10 +170,24 @@ void Character::updateStand()
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
 	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_GUARD;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateMoveRight()
 {
+	this->checkDirection();
+
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == RIGHT)
@@ -177,13 +195,26 @@ void Character::updateMoveRight()
 			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
 			this->updateAnimationCharacter();
 		}
-		this->moveRight();
+
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == LEFT)
+		{
+			this->state = CharacterState::STATE_CHARACTER_BACKWARD_JUMP;
+			this->updateAnimationCharacter();
+		}
+
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_GUARD;
+			this->updateAnimationCharacter();
+		}
+
+		this->moveRight(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
 		this->updateAnimationCharacter();
-		this->moveLeft();
+		this->moveLeft(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
 	{
@@ -199,11 +230,13 @@ void Character::updateMoveRight()
 
 void Character::updateMoveLeft()
 {
+	this->checkDirection();
+
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
 		this->updateAnimationCharacter();
-		this->moveRight();
+		this->moveRight(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
@@ -213,7 +246,19 @@ void Character::updateMoveLeft()
 			this->updateAnimationCharacter();
 		}
 
-		this->moveLeft();
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == RIGHT)
+		{
+			this->state = CharacterState::STATE_CHARACTER_BACKWARD_JUMP;
+			this->updateAnimationCharacter();
+		}
+
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_GUARD;
+			this->updateAnimationCharacter();
+		}
+
+		this->moveLeft(1);
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
 	{
@@ -229,6 +274,8 @@ void Character::updateMoveLeft()
 
 void Character::updateCrouch()
 {
+	this->checkDirection();
+
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
 	{
 		if (this->animation->getAnimationDoneState())
@@ -246,6 +293,8 @@ void Character::updateCrouch()
 
 void Character::updateStandUp()
 {
+	this->checkDirection();
+
 	if (this->animation->getAnimationDoneState())
 	{
 		this->state = CharacterState::STATE_CHARACTER_STAND;
@@ -255,30 +304,56 @@ void Character::updateStandUp()
 
 void Character::updateSteadyJumpUp()
 {
-	this->moveUp();
-//	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
-//	{
-		if (this->animation->getAnimationDoneState())
-		{
-			this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_DOWN;
-			this->updateAnimationCharacter();
-		}
-/*	}
-	else
+	this->checkDirection();
+
+	this->moveUp(2);
+	if (this->animation->getAnimationDoneState())
 	{
-		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_DOWN;
 		this->updateAnimationCharacter();
-	}*/
+	}
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_KICK;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
 }
 
 void Character::updateSteadyJumpDown()
 {
-	this->moveDown();
+	this->checkDirection();
+
+	this->moveDown(2);
 
 	if (this->animation->getAnimationDoneState())
 	{
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
+	}
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_KICK;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
 	}
 }
 
@@ -287,18 +362,15 @@ void Character::updateForwardJump()
 	int currentFrame = this->animation->getCurrentFrame();
 	int maxFrame = this->animation->getAnimationData()->getSpriteNb();
 	
-	//if(maxFrame%2 == 0)
-	//	++maxFrame;
-
 	if(this->toward == RIGHT)
-		this->moveRight();
+		this->moveRight(2);
 	else
-		this->moveLeft();
+		this->moveLeft(2);
 
 	if(currentFrame < maxFrame/2)
-		this->moveUp();
+		this->moveUp(2);
 	else
-		this->moveDown();
+		this->moveDown(2);
 
 	if (this->animation->getAnimationDoneState())
 	{
@@ -306,61 +378,277 @@ void Character::updateForwardJump()
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
 	}
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_KICK;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+}
+
+void Character::updateBackwardJump()
+{
+	int currentFrame = this->animation->getCurrentFrame();
+	int maxFrame = this->animation->getAnimationData()->getSpriteNb();
+	
+	if(this->toward == RIGHT)
+		this->moveLeft(2);
+	else
+		this->moveRight(2);
+
+	if(currentFrame < maxFrame/2)
+		this->moveUp(2);
+	else
+		this->moveDown(2);
+
+	if (this->animation->getAnimationDoneState())
+	{
+		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_KICK;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_JUMPED_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
 }
 
 void Character::updateGuard()
 {
+	this->checkDirection();
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		if (this->animation->getAnimationDoneState())
+		{
+			this->state = CharacterState::STATE_CHARACTER_GUARD_ON;
+			this->updateAnimationCharacter();
+		}
+	}
+	else
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
+}
+
+void Character::updateGuardOn()
+{
+	if (!GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_LOW_GUARD_ON;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateLowGuard()
 {
+	this->checkDirection();
+
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		if (this->animation->getAnimationDoneState())
+		{
+			this->state = CharacterState::STATE_CHARACTER_LOW_GUARD_ON;
+			this->updateAnimationCharacter();
+		}
+	}
+	else
+	{
+		this->state = CharacterState::STATE_CHARACTER_CROUCHED;
+		this->updateAnimationCharacter();
+	}
+}
+
+void Character::updateLowGuardOn()
+{
+	if (!GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_CROUCHED;
+		this->updateAnimationCharacter();
+	}
+
+	if (!GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_GUARD_ON;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updatePunch()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
+			this->moveRight(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
+			this->moveLeft(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCH;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STAND;
+		}
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(NULL);
+	}
+	this->updateKickPunch();
 }
 
 void Character::updateKick()
 {
 	if (this->animation->getAnimationDoneState())
 	{
-		this->state = CharacterState::STATE_CHARACTER_STAND;
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
+			this->moveRight(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
+			this->moveLeft(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCH;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STAND;
+		}
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(NULL);
 	}
-
-	// Update position kick
-	if (this->colliderKickPunch->getPosition() != NULL)
-	{
-		Character * enemy = GameManager::getInstance()->getCharacterManager()->getClosestCharacter(this->indexCharacter, this->colliderKickPunch->getPosition());
-		if (enemy != NULL && this->colliderKickPunch->AreColliding(enemy->getCollider()))
-		{
-			enemy->hitCharacter(this->damage);
-			this->colliderKickPunch->setPosition(NULL);
-		}
-		else if (this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->colliderKickPunch->getColliderData()->getPosX())
-		{
-			double distance = this->colliderKickPunch->getColliderData()->getPosX() - this->collider->getColliderData()->getPosX();
-			double speed = this->animation->getAnimationData()->getFramerate() * this->animation->getAnimationData()->getSpriteNb();
-			this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() + distance / speed);
-		}
-	}
+	this->updateKickPunch();
 }
 
 void Character::updateCrouchedKick()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCHED;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STANDUP;
+		}
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(NULL);
+	}
+	this->updateKickPunch();
 }
 
 void Character::updateCrouchedPunch()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCHED;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STANDUP;
+		}
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(NULL);
+	}
+	this->updateKickPunch();
 }
 
 void Character::updateJumpedPunch()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
+			this->moveRight(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
+			this->moveLeft(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCH;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STAND;
+		}
+		this->updateAnimationCharacter();
+		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->colliderKickPunch->setPosition(NULL);
+	}
+	this->updateKickPunch();
 }
 
 void Character::updateJumpedKick()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
+			this->moveRight(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
+			this->moveLeft(1);
+		}
+		else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCH;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STAND;
+		}
+		this->updateAnimationCharacter();
+		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->colliderKickPunch->setPosition(NULL);
+	}
+	this->updateKickPunch();
 }
 
 void Character::updateHit()
@@ -374,10 +662,27 @@ void Character::updateHit()
 
 void Character::updateLowHit()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
+		{
+			this->state = CharacterState::STATE_CHARACTER_CROUCHED;
+		}
+		else
+		{
+			this->state = CharacterState::STATE_CHARACTER_STANDUP;
+		}
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateVictory()
 {
+	if (this->animation->getAnimationDoneState())
+	{
+		this->state = CharacterState::STATE_CHARACTER_STAND;
+		this->updateAnimationCharacter();
+	}
 }
 
 void Character::updateCrouched()
@@ -386,6 +691,29 @@ void Character::updateCrouched()
 	{
 		this->state = CharacterState::STATE_CHARACTER_STANDUP;
 		this->updateAnimationCharacter();
+	}
+	
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_CROUCHED_KICK;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
+	{
+		this->state = CharacterState::STATE_CHARACTER_CROUCHED_PUNCH;
+		this->updateAnimationCharacter();
+		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
+		this->colliderKickPunch->setShiftX(0);
+	}
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
+	{
+		if (this->animation->getAnimationDoneState() || this->state == STATE_CHARACTER_CROUCHED)
+		{
+			this->state = CharacterState::STATE_CHARACTER_LOW_GUARD;
+			this->updateAnimationCharacter();
+		}
 	}
 }
 
@@ -443,24 +771,24 @@ Collider* Character::getCollider()
 	return this->collider;
 }
 
-void Character::moveRight()
+void Character::moveRight(int speedCoef)
 {
-	this->setPosCharacterX(this->getPosCharacterX() + MOVE_SPEED);
+	this->setPosCharacterX(this->getPosCharacterX() + speedCoef * MOVE_SPEED);
 }
 
-void Character::moveLeft()
+void Character::moveLeft(int speedCoef)
 {
-	this->setPosCharacterX(this->getPosCharacterX() - MOVE_SPEED);
+	this->setPosCharacterX(this->getPosCharacterX() - speedCoef * MOVE_SPEED);
 }
 
-void Character::moveUp()
+void Character::moveUp(int speedCoef)
 {
-	this->setPosCharacterY(this->getPosCharacterY() - 2*MOVE_SPEED);
+	this->setPosCharacterY(this->getPosCharacterY() - speedCoef * MOVE_SPEED);
 }
 
-void Character::moveDown()
+void Character::moveDown(int speedCoef)
 {
-	this->setPosCharacterY(this->getPosCharacterY() + 2*MOVE_SPEED);
+	this->setPosCharacterY(this->getPosCharacterY() + speedCoef * MOVE_SPEED);
 }
 
 void Character::updateAnimationCharacter()
@@ -473,25 +801,18 @@ void Character::updateAnimationCharacter()
 void Character::checkDirection()
 {
 	CharacterDirection currentDirection = this->toward;
+	Character* closest = GameManager::getInstance()->getCharacterManager()->getClosestCharacter(this->indexCharacter, this->positionCharacter);
 
-	if(this->indexCharacter % 2 == 0)
+	if (closest != NULL)
 	{
-		if(this->positionCharacter->getX() - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(1)->getPosCharacterX() < 0)
+		if (this->positionCharacter->getX() - closest->getPosCharacterX() < 0)
 		{
-			if(currentDirection != RIGHT)
+			if(currentDirection != CharacterDirection::RIGHT)
 			{
 				if(this->animation->getAnimationData()->getAnimationLoop() == true)
 				{
-					this->toward = RIGHT;
+					this->toward = CharacterDirection::RIGHT;
 					this->updateAnimationCharacter();
-				}
-				else
-				{
-					/*if (this->animation->getAnimationDoneState())
-					{
-						this->toward = RIGHT;
-						this->updateAnimationCharacter();
-					}*/
 				}
 			}
 		}
@@ -503,55 +824,6 @@ void Character::checkDirection()
 				{
 					this->toward = LEFT;
 					this->updateAnimationCharacter();
-				}
-				else
-				{
-					/*if (this->animation->getAnimationDoneState())
-					{
-						this->toward = LEFT;
-						this->updateAnimationCharacter();
-					}*/
-				}
-			}
-		}
-	}
-	else
-	{
-		if(this->positionCharacter->getX() - GameManager::getInstance()->getCharacterManager()->getCharacters()->at(0)->getPosCharacterX() < 0)
-		{
-			if(currentDirection != RIGHT)
-			{
-				if(this->animation->getAnimationData()->getAnimationLoop() == true)
-				{
-					this->toward = RIGHT;
-					this->updateAnimationCharacter();
-				}
-				else
-				{
-					if (this->animation->getAnimationDoneState())
-					{
-						this->toward = RIGHT;
-						this->updateAnimationCharacter();
-					}
-				}
-			}
-		}
-		else
-		{
-			if(currentDirection != LEFT)
-			{
-				if(this->animation->getAnimationData()->getAnimationLoop() == true)
-				{
-					this->toward = LEFT;
-					this->updateAnimationCharacter();
-				}
-				else
-				{
-					if (this->animation->getAnimationDoneState())
-					{
-						this->toward = LEFT;
-						this->updateAnimationCharacter();
-					}
 				}
 			}
 		}
@@ -560,17 +832,50 @@ void Character::checkDirection()
 
 void Character::hitCharacter(int damage)
 {
-	if (this->state != STATE_CHARACTER_GUARD  && this->state != STATE_CHARACTER_LOW_GUARD)
+	if (this->state != STATE_CHARACTER_GUARD && this->state != STATE_CHARACTER_GUARD_ON && this->state != STATE_CHARACTER_LOW_GUARD && this->state != STATE_CHARACTER_LOW_GUARD_ON)
 	{
 		this->hp -= damage;
 		if (this->hp < 0)
 			this->hp = 0;
-
+		
 		if (this->state == STATE_CHARACTER_CROUCH || this->state == STATE_CHARACTER_STANDUP || this->state == STATE_CHARACTER_CROUCHED_KICK ||
 			this->state == STATE_CHARACTER_CROUCHED_PUNCH || this->state == STATE_CHARACTER_LOW_HIT || this->state == STATE_CHARACTER_CROUCHED)
 			this->state = STATE_CHARACTER_LOW_HIT;
 		else
 			this->state = STATE_CHARACTER_HIT;
 		this->updateAnimationCharacter();
+		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+	}
+}
+
+void Character::updateKickPunch()
+{
+	// Update position kick
+	if (this->colliderKickPunch->getPosition() != NULL)
+	{
+		Character * enemy = GameManager::getInstance()->getCharacterManager()->getClosestCharacter(this->indexCharacter, this->colliderKickPunch->getPosition());
+		if (enemy != NULL && this->colliderKickPunch->AreColliding(enemy->getCollider()))
+		{
+			enemy->hitCharacter(this->damage);
+			this->colliderKickPunch->setPosition(NULL);
+			if (enemy->getHp() == 0)
+			{
+				this->state = CharacterState::STATE_CHARACTER_VICTORY;
+				this->updateAnimationCharacter();
+			}
+		}
+		else
+		{
+			double distance = this->colliderKickPunch->getColliderData()->getPosX() - this->collider->getColliderData()->getPosX();
+			double speed = this->animation->getAnimationData()->getFramerate() * this->animation->getAnimationData()->getSpriteNb();
+			if (this->toward == CharacterDirection::RIGHT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->colliderKickPunch->getColliderData()->getPosX())
+			{
+				this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() + distance / speed);
+			}
+			else if (this->toward == CharacterDirection::LEFT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() - this->colliderKickPunch->getColliderData()->getPosX())
+			{
+				this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() - distance / speed);
+			}
+		}
 	}
 }

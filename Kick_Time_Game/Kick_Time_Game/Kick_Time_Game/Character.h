@@ -25,8 +25,11 @@ enum CharacterState {
 	STATE_CHARACTER_STEADY_JUMP_UP,
 	STATE_CHARACTER_STEADY_JUMP_DOWN,
 	STATE_CHARACTER_FORWARD_JUMP,
+	STATE_CHARACTER_BACKWARD_JUMP,
 	STATE_CHARACTER_GUARD,
+	STATE_CHARACTER_GUARD_ON,
 	STATE_CHARACTER_LOW_GUARD,
+	STATE_CHARACTER_LOW_GUARD_ON,
 	STATE_CHARACTER_PUNCH,
 	STATE_CHARACTER_KICK,
 	STATE_CHARACTER_CROUCHED_KICK,
@@ -62,8 +65,11 @@ private:
 	void updateSteadyJumpUp();
 	void updateSteadyJumpDown();
 	void updateForwardJump();
+	void updateBackwardJump();
 	void updateGuard();
+	void updateGuardOn();
 	void updateLowGuard();
+	void updateLowGuardOn();
 	void updatePunch();
 	void updateKick();
 	void updateCrouchedKick();
@@ -75,6 +81,7 @@ private:
 	void updateVictory();
 	void updateCrouched();
 	void checkDirection();
+	void updateKickPunch();
 
 public:
 	Character(void);
@@ -91,10 +98,10 @@ public:
 	int getHp();
 	int getIndexCharacter();
 	Collider* getCollider();
-	void moveRight();
-	void moveLeft();
-	void moveUp();
-	void moveDown();
+	void moveRight(int speedCoef);
+	void moveLeft(int speedCoef);
+	void moveUp(int speedCoef);
+	void moveDown(int speedCoef);
 	void updateAnimationCharacter();
 	void hitCharacter(int damage);
 };
