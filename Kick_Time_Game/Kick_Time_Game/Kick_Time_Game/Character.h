@@ -93,10 +93,10 @@ public:
 	int getPosCharacterY();
 	int getTotalHp();
 	int getHp();
-	void moveRight(int speedCoef);
-	void moveLeft(int speedCoef);
-	void moveUp(int speedCoef);
-	void moveDown(int speedCoef);
+	void moveRight(double speedCoef);
+	void moveLeft(double speedCoef);
+	void moveUp(double speedCoef);
+	void moveDown(double speedCoef);
 	void updateAnimationCharacter();
 };
 

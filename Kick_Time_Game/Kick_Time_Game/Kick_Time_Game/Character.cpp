@@ -283,7 +283,7 @@ void Character::updateStandUp()
 
 void Character::updateSteadyJumpUp()
 {
-	this->checkDirection();
+	//this->checkDirection();
 
 	this->moveUp(2);
 //	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1))
@@ -303,9 +303,9 @@ void Character::updateSteadyJumpUp()
 
 void Character::updateSteadyJumpDown()
 {
-	this->checkDirection();
+	//this->checkDirection();
 
-	this->moveDown(1);
+	this->moveDown(2);
 
 	if (this->animation->getAnimationDoneState())
 	{
@@ -535,22 +535,22 @@ int Character::getHp()
 	return this->hp;
 }
 
-void Character::moveRight(int speedCoef)
+void Character::moveRight(double speedCoef)
 {
 	this->setPosCharacterX(this->getPosCharacterX() + speedCoef * MOVE_SPEED);
 }
 
-void Character::moveLeft(int speedCoef)
+void Character::moveLeft(double speedCoef)
 {
 	this->setPosCharacterX(this->getPosCharacterX() - speedCoef * MOVE_SPEED);
 }
 
-void Character::moveUp(int speedCoef)
+void Character::moveUp(double speedCoef)
 {
 	this->setPosCharacterY(this->getPosCharacterY() - speedCoef * MOVE_SPEED);
 }
 
-void Character::moveDown(int speedCoef)
+void Character::moveDown(double speedCoef)
 {
 	this->setPosCharacterY(this->getPosCharacterY() + speedCoef * MOVE_SPEED);
 }
