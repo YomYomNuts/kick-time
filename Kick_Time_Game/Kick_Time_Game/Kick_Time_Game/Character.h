@@ -3,6 +3,7 @@
 
 #include "Animation.h"
 #include "Collider.h"
+#include "Position.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -48,13 +49,14 @@ private:
 	sf::Sprite * spriteCharacter;
 	Animation * animation;
 	Collider * collider;
+	Position * positionCharacter;
 	CharacterDirection toward;
 	CharacterState state;
-	int posCharacterX;
-	int posCharacterY;
+	Collider * colliderKickPunch;
 	int indexCharacter;
 	int totalHp;
 	int hp;
+	int damage;
 	void updateStand();
 	void updateMoveRight();
 	void updateMoveLeft();
@@ -79,6 +81,7 @@ private:
 	void updateVictory();
 	void updateCrouched();
 	void checkDirection();
+	void updateKickPunch();
 
 public:
 	Character(void);
@@ -87,17 +90,20 @@ public:
 	Animation* getAnimation();
 	void updateCharacter();
 	void renderCharacter();
-	void setPosCharacterX(int posX);
-	void setPosCharacterY(int posY);
-	int getPosCharacterX();
-	int getPosCharacterY();
+	void setPosCharacterX(double posX);
+	void setPosCharacterY(double posY);
+	double getPosCharacterX();
+	double getPosCharacterY();
 	int getTotalHp();
 	int getHp();
-	void moveRight(double speedCoef);
-	void moveLeft(double speedCoef);
-	void moveUp(double speedCoef);
-	void moveDown(double speedCoef);
+	int getIndexCharacter();
+	Collider* getCollider();
+	void moveRight(int speedCoef);
+	void moveLeft(int speedCoef);
+	void moveUp(int speedCoef);
+	void moveDown(int speedCoef);
 	void updateAnimationCharacter();
+	void hitCharacter(int damage);
 };
 
 #endif
