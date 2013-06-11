@@ -25,12 +25,17 @@ void LevelManager::initializeLevelManager()
 
 void LevelManager::updateLevelManager()
 {
-	//if (this->activeLevel != NULL)
-		//this->activeLevel->updateLevel();
+	if (this->activeLevel != NULL)
+		this->activeLevel->updateLevel();
 }
 
 void LevelManager::renderLevelManager()
 {
 	if (this->activeLevel != NULL)
 		this->activeLevel->renderLevel();
+}
+
+Level* LevelManager::getActiveLevel()
+{
+	return this->activeLevel;
 }

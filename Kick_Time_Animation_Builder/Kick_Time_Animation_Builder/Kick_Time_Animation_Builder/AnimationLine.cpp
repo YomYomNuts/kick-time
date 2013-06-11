@@ -11,11 +11,12 @@ AnimationLine::AnimationLine()
 	this->framerate = 0;
 	this->spriteNb = 0;
 	this->animationLoop = false;
+	this->shiftPositionXCharacter = 0;
 	this->colliderName = "COLLIDER_NULL";
 	this->colliderKickPunchName = "COLLIDER_NULL";
 }
 
-AnimationLine::AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, string colliderName, string colliderKickPunchName)
+AnimationLine::AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int shiftPositionXCharacter, string colliderName, string colliderKickPunchName)
 {
 	this->fileName = fileName;
 	this->animationName = animationName;
@@ -26,6 +27,7 @@ AnimationLine::AnimationLine(string fileName, string animationName, int posX, in
 	this->framerate = framerate;
 	this->spriteNb = spriteNb;
 	this->animationLoop = animationLoop;
+	this->shiftPositionXCharacter = shiftPositionXCharacter;
 	this->colliderName = colliderName;
 	this->colliderKickPunchName = colliderKickPunchName;
 }
@@ -77,6 +79,11 @@ int AnimationLine::getSpriteNb()
 bool AnimationLine::getAnimationLoop()
 {
 	return this->animationLoop;
+}
+
+int AnimationLine::getShiftPositionXCharacter()
+{
+	return this->shiftPositionXCharacter;
 }
 
 string AnimationLine::getColliderName()

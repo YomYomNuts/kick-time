@@ -3,7 +3,6 @@
 
 #include "TextureManager.h"
 #include "ModeManager.h"
-#include "MatchManager.h"
 #include "SaveManager.h"
 #include "InputManager.h"
 #include "SoundManager.h"
@@ -20,7 +19,6 @@ class GameManager
 private:
 	TextureManager * textureManager;
 	ModeManager * modeManager;
-	MatchManager * matchManager;
 	SaveManager * saveManager;
 	InputManager * inputManager;
 	SoundManager * soundManager;
@@ -39,7 +37,6 @@ public:
 	void initializeGameManager();
 	void updateGameManager();
 	ModeManager* getModeManager();
-	MatchManager* getMatchManager();
 	SaveManager* getSaveManager();
 	InputManager* getInputManager();
 	SoundManager* getSoundManager();

@@ -58,9 +58,10 @@ void HudManager::renderLifeBar()
 
 void HudManager::renderTime()
 {
-	if (GameManager::getInstance()->getMatchManager()->getActiveMatch() != NULL)
+	Level * level = GameManager::getInstance()->getLevelManager()->getActiveLevel();
+	if (level != NULL)
 	{
-		int timer = GameManager::getInstance()->getMatchManager()->getActiveMatch()->getTime();
+		int timer = level->getTime();
 		int shiftX;
 		// First Number
 		shiftX = ((int)(timer / 10) * TIME_WIDTH);

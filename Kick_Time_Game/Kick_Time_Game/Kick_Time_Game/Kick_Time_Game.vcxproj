@@ -26,8 +26,6 @@
     <ClCompile Include="LevelData.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Match.cpp" />
-    <ClCompile Include="MatchManager.cpp" />
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Mode.cpp" />
     <ClCompile Include="ModeManager.cpp" />
@@ -60,8 +58,6 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
-    <ClInclude Include="Match.h" />
-    <ClInclude Include="MatchManager.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />
