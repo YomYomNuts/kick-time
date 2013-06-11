@@ -19,6 +19,7 @@ public:
 	void initializeLevelManager();
 	void updateLevelManager();
 	void renderLevelManager();
+	Level* getActiveLevel();
 };
 
 #endif

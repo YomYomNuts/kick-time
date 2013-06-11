@@ -40,6 +40,7 @@ int main(int argc,const char * argv[])
 	int framerate;
 	int spriteNb;
 	bool animationLoop;
+	int shiftPositionXCharacter;
 	string colliderName;
 	string colliderKickPunchName;
 	// Header file
@@ -154,7 +155,7 @@ int main(int argc,const char * argv[])
 					/* Get the different values */
 					/****************************/
 					tempInformations = split(currentLine, delimiter);
-					if (tempInformations.size() >= 9)
+					if (tempInformations.size() >= 10)
 					{
 						fileName = tempInformations[0];
 						animationName = tempInformations[1];
@@ -234,16 +235,26 @@ int main(int argc,const char * argv[])
 							else
 								animationLoop = false;
 						}
+						// Get shiftPositionXCharacter
+						shiftPositionXCharacter = 0;
+						if (isNumeric(tempInformations[9].c_str(), 10))
+							shiftPositionXCharacter = strtol(tempInformations[9].c_str(), NULL, 10);
+						else
+						{
+							cout << "ERROR GD007 - A problem occured while getting the shift X of character in this line:\n	" << currentLine << endl;
+							system("Pause");
+							return 1;
+						}
 						// Get colliderName
 						colliderName = "COLLIDER_NULL";
-						if (tempInformations.size() > 9)
-							colliderName = tempInformations[9];
+						if (tempInformations.size() > 10)
+							colliderName = tempInformations[10];
 						// Get colliderName
 						colliderKickPunchName = "COLLIDER_NULL";
-						if (tempInformations.size() > 10)
-							colliderKickPunchName = tempInformations[10];
+						if (tempInformations.size() > 11)
+							colliderKickPunchName = tempInformations[11];
 
-						animArray.push_back(*new AnimationLine(fileName, animationName, posX, posY, spriteWidth, spriteHeight, framerate, spriteNb, animationLoop, colliderName, colliderKickPunchName));
+						animArray.push_back(*new AnimationLine(fileName, animationName, posX, posY, spriteWidth, spriteHeight, framerate, spriteNb, animationLoop, shiftPositionXCharacter, colliderName, colliderKickPunchName));
 					}
 					else
 					{
@@ -297,12 +308,13 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "\tint framerate;\n";
 		headerContent = headerContent + "\tint spriteNb;\n";
 		headerContent = headerContent + "\tbool animationLoop;\n";
+		headerContent = headerContent + "\tint shiftPositionXCharacter;\n";
 		headerContent = headerContent + "\tint colliderID;\n";
 		headerContent = headerContent + "\tint colliderKickPunchID;\n";
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "\tAnimationData();\n";
-		headerContent = headerContent + "\tAnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID, int colliderKickPunchID);\n";
+		headerContent = headerContent + "\tAnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int shiftPositionXCharacter, int colliderID, int colliderKickPunchID);\n";
 		headerContent = headerContent + "\t~AnimationData(void);\n";
 		headerContent = headerContent + "\tstring getFileName() const;\n";
 		headerContent = headerContent + "\tint getAnimationName() const;\n";
@@ -313,6 +325,7 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "\tint getFramerate() const;\n";
 		headerContent = headerContent + "\tint getSpriteNb() const;\n";
 		headerContent = headerContent + "\tbool getAnimationLoop() const;\n";
+		headerContent = headerContent + "\tint getShiftPositionXCharacter() const;\n";
 		headerContent = headerContent + "\tint getColliderID() const;\n";
 		headerContent = headerContent + "\tint getColliderKickPunchID() const;\n";
 		headerContent = headerContent + "};\n";
@@ -403,6 +416,10 @@ int main(int argc,const char * argv[])
 			else
 				cppContent = cppContent + "false, ";
 
+			// Put : shiftPositionXCharacter
+			sprintf_s(buffer, "%d", it->getShiftPositionXCharacter());
+			cppContent = cppContent + buffer + ", ";
+
 			// Put : colliderName
 			cppContent = cppContent + it->getColliderName() + ", ";
 
@@ -425,11 +442,12 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->framerate = 0;\n";
 		cppContent = cppContent + "\tthis->spriteNb = 0;\n";
 		cppContent = cppContent + "\tthis->animationLoop = false;\n";
+		cppContent = cppContent + "\tthis->shiftPositionXCharacter = 0;\n";
 		cppContent = cppContent + "\tthis->colliderID = COLLIDER_NULL;\n";
 		cppContent = cppContent + "\tthis->colliderKickPunchID = COLLIDER_NULL;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "AnimationData::AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int colliderID, int colliderKickPunchID)\n";
+		cppContent = cppContent + "AnimationData::AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int shiftPositionXCharacter, int colliderID, int colliderKickPunchID)\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\tthis->fileName = fileName;\n";
 		cppContent = cppContent + "\tthis->animationName = animationName;\n";
@@ -440,6 +458,7 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->framerate = framerate;\n";
 		cppContent = cppContent + "\tthis->spriteNb = spriteNb;\n";
 		cppContent = cppContent + "\tthis->animationLoop = animationLoop;\n";
+		cppContent = cppContent + "\tthis->shiftPositionXCharacter = shiftPositionXCharacter;\n";
 		cppContent = cppContent + "\tthis->colliderID = colliderID;\n";
 		cppContent = cppContent + "\tthis->colliderKickPunchID = colliderKickPunchID;\n";
 		cppContent = cppContent + "}\n";
@@ -491,6 +510,11 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "bool AnimationData::getAnimationLoop() const\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->animationLoop;\n";
+		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "\n";
+		cppContent = cppContent + "int AnimationData::getShiftPositionXCharacter() const\n";
+		cppContent = cppContent + "{\n";
+		cppContent = cppContent + "\treturn this->shiftPositionXCharacter;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "int AnimationData::getColliderID() const\n";

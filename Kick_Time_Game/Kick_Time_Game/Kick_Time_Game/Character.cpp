@@ -19,7 +19,7 @@ Character::Character(void)
 	this->state = CharacterState::STATE_CHARACTER_STAND;
 	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2, SCREEN_SIZE_HEIGHT);
+	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), SCREEN_SIZE_HEIGHT);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
 	this->colliderKickPunch = new Collider();
 	this->totalHp = 100;
@@ -39,7 +39,7 @@ Character::Character(int indexCharacter)
 	this->state = CharacterState::STATE_CHARACTER_STAND;
 	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2, SCREEN_SIZE_HEIGHT);
+	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), SCREEN_SIZE_HEIGHT);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
 	this->colliderKickPunch = new Collider();
 	this->totalHp = 100;
@@ -793,7 +793,9 @@ void Character::moveDown(int speedCoef)
 
 void Character::updateAnimationCharacter()
 {
-	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);;
+	this->positionCharacter->setX(this->positionCharacter->getX() + this->animation->getAnimationData()->getShiftPositionXCharacter());
+	this->animation->changeAnimation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
+	this->positionCharacter->setX(this->positionCharacter->getX() - this->animation->getAnimationData()->getShiftPositionXCharacter());
 	this->collider->changeColliderData(this->animation->getAnimationData()->getColliderID());
 	this->colliderKickPunch->changeColliderData(this->animation->getAnimationData()->getColliderKickPunchID());
 }

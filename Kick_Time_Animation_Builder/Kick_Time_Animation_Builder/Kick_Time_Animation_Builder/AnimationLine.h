@@ -17,11 +17,12 @@ private:
 	int framerate;
 	int spriteNb;
 	bool animationLoop;
+	int shiftPositionXCharacter;
 	string colliderName;
 	string colliderKickPunchName;
 public:
 	AnimationLine();
-	AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, string colliderName, string colliderKickPunchName);
+	AnimationLine(string fileName, string animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int shiftPositionXCharacter, string colliderName, string colliderKickPunchName);
 	~AnimationLine(void);
 	string getFileName();
 	string getAnimationName();
@@ -32,6 +33,7 @@ public:
 	int getFramerate();
 	int getSpriteNb();
 	bool getAnimationLoop();
+	int getShiftPositionXCharacter();
 	string getColliderName();
 	string getColliderKickPunchName();
 };

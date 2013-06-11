@@ -3,6 +3,7 @@
 
 #include "Position.h"
 #include "LevelData.h"
+#include "Timer.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -12,12 +13,15 @@ private:
 	Position * positionDisplay;
 	const LevelData * levelData;
 	sf::Sprite * spriteLevel;
+	Timer * time;
 
 public:
 	Level(void);
 	Level(const LevelData * levelData);
 	~Level(void);
+	void updateLevel();
 	void renderLevel();
+	int getTime();
 };
 
 #endif

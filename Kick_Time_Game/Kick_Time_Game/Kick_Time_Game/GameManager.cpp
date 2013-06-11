@@ -4,7 +4,6 @@
 GameManager::GameManager(void)
 {
 	this->modeManager = new ModeManager();
-	this->matchManager = new MatchManager();
 	this->saveManager = new SaveManager();
 	this->inputManager = new InputManager();
 	this->soundManager = new SoundManager();
@@ -20,7 +19,6 @@ GameManager::GameManager(void)
 GameManager::~GameManager(void)
 {
 	delete this->modeManager;
-	delete this->matchManager;
 	delete this->saveManager;
 	delete this->inputManager;
 	delete this->soundManager;
@@ -45,21 +43,19 @@ void GameManager::initializeGameManager()
 {
 	this->textureManager->initializeTextureManager();
 	this->modeManager->initializeModeManager();
-	this->matchManager->initializeMatchManager();
 	this->inputManager->initializeInputManager();
 	this->menuManager->initializeMenuManager();
 	this->soundManager->initializeSoundManager();
 	this->saveManager->initializeSaveManager();
+	this->levelManager->initializeLevelManager();
 	this->hudManager->initializeHudManager();
 	this->renderManager->initializeRenderManager();
-	this->levelManager->initializeLevelManager();
 	this->characterManager->initializeCharacterManager();
 	this->animationManager->initializeAnimationManager();
 
 	// Initialise test
 	this->characterManager->addCharacter();
 	this->characterManager->addCharacter();
-	this->matchManager->setMatch(new Match());
 }
 
 void GameManager::updateGameManager()
@@ -70,7 +66,6 @@ void GameManager::updateGameManager()
 		this->inputManager->updateInputManager();
 		this->menuManager->updateMenuManager();
 		this->modeManager->updateModeManager();
-		this->matchManager->updateMatchManager();
 		this->levelManager->updateLevelManager();
 		this->characterManager->updateCharacterManager();
 		this->soundManager->updateSoundManager();
@@ -84,11 +79,6 @@ void GameManager::updateGameManager()
 ModeManager* GameManager::getModeManager()
 {
 	return this->modeManager;
-}
-
-MatchManager* GameManager::getMatchManager()
-{
-	return this->matchManager;
 }
 
 SaveManager* GameManager::getSaveManager()
