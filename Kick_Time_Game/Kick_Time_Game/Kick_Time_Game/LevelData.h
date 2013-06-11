@@ -13,6 +13,7 @@ private:
 	int levelID;
 	int posYCharacter;
 
+
 public:
 	LevelData();
 	LevelData(string fileName, string levelName, int levelID, int posYCharacter);
@@ -23,10 +24,11 @@ public:
 	int getPosYCharacter() const;
 };
 
-#define NUMBER_LEVELDATA 1
+#define NUMBER_LEVELDATA 2
 
 extern const LevelData levelDataArray[NUMBER_LEVELDATA];
 
 #define LEVEL_0 0
+#define LEVEL_1 1
 
 #endif _LEVELDATA_H

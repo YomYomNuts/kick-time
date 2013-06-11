@@ -15,12 +15,15 @@ LevelManager::~LevelManager(void)
 
 void LevelManager::initializeLevelManager()
 {
+	/*
 	for(int i = 0; i < NUMBER_LEVELDATA; ++i)
 	{
 		this->listLevels->push_back(*new Level(&levelDataArray[i]));
 	}
 	if (!this->listLevels->empty())
 		this->activeLevel = &this->listLevels->front();
+		*/
+	this->activeLevel = new Level(&levelDataArray[1]);
 }
 
 void LevelManager::updateLevelManager()

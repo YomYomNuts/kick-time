@@ -2,16 +2,16 @@
 #define _HUDMANAGER_DEFINES_H
 
 // Position Life bar
-#define LIFE_BAR_POSITION_P1_X	10
+#define LIFE_BAR_POSITION_P1_X	60
 #define LIFE_BAR_POSITION_P1_Y	20
-#define LIFE_BAR_POSITION_P2_X	221
+#define LIFE_BAR_POSITION_P2_X	276
 #define LIFE_BAR_POSITION_P2_Y	20
 
 // Position Time
-#define TIME_POSITION_1_X		188
-#define TIME_POSITION_1_Y		12
-#define TIME_POSITION_2_X		201
-#define TIME_POSITION_2_Y		12
+#define TIME_POSITION_1_X		240
+#define TIME_POSITION_1_Y		15
+#define TIME_POSITION_2_X		253
+#define TIME_POSITION_2_Y		15
 
 
 // File contains HUD

@@ -21,6 +21,7 @@ public:
 	~Level(void);
 	void updateLevel();
 	void renderLevel();
+	const LevelData* getLevelData();
 	int getTime();
 };
 

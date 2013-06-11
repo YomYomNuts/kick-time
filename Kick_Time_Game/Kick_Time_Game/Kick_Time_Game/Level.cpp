@@ -16,7 +16,7 @@ Level::Level(const LevelData * levelData)
 	this->levelData = levelData;
 	this->spriteLevel = new sf::Sprite();
 	this->spriteLevel->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->levelData->getFileName()));
-	this->positionDisplay = new Position((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2, 0);
+	this->positionDisplay = new Position((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2, (double)SCREEN_SIZE_HEIGHT - this->spriteLevel->getTexture()->getSize().y);
 	this->time = new Timer(true, 99);
 }
 
@@ -45,4 +45,9 @@ int Level::getTime()
 	if (this->time != NULL)
 		return this->time->getTime();
 	return 0;
+}
+
+const LevelData * Level::getLevelData()
+{
+	return this->levelData;
 }
