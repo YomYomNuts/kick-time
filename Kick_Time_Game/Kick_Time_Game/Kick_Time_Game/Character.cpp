@@ -9,6 +9,7 @@
 
 Character::Character(void)
 {
+	double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
 	this->indexCharacter = 0;
 	if(this->indexCharacter % 2 == 0)
 		this->toward = CharacterDirection::RIGHT;
@@ -19,7 +20,7 @@ Character::Character(void)
 	this->state = CharacterState::STATE_CHARACTER_STAND;
 	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
-	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), SCREEN_SIZE_HEIGHT);
+	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), posYFromLevel);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
 	this->colliderKickPunch = new Collider();
 	this->totalHp = 100;
@@ -30,19 +31,19 @@ Character::Character(void)
 
 Character::Character(int indexCharacter)
 {
-	double posYFromLevel = SCREEN_SIZE_HEIGHT - GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+	double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
 	double posX = SCREEN_SIZE_WIDTH / 2;
 
 	this->indexCharacter = indexCharacter;
 	if(this->indexCharacter % 2 == 0)
 	{
 		this->toward = CharacterDirection::RIGHT;
-		posX -= 70 ;//-  this->animation->getAnimationData()->getShiftPositionXCharacter();
+		posX -= SHIFT_BETWEEN_CHARACTERS;
 	}
 	else
 	{
 		this->toward = CharacterDirection::LEFT;
-		posX += 70 ;//+  this->animation->getAnimationData()->getShiftPositionXCharacter();
+		posX += SHIFT_BETWEEN_CHARACTERS;
 	}
 	
 	this->spriteCharacter = new sf::Sprite();
@@ -429,7 +430,7 @@ void Character::updateForwardJump()
 
 	if (this->animation->getAnimationDoneState())
 	{
-		double posYFromLevel =  SCREEN_SIZE_HEIGHT - GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+		double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
 		this->setPosCharacterY(posYFromLevel);
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
@@ -485,7 +486,7 @@ void Character::updateBackwardJump()
 
 	if (this->animation->getAnimationDoneState())
 	{
-		double posYFromLevel =  SCREEN_SIZE_HEIGHT - GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+		double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
 		this->setPosCharacterY(posYFromLevel);
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
@@ -717,7 +718,7 @@ void Character::updateJumpedPunch()
 			this->state = CharacterState::STATE_CHARACTER_STAND;
 		}
 
-		double posYFromLevel =  SCREEN_SIZE_HEIGHT - GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+		double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
 
 		this->updateAnimationCharacter();
 		this->setPosCharacterY(posYFromLevel);
@@ -748,8 +749,11 @@ void Character::updateJumpedKick()
 		{
 			this->state = CharacterState::STATE_CHARACTER_STAND;
 		}
+
+		double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+
 		this->updateAnimationCharacter();
-		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->setPosCharacterY(posYFromLevel);
 		this->colliderKickPunch->setPosition(NULL);
 	}
 	this->updateKickPunch();
@@ -949,8 +953,11 @@ void Character::hitCharacter(int damage)
 			this->state = STATE_CHARACTER_LOW_HIT;
 		else
 			this->state = STATE_CHARACTER_HIT;
+
+		double posYFromLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getLevelData()->getPosYCharacter();
+
 		this->updateAnimationCharacter();
-		this->setPosCharacterY(SCREEN_SIZE_HEIGHT);
+		this->setPosCharacterY(posYFromLevel);
 	}
 }
 
@@ -972,13 +979,13 @@ void Character::updateKickPunch()
 		}
 		else
 		{
-			double distance = this->colliderKickPunch->getColliderData()->getPosX() - this->collider->getColliderData()->getPosX();
+			double distance = this->colliderKickPunch->getColliderData()->getPosX();
 			double speed = this->animation->getAnimationData()->getFramerate() * this->animation->getAnimationData()->getSpriteNb();
-			if (this->toward == CharacterDirection::RIGHT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->colliderKickPunch->getColliderData()->getPosX())
+			if (this->toward == CharacterDirection::RIGHT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->collider->getShiftX() + this->colliderKickPunch->getColliderData()->getPosX())
 			{
 				this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() + distance / speed);
 			}
-			else if (this->toward == CharacterDirection::LEFT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() - this->colliderKickPunch->getColliderData()->getPosX())
+			else if (this->toward == CharacterDirection::LEFT && this->colliderKickPunch->getPosition()->getX() != this->positionCharacter->getX() + this->collider->getShiftX() - this->colliderKickPunch->getColliderData()->getPosX())
 			{
 				this->colliderKickPunch->getPosition()->setX(this->colliderKickPunch->getPosition()->getX() - distance / speed);
 			}

@@ -10,5 +10,7 @@
 
 #define NUMBER_INPUTS				8
 
+#define SHIFT_BETWEEN_CHARACTERS	70
+
 
 #endif

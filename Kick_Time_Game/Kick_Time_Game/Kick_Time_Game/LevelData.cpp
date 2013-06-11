@@ -2,8 +2,8 @@
 
 const LevelData levelDataArray[NUMBER_LEVELDATA] =
 {
-	LevelData("../Ressources/Levels/MK/TheTower.png", "THE_TOWER", LEVEL_0, 10),
-	LevelData("../Ressources/Levels/MK/The_Armory.png", "THE_ARMORY", LEVEL_1, 10),
+	LevelData("../Ressources/Levels/MK/TheTower.png", "THE_TOWER", LEVEL_0, 290),
+	LevelData("../Ressources/Levels/MK/The_Armory.png", "THE_ARMORY", LEVEL_1, 290),
 };
 
 LevelData::LevelData()

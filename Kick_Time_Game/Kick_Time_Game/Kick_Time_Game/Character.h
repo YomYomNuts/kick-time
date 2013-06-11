@@ -57,6 +57,7 @@ private:
 	int totalHp;
 	int hp;
 	int damage;
+	bool endOfTheScreenReached;
 	void updateStand();
 	void updateMoveRight();
 	void updateMoveLeft();
@@ -82,7 +83,6 @@ private:
 	void updateCrouched();
 	void checkDirection();
 	void updateKickPunch();
-	bool endOfTheScreenReached;
 
 public:
 	Character(void);
