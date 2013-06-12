@@ -60,3 +60,19 @@ Character* CharacterManager::getClosestCharacter(int withoutThisIndex, Position 
 	}
 	return closest;
 }
+
+Character* CharacterManager::getFarestCharacter(int withoutThisIndex, Position * position)
+{
+	double distance = (double)INT_MIN, tempDistance = 0;
+	Character * farest = NULL;
+	for(unsigned int i = 0; i < this->characterList->size(); ++i)
+	{
+		tempDistance = abs(position->getX() - this->characterList->at(i)->getPosCharacterX());
+		if (this->characterList->at(i)->getIndexCharacter() != withoutThisIndex && tempDistance > distance)
+		{
+			distance = tempDistance;
+			farest = this->characterList->at(i);
+		}
+	}
+	return farest;
+}

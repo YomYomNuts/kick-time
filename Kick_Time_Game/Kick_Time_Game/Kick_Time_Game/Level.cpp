@@ -9,6 +9,7 @@ Level::Level(void)
 	this->levelData = new LevelData();
 	this->spriteLevel = new sf::Sprite();
 	this->time = new Timer(true, 99);
+	this->endOfLevelReached = false;
 }
 
 Level::Level(const LevelData * levelData)
@@ -18,6 +19,7 @@ Level::Level(const LevelData * levelData)
 	this->spriteLevel->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->levelData->getFileName()));
 	this->positionDisplay = new Position((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2, (double)SCREEN_SIZE_HEIGHT - this->spriteLevel->getTexture()->getSize().y);
 	this->time = new Timer(true, 99);
+	this->endOfLevelReached = false;
 }
 
 Level::~Level(void)
@@ -50,4 +52,45 @@ int Level::getTime()
 const LevelData * Level::getLevelData()
 {
 	return this->levelData;
+}
+
+Position * Level::getPosition()
+{
+	return positionDisplay;
+}
+
+void Level::setEndOfLevelReachedState(bool endOfScreen)
+{
+	this->endOfLevelReached = endOfScreen;
+}
+
+bool Level::getEndOfLevelReachedState()
+{
+	return this->endOfLevelReached;
+}
+
+sf::Sprite * Level::getSpriteLevel()
+{
+	return spriteLevel;
+}
+
+void Level::setPosX(double posX)
+{
+	double levelWidth = this->spriteLevel->getTexture()->getSize().x;
+	double posXlevel = this->positionDisplay->getX();
+
+	this->positionDisplay->setX(posX);
+
+	if(posX >= 0)
+	{
+		this->positionDisplay->setX(0);
+		this->endOfLevelReached = true;
+	}
+	else if(posX + levelWidth <= SCREEN_SIZE_WIDTH)
+	{
+		this->positionDisplay->setX(SCREEN_SIZE_WIDTH- levelWidth);
+		this->endOfLevelReached = true;
+	}
+	else
+		this->endOfLevelReached = false;
 }

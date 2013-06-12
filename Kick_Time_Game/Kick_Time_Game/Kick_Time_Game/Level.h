@@ -14,6 +14,7 @@ private:
 	const LevelData * levelData;
 	sf::Sprite * spriteLevel;
 	Timer * time;
+	bool endOfLevelReached;
 
 public:
 	Level(void);
@@ -23,6 +24,12 @@ public:
 	void renderLevel();
 	const LevelData* getLevelData();
 	int getTime();
+	Position * getPosition();
+	void setEndOfLevelReachedState(bool endOfScreen);
+	bool getEndOfLevelReachedState();
+	sf::Sprite * getSpriteLevel();
+	void setPosX(double posX);
+	double getPosX();
 };
 
 #endif

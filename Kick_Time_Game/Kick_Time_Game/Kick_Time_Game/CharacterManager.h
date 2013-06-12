@@ -22,6 +22,7 @@ public:
 	vector<Character*>* getCharacters();
 	void renderCharacterManager();
 	Character* getClosestCharacter(int withoutThisIndex, Position * position);
+	Character* getFarestCharacter(int withoutThisIndex, Position * position);
 };
 
 #endif

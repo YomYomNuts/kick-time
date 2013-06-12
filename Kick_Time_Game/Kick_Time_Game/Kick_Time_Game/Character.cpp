@@ -26,7 +26,7 @@ Character::Character(void)
 	this->totalHp = 100;
 	this->hp = 50;
 	this->damage = 2;
-	this->endOfTheScreenReached = false;
+	this->endOfScreenReached = false;
 }
 
 Character::Character(int indexCharacter)
@@ -57,7 +57,7 @@ Character::Character(int indexCharacter)
 	this->totalHp = 100;
 	this->hp = 50;
 	this->damage = 2;
-	this->endOfTheScreenReached = false;
+	this->endOfScreenReached = false;
 }
 
 Character::~Character(void)
@@ -153,6 +153,7 @@ void Character::updateCharacter()
 void Character::updateStand()
 {
 	this->checkDirection();
+	this->endOfScreenReached = false;
 
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
@@ -224,24 +225,75 @@ void Character::updateMoveRight()
 
 		int spriteWidth = abs(this->getAnimation()->getAnimationData()->getSpriteWidth());
 		
+		this->moveRight(1.5);
+		
 		if(this->getPosCharacterX() + spriteWidth >= SCREEN_SIZE_WIDTH)
 		{
-			this->state = CharacterState::STATE_CHARACTER_GUARD;
-			this->setPosCharacterX(SCREEN_SIZE_WIDTH - spriteWidth);
-			this->endOfTheScreenReached = true;
-			this->updateAnimationCharacter();
+			double levelWidth = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getSpriteLevel()->getTexture()->getSize().x;
+			double posXlevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+			
+			this->endOfScreenReached = true;
+
+			// if the right corner of the level is higher than the screen size
+			if(posXlevel + levelWidth > SCREEN_SIZE_WIDTH)
+			{
+				// Move the farest character
+				Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+
+					// IF the enemy is on th edge of the screen
+					if(farest->getPosCharacterX() <= 0)
+					{
+						farest->setPosCharacterX(0);
+						this->state = CharacterState::STATE_CHARACTER_GUARD;
+						this->updateAnimationCharacter();
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveLeft(1.5);
+						}
+						else
+						{
+							farest->moveLeft(0.75);
+						}
+
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->setPosX(posXLevel - 1.5);
+						}
+					}
+				}
+				
+			}
+			else
+			{
+				GameManager::getInstance()->getLevelManager()->getActiveLevel()->setEndOfLevelReachedState(false);
+				this->state = CharacterState::STATE_CHARACTER_GUARD;
+				this->updateAnimationCharacter();
+			}
 		}
 		else
 		{
-			this->endOfTheScreenReached = false;
-			this->moveRight(1.5);
+			this->endOfScreenReached = false;
 		}
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
+		this->moveLeft(1.5);
+		
 		this->state = CharacterState::STATE_CHARACTER_MOVE_LEFT;
 		this->updateAnimationCharacter();
-		this->moveLeft(1);
+		
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
 	{
@@ -261,9 +313,11 @@ void Character::updateMoveLeft()
 
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1))
 	{
+		this->moveRight(1.5);
+
 		this->state = CharacterState::STATE_CHARACTER_MOVE_RIGHT;
 		this->updateAnimationCharacter();
-		this->moveRight(1);
+
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1))
 	{
@@ -285,19 +339,67 @@ void Character::updateMoveLeft()
 			this->updateAnimationCharacter();
 		}
 
+		//Get the farest character
+		Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
 		int spriteWidth = abs(this->getAnimation()->getAnimationData()->getSpriteWidth());
 		
+		this->moveLeft(1.5);
+		
+		// The character has reached the edge of the screen
 		if(this->getPosCharacterX() <= 0)
 		{
-			this->state = CharacterState::STATE_CHARACTER_GUARD;
-			this->setPosCharacterX(0);
-			this->endOfTheScreenReached = true;
-			this->updateAnimationCharacter();
+			this->endOfScreenReached = true;
+
+			// if the left corner of the level is under 0
+			if(GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX() < 0)
+			{
+				// Move the farest character
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+					
+					// IF the enemy is on th edge of the screen
+					if(farest->getPosCharacterX() + enemySpriteWidth >= SCREEN_SIZE_WIDTH)
+					{
+						this->state = CharacterState::STATE_CHARACTER_GUARD;
+						this->setPosCharacterX(0);
+						this->updateAnimationCharacter();
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveRight(1.5);
+						}
+						else
+						{
+							farest->moveRight(0.75);
+						}
+
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->setPosX(posXLevel + 1.5);
+						}
+					}
+				}
+				
+			}
+			else
+			{
+				GameManager::getInstance()->getLevelManager()->getActiveLevel()->setEndOfLevelReachedState(false);
+				this->state = CharacterState::STATE_CHARACTER_GUARD;
+				this->updateAnimationCharacter();
+			}
 		}
 		else
 		{
-			this->endOfTheScreenReached = false;
-			this->moveLeft(1.5);
+			this->endOfScreenReached = false;
 		}
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_DOWN, -1))
@@ -406,21 +508,107 @@ void Character::updateForwardJump()
 	if(this->toward == RIGHT)
 	{
 		this->moveRight(2);
-		this->endOfTheScreenReached = false;
+
+		this->endOfScreenReached = false;
+
 		if(this->getPosCharacterX() + spriteWidth >= SCREEN_SIZE_WIDTH)
 		{
-			this->setPosCharacterX(SCREEN_SIZE_WIDTH - spriteWidth);
-			this->endOfTheScreenReached = true;
+			double levelWidth = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getSpriteLevel()->getTexture()->getSize().x;
+			double posXlevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+
+			this->endOfScreenReached = true;
+
+			// if the right corner of the level is higher than the screen size
+			if(posXlevel + levelWidth >= SCREEN_SIZE_WIDTH)
+			{
+				// Move the farest character
+				Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+					
+					// IF the enemy is on the edge of the screen
+					if(farest->getPosCharacterX() <= 0)
+					{
+						farest->setPosCharacterX(0);
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveLeft(2);
+						}
+						else
+						{
+							farest->moveLeft(1);
+						}
+						
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->setX(posXLevel - 1.5);
+						}
+					}
+				}
+
+				
+				
+			}
 		}
 	}
 	else
 	{
 		this->moveLeft(2);
-		this->endOfTheScreenReached = false;
+		this->endOfScreenReached = false;
+
 		if(this->getPosCharacterX() <= 0)
 		{
-			this->setPosCharacterX(0);
-			this->endOfTheScreenReached = true;
+			this->endOfScreenReached = true;
+
+			// if the left corner of the level is under 0
+			if(GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX() < 0)
+			{
+				// Move the farest character
+				Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+					
+					// IF the enemy is on th edge of the screen
+					if(farest->getPosCharacterX() + enemySpriteWidth >= SCREEN_SIZE_WIDTH)
+					{
+						this->setPosCharacterX(0);
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveRight(2);
+						}
+						else
+						{
+							farest->moveRight(1);
+						}
+
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->setPosX(posXLevel + 1.5);
+						}
+					}
+				}
+		
+			}
 		}
 	}
 	if(currentFrame < maxFrame/2)
@@ -434,6 +622,7 @@ void Character::updateForwardJump()
 		this->setPosCharacterY(posYFromLevel);
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
+		this->endOfScreenReached = false;
 	}
 
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
@@ -461,21 +650,106 @@ void Character::updateBackwardJump()
 	if(this->toward == RIGHT)
 	{
 		this->moveLeft(2);
-		this->endOfTheScreenReached = false;
+		this->endOfScreenReached = false;
+
 		if(this->getPosCharacterX() <= 0)
 		{
-			this->setPosCharacterX(0);
-			this->endOfTheScreenReached = true;
+			this->endOfScreenReached = true;
+
+			// if the left corner of the level is under 0
+			if(GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX() < 0)
+			{
+				// Move the farest character
+				Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+					
+					// IF the enemy is on th edge of the screen
+					if(farest->getPosCharacterX() + enemySpriteWidth >= SCREEN_SIZE_WIDTH)
+					{
+						this->setPosCharacterX(0);
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveRight(2);
+						}
+						else
+						{
+							farest->moveRight(1);
+						}
+
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->setPosX(posXLevel + 1.5);
+						}
+					}
+				}
+		
+			}
 		}
 	}
 	else
 	{
 		this->moveRight(2);
-		this->endOfTheScreenReached = false;
+		this->endOfScreenReached = false;
+
 		if(this->getPosCharacterX() + spriteWidth >= SCREEN_SIZE_WIDTH)
 		{
-			this->setPosCharacterX(SCREEN_SIZE_WIDTH - spriteWidth);
-			this->endOfTheScreenReached = true;
+			double levelWidth = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getSpriteLevel()->getTexture()->getSize().x;
+			double posXlevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+
+			this->endOfScreenReached = true;
+
+			// if the right corner of the level is higher than the screen size
+			if(posXlevel + levelWidth >= SCREEN_SIZE_WIDTH)
+			{
+				// Move the farest character
+				Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
+				
+				if(farest != NULL)
+				{
+					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
+					
+					// IF the enemy is on the edge of the screen
+					if(farest->getPosCharacterX() <= 0)
+					{
+						farest->setPosCharacterX(0);
+					}
+					else
+					{
+						if(farest->getCharacterState() == STATE_CHARACTER_FORWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_BACKWARD_JUMP ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_RIGHT ||
+							farest->getCharacterState() == STATE_CHARACTER_MOVE_LEFT)
+						{
+							farest->moveLeft(2);
+						}
+						else
+						{
+							farest->moveLeft(1);
+						}
+						
+						if(!GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfLevelReachedState())
+						{
+							// Move the level
+							double posXLevel = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->getX();
+							GameManager::getInstance()->getLevelManager()->getActiveLevel()->getPosition()->setX(posXLevel - 1.5);
+						}
+					}
+				}
+
+				
+				
+			}
 		}
 	}
 
@@ -490,6 +764,7 @@ void Character::updateBackwardJump()
 		this->setPosCharacterY(posYFromLevel);
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
+		this->endOfScreenReached = false;
 	}
 
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
@@ -511,6 +786,8 @@ void Character::updateBackwardJump()
 void Character::updateGuard()
 {
 	this->checkDirection();
+	//bool endOfScreenState = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfScreenReachedState();
+	bool endOfScreenState = this->endOfScreenReached;
 
 	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
 	{
@@ -520,7 +797,7 @@ void Character::updateGuard()
 			this->updateAnimationCharacter();
 		}
 	}
-	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1) && this->endOfTheScreenReached)
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1) && endOfScreenState)
 	{
 		if (this->animation->getAnimationDoneState())
 		{
@@ -528,7 +805,7 @@ void Character::updateGuard()
 			this->updateAnimationCharacter();
 		}
 	}
-	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1) && this->endOfTheScreenReached)
+	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1) && endOfScreenState)
 	{
 		if (this->animation->getAnimationDoneState())
 		{
@@ -545,18 +822,20 @@ void Character::updateGuard()
 
 void Character::updateGuardOn()
 {
+	//bool endOfScreenState = GameManager::getInstance()->getLevelManager()->getActiveLevel()->getEndOfScreenReachedState();
+	bool endOfScreenState = this->endOfScreenReached;
 
 	if (!GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
 	{
 		this->state = CharacterState::STATE_CHARACTER_STAND;
 		this->updateAnimationCharacter();
 	}
-	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1) && this->endOfTheScreenReached)
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_RIGHT, -1) && endOfScreenState)
 	{
 		this->state = CharacterState::STATE_CHARACTER_GUARD_ON;
 		this->updateAnimationCharacter();
 	}
-	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1) && this->endOfTheScreenReached)
+	if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_LEFT, -1) && endOfScreenState)
 	{
 		this->state = CharacterState::STATE_CHARACTER_GUARD_ON;
 		this->updateAnimationCharacter();
@@ -882,11 +1161,18 @@ Collider* Character::getCollider()
 void Character::moveRight(double speedCoef)
 {
 	this->setPosCharacterX(this->getPosCharacterX() + speedCoef * MOVE_SPEED);
+
+	if(this->getPosCharacterX() > SCREEN_SIZE_WIDTH - abs(this->getAnimation()->getAnimationData()->getSpriteWidth()))
+		this->setPosCharacterX(SCREEN_SIZE_WIDTH - abs(this->getAnimation()->getAnimationData()->getSpriteWidth()));
+
 }
 
 void Character::moveLeft(double speedCoef)
 {
 	this->setPosCharacterX(this->getPosCharacterX() - speedCoef * MOVE_SPEED);
+
+	if(this->getPosCharacterX() < 0)
+		this->setPosCharacterX(0);
 }
 
 void Character::moveUp(double speedCoef)
@@ -991,4 +1277,14 @@ void Character::updateKickPunch()
 			}
 		}
 	}
+}
+
+bool Character::getEndOfScreenReachedState()
+{
+	return this->endOfScreenReached;
+}
+
+CharacterState Character::getCharacterState()
+{
+	return state;
 }

@@ -57,7 +57,7 @@ private:
 	int totalHp;
 	int hp;
 	int damage;
-	bool endOfTheScreenReached;
+	bool endOfScreenReached;
 	void updateStand();
 	void updateMoveRight();
 	void updateMoveLeft();
@@ -105,6 +105,8 @@ public:
 	void moveDown(double speedCoef);
 	void updateAnimationCharacter();
 	void hitCharacter(int damage);
+	bool getEndOfScreenReachedState();
+	CharacterState getCharacterState();
 };
 
 #endif
