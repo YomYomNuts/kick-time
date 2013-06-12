@@ -46,13 +46,26 @@ void HudManager::renderLifeBar()
 		this->spriteHUD->setTextureRect(sf::IntRect(LIFE_BAR_X, LIFE_BAR_Y, LIFE_BAR_WIDTH, LIFE_BAR_HEIGHT));
 		this->spriteHUD->setPosition((float)listPositions[i].getX(), (float)listPositions[i].getY());
 		GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
-		//Life
-		this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
-		if (i % 2)
-			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X + LIFE_WIDTH - percent, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
-		else
+
+		if (i % 2 == 0)
+		{
+			//Life
+			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
 			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
-		GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+
+			//Name
+			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
+			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
+			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+		}
+		else
+		{
+			//Life
+			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
+			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X + LIFE_WIDTH - percent, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
+			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+		}
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "Collider.h"
 #include "Position.h"
+#include "CharacterData.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -53,10 +54,10 @@ private:
 	CharacterDirection toward;
 	CharacterState state;
 	Collider * colliderKickPunch;
+	const CharacterData * characterData;
 	int indexCharacter;
 	int totalHp;
 	int hp;
-	int damage;
 	bool endOfScreenReached;
 	void updateStand();
 	void updateMoveRight();
@@ -82,11 +83,11 @@ private:
 	void updateVictory();
 	void updateCrouched();
 	void checkDirection();
-	void updateKickPunch();
+	void updateKickPunch(int damage);
 
 public:
 	Character(void);
-	Character(int indexCharacter);
+	Character(int indexCharacter, int indexTypeCharacter);
 	~Character(void);
 	Animation* getAnimation();
 	void updateCharacter();

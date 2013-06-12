@@ -3,6 +3,7 @@
 #include "SoundData.h"
 #include "InputManager_Defines.h"
 #include "Character_Defines.h"
+#include "CharacterData.h"
 
 
 CharacterManager::CharacterManager(void)
@@ -29,7 +30,7 @@ void CharacterManager::updateCharacterManager()
 
 void CharacterManager::addCharacter()
 {
-	this->characterList->push_back(new Character(this->characterList->size()));
+	this->characterList->push_back(new Character(this->characterList->size(), SCORPION));
 }
 
 vector<Character*>* CharacterManager::getCharacters()

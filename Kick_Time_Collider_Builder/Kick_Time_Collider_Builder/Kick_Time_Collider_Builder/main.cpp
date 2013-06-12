@@ -23,7 +23,7 @@ int main(int argc,const char * argv[])
 	char* cppOutputLocation = new char[];
 
 	// Variable to open/read/create/write files
-	// Animation file
+	// Collider file
 	vector<char*> colliderFilesList;
 	vector<ColliderLine> colliderArray;
 	vector<ColliderLine>::iterator it;
@@ -307,7 +307,7 @@ int main(int argc,const char * argv[])
 		// Put all the data into the animationArray in the cpp file
 		for(it = colliderArray.begin(); it != colliderArray.end(); ++it)
 		{
-			// Put : fileName and animatioName
+			// Put : colliderName
 			cppContent = cppContent + "\tColliderData(" + it->getColliderName() + ", ";
 
 			// Put : posX
