@@ -20,6 +20,8 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ColliderData.cpp" />
+    <ClCompile Include="FontData.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HudManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -51,6 +53,8 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderData.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="FontData.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameManager_Defines.h" />
     <ClInclude Include="HudManager.h" />

@@ -16,15 +16,16 @@ Character::Character(void)
 	else
 		this->toward = CharacterDirection::LEFT;
 	
+	this->characterData = &characterDataArray[0];
 	this->spriteCharacter = new sf::Sprite();
 	this->state = CharacterState::STATE_CHARACTER_STAND;
-	this->animation = new Animation(this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
+	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), posYFromLevel);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
 	this->colliderKickPunch = new Collider();
-	this->totalHp = 100;
-	this->hp = 50;
+	this->totalHp = this->characterData->getTotalHP();
+	this->hp = this->totalHp;
 	this->endOfScreenReached = false;
 }
 
@@ -51,7 +52,6 @@ Character::Character(int indexCharacter, int indexTypeCharacter)
 	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->positionCharacter = new Position(posX - this->animation->getAnimationData()->getShiftPositionXCharacter(), posYFromLevel);
-	cout << this->animation->getAnimationData()->getShiftPositionXCharacter() << endl;
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
 	this->colliderKickPunch = new Collider();
 	this->totalHp = this->characterData->getTotalHP();
@@ -176,7 +176,7 @@ void Character::updateStand()
 	{
 		this->state = CharacterState::STATE_CHARACTER_STEADY_JUMP_UP;
 		this->updateAnimationCharacter();
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_1, -1))
 	{
@@ -184,7 +184,7 @@ void Character::updateStand()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -192,7 +192,7 @@ void Character::updateStand()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
 	{
@@ -212,14 +212,14 @@ void Character::updateMoveRight()
 		{
 			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
 			this->updateAnimationCharacter();
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == LEFT)
 		{
 			this->state = CharacterState::STATE_CHARACTER_BACKWARD_JUMP;
 			this->updateAnimationCharacter();
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
@@ -330,14 +330,14 @@ void Character::updateMoveLeft()
 		{
 			this->state = CharacterState::STATE_CHARACTER_FORWARD_JUMP;
 			this->updateAnimationCharacter();
-			GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
+			GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP, -1) && this->toward == RIGHT)
 		{
 			this->state = CharacterState::STATE_CHARACTER_BACKWARD_JUMP;
 			this->updateAnimationCharacter();
-			GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
+			GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
@@ -468,8 +468,8 @@ void Character::updateSteadyJumpUp()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -477,8 +477,8 @@ void Character::updateSteadyJumpUp()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 }
 
@@ -500,8 +500,8 @@ void Character::updateSteadyJumpDown()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -509,8 +509,8 @@ void Character::updateSteadyJumpDown()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundJump());
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 }
 
@@ -646,7 +646,7 @@ void Character::updateForwardJump()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -654,7 +654,7 @@ void Character::updateForwardJump()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 }
 
@@ -790,7 +790,7 @@ void Character::updateBackwardJump()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -798,7 +798,7 @@ void Character::updateBackwardJump()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 }
 
@@ -1105,7 +1105,7 @@ void Character::updateCrouched()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundKick());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundKick());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_2, -1))
 	{
@@ -1113,7 +1113,7 @@ void Character::updateCrouched()
 		this->updateAnimationCharacter();
 		this->colliderKickPunch->setPosition(new Position(this->positionCharacter->getX() + this->collider->getShiftX(), this->positionCharacter->getY()));
 		this->colliderKickPunch->setShiftX(0);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundPunch());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundPunch());
 	}
 	else if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4, -1))
 	{
@@ -1265,11 +1265,11 @@ void Character::hitCharacter(int damage)
 
 		this->updateAnimationCharacter();
 		this->setPosCharacterY(posYFromLevel);
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundHit());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundHit());
 	}
 	else
 	{
-		GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundGuard());
+		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundGuard());
 	}
 }
 
@@ -1289,7 +1289,7 @@ void Character::updateKickPunch(int damage)
 				this->state = CharacterState::STATE_CHARACTER_VICTORY;
 				this->updateAnimationCharacter();
 				this->setPosCharacterY(posYFromLevel);
-				GameManager::getInstance()->getSoundManager()->playSound(this->characterData->getSoundVictory());
+				GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundVictory());
 			}
 		}
 		else
@@ -1316,4 +1316,9 @@ bool Character::getEndOfScreenReachedState()
 CharacterState Character::getCharacterState()
 {
 	return state;
+}
+
+const CharacterData* Character::getCharacterData()
+{
+	return this->characterData;
 }

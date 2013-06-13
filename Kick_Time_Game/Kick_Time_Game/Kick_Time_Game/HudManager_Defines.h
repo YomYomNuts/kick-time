@@ -7,6 +7,17 @@
 #define LIFE_BAR_POSITION_P2_X	276
 #define LIFE_BAR_POSITION_P2_Y	20
 
+// Position Name
+#define NAME_POSITION_P1_X		65
+#define NAME_POSITION_P1_Y		22
+#define NAME_POSITION_P2_X		420
+#define NAME_POSITION_P2_Y		22
+#define NAME_COLOR_RED			255
+#define NAME_COLOR_GREEN		255
+#define NAME_COLOR_BLUE			41
+#define NAME_SCALE_X			(0.3)
+#define NAME_SCALE_Y			(0.3)
+
 // Position Time
 #define TIME_POSITION_1_X		240
 #define TIME_POSITION_1_Y		15

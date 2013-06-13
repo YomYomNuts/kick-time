@@ -3,6 +3,7 @@
 const SoundData soundDataArray[NUMBER_SOUNDDATA] =
 {
 	SoundData("../Ressources/Sounds/19 Triangle X2.wav", SOUND_LEVEL_SCORPION, true, true),
+	SoundData("../Ressources/Sounds/19 Triangle X2.wav", SOUND_SCORPION, false, false),
 };
 
 SoundData::SoundData()

@@ -74,14 +74,14 @@ int main(int argc, const char * argv[])
 			// If the user pressed 'n', then he can reset the data as he wishes
 			if(resetData)
 			{
-				cout << "Set \"Level file's location\" : ";
+				cout << "Set \"Sound file's location\" : ";
 				cin >> soundLocation;
 				cout << "Set \"Output class location\" : ";
 				cin >> outputLocation;
 				cout << endl << endl << endl;
 			}
 			cout << "Confirm : " << endl;
-			cout << "Level file's location : " << soundLocation << endl << endl;
+			cout << "Sound file's location : " << soundLocation << endl << endl;
 			cout << "Output class location : " << outputLocation << endl << endl;
 
 			cout << "Confirm (y/n) : ";
@@ -95,14 +95,14 @@ int main(int argc, const char * argv[])
 	{
 		while(confirm != 'y')
 		{
-			cout << "Set \"Level file's location\" : ";
+			cout << "Set \"Sound file's location\" : ";
 			cin >> soundLocation;
 			cout << "Set \"Output class location\" : ";
 			cin >> outputLocation;
 			cout << endl << endl << endl;
 
 			cout << "Confirm : " << endl;
-			cout << "Level file's location : " << soundLocation << endl << endl;
+			cout << "Sound file's location : " << soundLocation << endl << endl;
 			cout << "Output class location : " << outputLocation << endl << endl;
 
 			cout << "Confirm (y/n) : ";
@@ -124,7 +124,7 @@ int main(int argc, const char * argv[])
 	/* Read the sound files */
 	/************************/
 	
-	// Open the music file
+	// Open the sound file
 	soundFile.open(soundLocation, ios::in);
 
 	if(soundFile)
@@ -242,7 +242,7 @@ int main(int argc, const char * argv[])
 		headerContent = headerContent + "\n";
 		
 
-		// Define the animations' name
+		// Define the sounds' name
 		position = 0;
 		for(it = listSounds.begin(); it != listSounds.end(); ++it)
 		{

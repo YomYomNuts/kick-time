@@ -1,9 +1,18 @@
 #include "HudManager.h"
 #include "HudManager_Defines.h"
 #include "GameManager.h"
+#include "FontData.h"
 
 
-const Position listPositions[NUMBER_FIGHTERS] = { Position(LIFE_BAR_POSITION_P1_X, LIFE_BAR_POSITION_P1_Y), Position(LIFE_BAR_POSITION_P2_X, LIFE_BAR_POSITION_P2_Y)};
+const Position listPositionsLifeBar[NUMBER_FIGHTERS] = {
+	Position(LIFE_BAR_POSITION_P1_X, LIFE_BAR_POSITION_P1_Y),
+	Position(LIFE_BAR_POSITION_P2_X, LIFE_BAR_POSITION_P2_Y)
+};
+
+const Position listPositionsName[NUMBER_FIGHTERS] = {
+	Position(NAME_POSITION_P1_X, NAME_POSITION_P1_Y),
+	Position(NAME_POSITION_P2_X, NAME_POSITION_P2_Y)
+};
 
 HudManager::HudManager(void)
 {
@@ -38,33 +47,44 @@ void HudManager::renderLifeBar()
 	vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
 	Character * character;
 	int percent;
+	GameManager * gameManager = GameManager::getInstance();
+
 	for(unsigned int i = 0; i < listCharacters->size(); ++i)
 	{
 		character = listCharacters->at(i);
 		percent = (int)((LIFE_WIDTH * character->getHp()) / character->getTotalHp());
 		// Empty life bar
 		this->spriteHUD->setTextureRect(sf::IntRect(LIFE_BAR_X, LIFE_BAR_Y, LIFE_BAR_WIDTH, LIFE_BAR_HEIGHT));
-		this->spriteHUD->setPosition((float)listPositions[i].getX(), (float)listPositions[i].getY());
-		GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+		this->spriteHUD->setPosition((float)listPositionsLifeBar[i].getX(), (float)listPositionsLifeBar[i].getY());
+		gameManager->getRenderManager()->getWindow()->draw(*this->spriteHUD);
 
 		if (i % 2 == 0)
 		{
 			//Life
 			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
-			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
-			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+			this->spriteHUD->setPosition((float)listPositionsLifeBar[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositionsLifeBar[i].getY() + LIFE_FRAME_SIZE_Y);
+			gameManager->getRenderManager()->getWindow()->draw(*this->spriteHUD);
 
 			//Name
-			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
-			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
-			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+			sf::Text text(character->getCharacterData()->getName(), *(gameManager->getFontManager()->getFont(FONT_ARIAL)));
+			text.setColor(sf::Color(NAME_COLOR_RED, NAME_COLOR_GREEN, NAME_COLOR_BLUE));
+			text.setScale((float)NAME_SCALE_X, (float)NAME_SCALE_Y);
+			text.setPosition((float)listPositionsName[i].getX(), (float)listPositionsName[i].getY());
+			gameManager->getRenderManager()->getWindow()->draw(text);
 		}
 		else
 		{
 			//Life
 			this->spriteHUD->setTextureRect(sf::IntRect(LIFE_X, LIFE_Y, percent, LIFE_HEIGHT));
-			this->spriteHUD->setPosition((float)listPositions[i].getX() + LIFE_FRAME_SIZE_X + LIFE_WIDTH - percent, (float)listPositions[i].getY() + LIFE_FRAME_SIZE_Y);
-			GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+			this->spriteHUD->setPosition((float)listPositionsLifeBar[i].getX() + LIFE_FRAME_SIZE_X + LIFE_WIDTH - percent, (float)listPositionsLifeBar[i].getY() + LIFE_FRAME_SIZE_Y);
+			gameManager->getRenderManager()->getWindow()->draw(*this->spriteHUD);
+
+			//Name
+			sf::Text text(character->getCharacterData()->getName(), *(gameManager->getFontManager()->getFont(FONT_ARIAL)));
+			text.setColor(sf::Color(NAME_COLOR_RED, NAME_COLOR_GREEN, NAME_COLOR_BLUE));
+			text.setScale((float)NAME_SCALE_X, (float)NAME_SCALE_Y);
+			text.setPosition((float)listPositionsName[i].getX() - text.getCharacterSize(), (float)listPositionsName[i].getY());
+			gameManager->getRenderManager()->getWindow()->draw(text);
 		}
 	}
 }

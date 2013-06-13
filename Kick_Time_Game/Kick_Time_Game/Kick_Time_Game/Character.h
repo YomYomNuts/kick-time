@@ -108,6 +108,7 @@ public:
 	void hitCharacter(int damage);
 	bool getEndOfScreenReachedState();
 	CharacterState getCharacterState();
+	const CharacterData* getCharacterData();
 };
 
 #endif

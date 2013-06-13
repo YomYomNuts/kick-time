@@ -1,0 +1,1 @@
+../Ressources/Fonts/arial.ttf;FONT_ARIAL

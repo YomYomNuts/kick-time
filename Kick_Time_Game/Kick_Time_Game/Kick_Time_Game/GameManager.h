@@ -12,6 +12,7 @@
 #include "LevelManager.h"
 #include "CharacterManager.h"
 #include "AnimationManager.h"
+#include "FontManager.h"
 #include "GameManager_Defines.h"
 
 class GameManager
@@ -28,6 +29,7 @@ private:
 	LevelManager * levelManager;
 	CharacterManager * characterManager;
 	AnimationManager * animationManager;
+	FontManager * fontManager;
 	static GameManager  * _singleton;
 	GameManager(void);
 
@@ -47,6 +49,7 @@ public:
 	CharacterManager* getCharacterManager();
 	AnimationManager* getAnimationManager();
 	TextureManager* getTextureManager();
+	FontManager* getFontManager();
 };
 
 #endif

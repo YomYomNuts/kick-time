@@ -14,6 +14,7 @@ GameManager::GameManager(void)
 	this->characterManager = new CharacterManager();
 	this->animationManager = new AnimationManager();
 	this->textureManager = new TextureManager();
+	this->fontManager = new FontManager();
 }
 
 GameManager::~GameManager(void)
@@ -29,6 +30,7 @@ GameManager::~GameManager(void)
 	delete this->characterManager;
 	delete this->animationManager;
 	delete this->textureManager;
+	delete this->fontManager;
 }
 
 GameManager* GameManager::getInstance()
@@ -41,6 +43,7 @@ GameManager* GameManager::getInstance()
 
 void GameManager::initializeGameManager()
 {
+	this->fontManager->initializeFontManager();
 	this->textureManager->initializeTextureManager();
 	this->modeManager->initializeModeManager();
 	this->inputManager->initializeInputManager();
@@ -62,6 +65,7 @@ void GameManager::updateGameManager()
 {
     while (this->renderManager->getWindow()->isOpen())
 	{
+		this->fontManager->updateFontManager();
 		this->textureManager->updateTextureManager();
 		this->inputManager->updateInputManager();
 		this->menuManager->updateMenuManager();
@@ -129,4 +133,9 @@ AnimationManager* GameManager::getAnimationManager()
 TextureManager* GameManager::getTextureManager()
 {
 	return this->textureManager;
+}
+
+FontManager* GameManager::getFontManager()
+{
+	return this->fontManager;
 }

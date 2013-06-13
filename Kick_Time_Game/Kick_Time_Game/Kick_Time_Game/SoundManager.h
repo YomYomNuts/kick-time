@@ -11,14 +11,18 @@ class SoundManager
 {
 private:
     vector<sf::SoundBuffer> * soundBuffer;
-	sf::Sound * sound;
+    vector<sf::Sound*> * listSounds;
+	vector<sf::Music*> * listMusics;
+	void playSound(int indexSound);
+	void playMusic(int indexMusic);
 
 public:
 	SoundManager(void);
 	~SoundManager(void);
 	void initializeSoundManager();
 	void updateSoundManager();
-	void playSound(int indexSound);
+	void playSoundMusic(int indexSoundMusic);
+	void stopAll();
 };
 
 #endif
