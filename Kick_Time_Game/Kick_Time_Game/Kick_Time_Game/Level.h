@@ -4,6 +4,7 @@
 #include "Position.h"
 #include "LevelData.h"
 #include "Timer.h"
+#include "Animation.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -15,6 +16,7 @@ private:
 	sf::Sprite * spriteLevel;
 	Timer * time;
 	bool endOfLevelReached;
+	vector<Animation*> listAnimation;
 
 public:
 	Level(void);

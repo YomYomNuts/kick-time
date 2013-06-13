@@ -20,6 +20,11 @@ Level::Level(const LevelData * levelData)
 	this->positionDisplay = new Position((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2, (double)SCREEN_SIZE_HEIGHT - this->spriteLevel->getTexture()->getSize().y);
 	this->time = new Timer(true, 99);
 	this->endOfLevelReached = false;
+
+	for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+	{
+		//listAnimation.push_back(
+	}
 }
 
 Level::~Level(void)

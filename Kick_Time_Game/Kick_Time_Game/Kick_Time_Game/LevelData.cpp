@@ -1,10 +1,16 @@
 #include "LevelData.h"
 
+using namespace std;
+
 const LevelData levelDataArray[NUMBER_LEVELDATA] =
 {
 	LevelData("../Ressources/Levels/MK/TheTower.png", "THE_TOWER", LEVEL_0, 290),
 	LevelData("../Ressources/Levels/MK/The_Armory.png", "THE_ARMORY", LEVEL_1, 290),
 };
+
+const map<int,vector<LevelAnimationData>> levelAnimData = create_map<int,vector<LevelAnimationData>>
+	(LEVEL_1, create_vector<LevelAnimationData>
+		(LevelAnimationData("../Ressources/Levels/MK/TheTower.png",0,0,0,20,87,4,13,true,0,0,0,678,430)));
 
 LevelData::LevelData()
 {
@@ -44,4 +50,9 @@ int LevelData::getLevelID() const
 int LevelData::getPosYCharacter() const
 {
 	return this->posYCharacter;
+}
+
+vector<LevelAnimationData> LevelData::getLevelAnimationData() const
+{
+	return levelAnimData.at(this->levelID);
 }

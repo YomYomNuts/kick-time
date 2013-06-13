@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 
+enum AnimationKind{CHARACTER, LEVEL};
+
 class Animation
 {
 private:
@@ -18,7 +20,7 @@ private:
 
 public:
 	Animation(void);
-	Animation(int indexAnimationData);
+	Animation(int indexAnimationData, AnimationKind kind);
 	~Animation(void);
 	void updateAnimation();
 	void renderAnimation(sf::Sprite * sprite);

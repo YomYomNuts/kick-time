@@ -19,7 +19,7 @@ Character::Character(void)
 	this->characterData = &characterDataArray[0];
 	this->spriteCharacter = new sf::Sprite();
 	this->state = CharacterState::STATE_CHARACTER_STAND;
-	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
+	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER, CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->positionCharacter = new Position(SCREEN_SIZE_WIDTH / 2 - this->animation->getAnimationData()->getShiftPositionXCharacter(), posYFromLevel);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);
@@ -49,7 +49,7 @@ Character::Character(int indexCharacter, int indexTypeCharacter)
 	this->characterData = &characterDataArray[indexTypeCharacter];
 	this->spriteCharacter = new sf::Sprite();
 	this->state = CharacterState::STATE_CHARACTER_STAND;
-	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER);
+	this->animation = new Animation(this->characterData->getAnimationID() + this->state + this->toward * CharacterState::NUMBER_STATE_CHARACTER, CHARACTER);
 	GameManager::getInstance()->getAnimationManager()->addAnimation(this->animation);
 	this->positionCharacter = new Position(posX - this->animation->getAnimationData()->getShiftPositionXCharacter(), posYFromLevel);
 	this->collider = new Collider(this->animation->getAnimationData()->getColliderID(), this->positionCharacter);

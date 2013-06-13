@@ -14,9 +14,13 @@ Animation::Animation(void)
 	this->id = this->animationNumber++;
 }
 
-Animation::Animation(int indexAnimationData)
+Animation::Animation(int indexAnimationData, AnimationKind kind)
 {
-	this->animationData = &animationDataArray[indexAnimationData];
+	if(kind == CHARACTER)
+		this->animationData = &animationDataArray[indexAnimationData];
+	else
+		this->animationData = &animationDataArray[indexAnimationData];
+	
 	this->posX = this->animationData->getPosX();
 	this->currentFrame = 0;
 	this->frameCounter = 0;

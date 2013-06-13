@@ -23,6 +23,7 @@ private:
 
 public:
 	AnimationData();
+	AnimationData(int s);
 	AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop, int shiftPositionXCharacter, int colliderID, int colliderKickPunchID);
 	~AnimationData(void);
 	string getFileName() const;
