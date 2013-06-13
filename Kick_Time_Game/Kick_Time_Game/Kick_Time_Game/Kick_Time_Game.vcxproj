@@ -64,6 +64,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Level_Defines.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />

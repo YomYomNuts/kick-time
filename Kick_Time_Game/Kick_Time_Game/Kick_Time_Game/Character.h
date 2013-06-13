@@ -59,6 +59,8 @@ private:
 	int totalHp;
 	int hp;
 	bool endOfScreenReached;
+	int numberRoundWin;
+	bool completelyDead;
 	void updateStand();
 	void updateMoveRight();
 	void updateMoveLeft();
@@ -83,7 +85,7 @@ private:
 	void updateVictory();
 	void updateCrouched();
 	void checkDirection();
-	void updateKickPunch(int damage);
+	void updateKickPunch(int damage, int speed);
 
 public:
 	Character(void);
@@ -109,6 +111,10 @@ public:
 	bool getEndOfScreenReachedState();
 	CharacterState getCharacterState();
 	const CharacterData* getCharacterData();
+	void setNumberRoundWin(int numberRoundWin);
+	int getNumberRoundWin();
+	void restoreHp(int hp);
+	void resetInformations();
 };
 
 #endif

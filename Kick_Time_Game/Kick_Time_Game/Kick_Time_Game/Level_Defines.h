@@ -1,0 +1,6 @@
+#ifndef _LEVEL_DEFINES_H
+#define _LEVEL_DEFINES_H
+
+#define NUMBER_ROUND_WIN_TO_FINISH_FIGHT	2
+
+#endif

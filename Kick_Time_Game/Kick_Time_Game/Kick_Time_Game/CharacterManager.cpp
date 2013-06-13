@@ -28,9 +28,14 @@ void CharacterManager::updateCharacterManager()
 	}
 }
 
-void CharacterManager::addCharacter()
+void CharacterManager::addCharacter(int indexTypeCharacter)
 {
-	this->characterList->push_back(new Character(this->characterList->size(), SCORPION));
+	this->characterList->push_back(new Character(this->characterList->size(), indexTypeCharacter));
+}
+
+void CharacterManager::removeCharacter(int indexCharacter)
+{
+	this->characterList->erase(this->characterList->begin() + indexCharacter);
 }
 
 vector<Character*>* CharacterManager::getCharacters()
@@ -76,4 +81,19 @@ Character* CharacterManager::getFarestCharacter(int withoutThisIndex, Position *
 		}
 	}
 	return farest;
+}
+
+Character* CharacterManager::getCharacterWithMaxHp()
+{
+	int hp = -1;
+	Character * characterMaxHp = NULL;
+	for(unsigned int i = 0; i < this->characterList->size(); ++i)
+	{
+		if (this->characterList->at(i)->getHp() > hp)
+		{
+			hp = this->characterList->at(i)->getHp();
+			characterMaxHp = this->characterList->at(i);
+		}
+	}
+	return characterMaxHp;
 }

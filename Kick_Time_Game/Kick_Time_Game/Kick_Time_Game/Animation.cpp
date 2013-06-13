@@ -31,13 +31,13 @@ Animation::~Animation(void)
 
 void Animation::updateAnimation()
 {
-	if(frameCounter == animationData->getFramerate())
+	if(!this->animationDone && frameCounter == animationData->getFramerate())
 	{
 		if(this->currentFrame == 0)
 			this->posX = this->animationData->getPosX();
 		else
 			this->posX += this->animationData->getSpriteWidth();
-		//cout << currentFrame << endl;
+
 		if(this->currentFrame >= this->animationData->getSpriteNb()-1)
 			this->animationDone = true;
 
@@ -45,7 +45,6 @@ void Animation::updateAnimation()
 		{
 			this->animationDone = false;
 			this->currentFrame = 0;
-			//this->posX = this->animationData->getPosX();
 		}
 		else
 		{

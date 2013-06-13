@@ -203,6 +203,9 @@
     <ClInclude Include="FontManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Level_Defines.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Ressources\Characters\MK\Scorpion\Scorpion.png">

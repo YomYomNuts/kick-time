@@ -57,8 +57,9 @@ void GameManager::initializeGameManager()
 	this->animationManager->initializeAnimationManager();
 
 	// Initialise test
-	this->characterManager->addCharacter();
-	this->characterManager->addCharacter();
+	this->levelManager->setActiveLevel(LEVEL_1);
+	this->characterManager->addCharacter(SCORPION);
+	this->characterManager->addCharacter(SCORPION);
 }
 
 void GameManager::updateGameManager()

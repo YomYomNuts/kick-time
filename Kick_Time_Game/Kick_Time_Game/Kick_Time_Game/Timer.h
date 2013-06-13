@@ -16,6 +16,9 @@ public:
 	~Timer(void);
 	void updateTimer();
 	int getTime();
+	bool isOnLimit();
+	int getCurrentFrame();
+	int getNumberTotalFrame();
 };
 
 #endif
