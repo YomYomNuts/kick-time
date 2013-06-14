@@ -104,7 +104,7 @@ void Level::updateLevel()
 				for(unsigned int i = 0; i < listCharacters->size(); ++i)
 				{
 					listCharacters->at(i)->resetInformations();
-					character->setNumberRoundWin(0);
+					listCharacters->at(i)->setNumberRoundWin(0);
 				}
 			}
 		}
