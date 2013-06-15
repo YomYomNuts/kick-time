@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "Level_Defines.h"
 #include "GameManager.h"
 
 #include <iostream>
@@ -8,8 +9,11 @@ Level::Level(void)
 	this->positionDisplay = new Position();
 	this->levelData = new LevelData();
 	this->spriteLevel = new sf::Sprite();
-	this->time = new Timer(true, 99);
+	this->levelState = LevelState::START_ROUND;
+	this->timer = new Timer(false, 2);
 	this->endOfLevelReached = false;
+	this->listAnimation = new vector<AnimationLevel*>();
+	this->listSpriteLevelAnim = new vector<sf::Sprite*>();
 }
 
 Level::Level(const LevelData * levelData)
@@ -18,26 +22,111 @@ Level::Level(const LevelData * levelData)
 	this->spriteLevel = new sf::Sprite();
 	this->spriteLevel->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(this->levelData->getFileName()));
 	this->positionDisplay = new Position((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2, (double)SCREEN_SIZE_HEIGHT - this->spriteLevel->getTexture()->getSize().y);
-	this->time = new Timer(true, 99);
+	this->levelState = LevelState::START_ROUND;
+	this->timer = new Timer(false, 2);
 	this->endOfLevelReached = false;
+	this->listAnimation = new vector<AnimationLevel*>();
+	this->listSpriteLevelAnim = new vector<sf::Sprite*>();
 
 	for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
 	{
-		//listAnimation.push_back(
+		this->listAnimation->push_back(new AnimationLevel(this->levelData->getLevelID(),i));
+		this->listSpriteLevelAnim->push_back(new sf::Sprite());
+		this->listAnimation->at(i)->setPosXSprite((double)SCREEN_SIZE_WIDTH / 2 - this->spriteLevel->getTexture()->getSize().x / 2 + listAnimation->at(i)->getPosXOriginalSpritePosition());
+		GameManager::getInstance()->getAnimationManager()->addLevelAnimation(this->listAnimation->at(i));
 	}
+
 }
 
 Level::~Level(void)
 {
 	delete this->positionDisplay;
+	delete this->levelData;
 	delete this->spriteLevel;
-	delete this->time;
+	delete this->timer;
+	delete this->anim;
+	delete this->listAnimation;
+	delete this->listSpriteLevelAnim;
 }
 
 void Level::updateLevel()
 {
-	if (this->time != NULL)
-		this->time->updateTimer();
+	switch (this->levelState)
+	{
+	case LevelState::START_ROUND:
+		{
+			// Restore the life
+			vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
+			for(unsigned int i = 0; i < listCharacters->size(); ++i)
+			{
+				listCharacters->at(i)->restoreHp(listCharacters->at(i)->getCharacterData()->getTotalHP() * this->timer->getCurrentFrame() / this->timer->getNumberTotalFrame());
+			}
+
+			this->timer->updateTimer();
+			if (this->timer->isOnLimit())
+			{
+				this->timer = new Timer(true, 99);
+				this->levelState = LevelState::ROUND;
+				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(true);
+				for(unsigned int i = 0; i < listCharacters->size(); ++i)
+				{
+					listCharacters->at(i)->restoreHp(listCharacters->at(i)->getCharacterData()->getTotalHP());
+				}
+			}
+		}
+		break;
+	case LevelState::ROUND:
+		{
+			this->timer->updateTimer();
+			if (this->timer->isOnLimit())
+			{
+				this->timer = new Timer(true, 2);
+				Character * character = GameManager::getInstance()->getCharacterManager()->getCharacterWithMaxHp();
+				if (character != NULL)
+				{
+					character->setNumberRoundWin(character->getNumberRoundWin() + 1);
+					this->nextStateLevel(character);
+				}
+				else
+					this->levelState = LevelState::END_ROUND;
+				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
+			}
+		}
+		break;
+	case LevelState::END_ROUND:
+		{
+			this->timer->updateTimer();
+			if (this->timer->isOnLimit())
+			{
+				this->timer = new Timer(true, 1);
+				this->levelState = LevelState::START_ROUND;
+				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
+				vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
+				for(unsigned int i = 0; i < listCharacters->size(); ++i)
+				{
+					listCharacters->at(i)->resetInformations();
+				}
+			}
+		}
+		break;
+	case LevelState::END_MATCH:
+		{
+			this->timer->updateTimer();
+			if (this->timer->isOnLimit())
+			{
+				this->timer = new Timer(true, 1);
+				this->levelState = LevelState::START_ROUND;
+				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
+				vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
+				for(unsigned int i = 0; i < listCharacters->size(); ++i)
+				{
+					listCharacters->at(i)->resetInformations();
+					listCharacters->at(i)	->setNumberRoundWin(0);
+				}
+			}
+		}
+		break;
+	}
 }
 
 void Level::renderLevel()
@@ -45,12 +134,28 @@ void Level::renderLevel()
 	//Draw
 	this->spriteLevel->setPosition((float)this->positionDisplay->getX(), (float)this->positionDisplay->getY());
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteLevel);
+
+	//Draw anims
+	int height;
+	double posAnimX;
+	double posAnimY;
+
+	for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+	{
+		height = this->listAnimation->at(i)->getAnimationData()->getSpriteHeight();
+		posAnimX = this->listAnimation->at(i)->getPosXSprite();
+		posAnimY = this->listAnimation->at(i)->getPosYSprite();
+
+		this->listSpriteLevelAnim->at(i)->setPosition(posAnimX,posAnimY - height);
+		this->listAnimation->at(i)->renderAnimation(this->listSpriteLevelAnim->at(i));
+	}
+	
 }
 
-int Level::getTime()
+int Level::getTimer()
 {
-	if (this->time != NULL)
-		return this->time->getTime();
+	if (this->timer != NULL)
+		return this->timer->getTime();
 	return 0;
 }
 
@@ -76,13 +181,15 @@ bool Level::getEndOfLevelReachedState()
 
 sf::Sprite * Level::getSpriteLevel()
 {
-	return spriteLevel;
+	return this->spriteLevel;
 }
 
 void Level::setPosX(double posX)
 {
 	double levelWidth = this->spriteLevel->getTexture()->getSize().x;
-	double posXlevel = this->positionDisplay->getX();
+	double moveX = this->positionDisplay->getX() - posX;
+
+	double posXAnim;
 
 	this->positionDisplay->setX(posX);
 
@@ -90,12 +197,45 @@ void Level::setPosX(double posX)
 	{
 		this->positionDisplay->setX(0);
 		this->endOfLevelReached = true;
+
+		for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+		{
+			listAnimation->at(i)->setPosXSprite(listAnimation->at(i)->getPosXOriginalSpritePosition());
+		}
 	}
 	else if(posX + levelWidth <= SCREEN_SIZE_WIDTH)
 	{
-		this->positionDisplay->setX(SCREEN_SIZE_WIDTH- levelWidth);
+		this->positionDisplay->setX(SCREEN_SIZE_WIDTH - levelWidth);
 		this->endOfLevelReached = true;
+
+		for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+		{
+			listAnimation->at(i)->setPosXSprite(SCREEN_SIZE_WIDTH - levelWidth + listAnimation->at(i)->getPosXOriginalSpritePosition());
+		}
 	}
 	else
+	{
 		this->endOfLevelReached = false;
+
+		for(int i= 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+		{
+			posXAnim = this->listAnimation->at(i)->getPosXSprite() - moveX;
+			listAnimation->at(i)->setPosXSprite(posXAnim);
+		}
+	}
+}
+
+LevelState Level::getLevelState()
+{
+	return this->levelState;
+}
+
+void Level::nextStateLevel(Character * characterWin)
+{
+	if (characterWin->getNumberRoundWin() >= NUMBER_ROUND_WIN_TO_FINISH_FIGHT)
+		this->levelState = LevelState::END_MATCH;
+	else
+		this->levelState = LevelState::END_ROUND;
+	this->timer = new Timer(true, 2);
+	GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
 }

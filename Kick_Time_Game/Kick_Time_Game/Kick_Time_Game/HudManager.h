@@ -7,10 +7,10 @@ class HudManager
 {
 private:
 	sf::Sprite * spriteHUD;
-	bool doRenderLifeBar;
-	bool doRenderTime;
-	void renderLifeBar();
-	void renderTime();
+	bool doRenderHUDTime;
+	void renderHUDTime();
+	void renderHUDCharacter();
+	void renderHUDLevel();
 
 public:
 	HudManager(void);
@@ -18,6 +18,7 @@ public:
 	void initializeHudManager();
 	void updateHudManager();
 	void renderHudManager();
+	void setDoRenderHUDTime(bool active);
 };
 
 #endif

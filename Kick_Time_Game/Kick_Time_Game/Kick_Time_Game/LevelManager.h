@@ -20,6 +20,7 @@ public:
 	void updateLevelManager();
 	void renderLevelManager();
 	Level* getActiveLevel();
+	void setActiveLevel(int indexLevel);
 };
 
 #endif

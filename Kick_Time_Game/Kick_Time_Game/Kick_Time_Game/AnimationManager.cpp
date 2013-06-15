@@ -3,12 +3,14 @@
 
 AnimationManager::AnimationManager(void)
 {
-	this->animationList = new vector<Animation*>();
+	this->animationCharacterList = new vector<AnimationCharacter*>();
+	this->animationLevelList = new vector<AnimationLevel*>();
 }
 
 AnimationManager::~AnimationManager(void)
 {
-	delete this->animationList;
+	delete this->animationCharacterList;
+	delete this->animationLevelList;
 }
 
 void AnimationManager::initializeAnimationManager()
@@ -17,26 +19,49 @@ void AnimationManager::initializeAnimationManager()
 
 void AnimationManager::updateAnimationManager()
 {
-	for(unsigned int i = 0; i < this->animationList->size(); ++i)
+	for(unsigned int i = 0; i < this->animationCharacterList->size(); ++i)
 	{
-		this->animationList->at(i)->updateAnimation();
+		this->animationCharacterList->at(i)->updateAnimation();
+	}
+
+	for(unsigned int i = 0; i < this->animationLevelList->size(); ++i)
+	{
+		this->animationLevelList->at(i)->updateAnimation();
 	}
 }
 
-void AnimationManager::addAnimation(Animation* anim)
+void AnimationManager::addCharacterAnimation(AnimationCharacter* anim)
 {
-	this->animationList->push_back(anim);
+	this->animationCharacterList->push_back(anim);
 }
 
-void AnimationManager::removeAnimation(Animation* anim)
+void AnimationManager::removeCharacterAnimation(AnimationCharacter* anim)
 {
 	unsigned int j = 0;
 
-	for(unsigned int i = 0; i < this->animationList->size(); ++i)
+	for(unsigned int i = 0; i < this->animationCharacterList->size(); ++i)
 	{
-		if(this->animationList->at(i)->getId() == anim->getId())
+		if(this->animationCharacterList->at(i)->getId() == anim->getId())
 			j = i;
 	}
 
-	this->animationList->erase(this->animationList->begin()+j);
+	this->animationCharacterList->erase(this->animationCharacterList->begin()+j);
+}
+
+void AnimationManager::addLevelAnimation(AnimationLevel* anim)
+{
+	this->animationLevelList->push_back(anim);
+}
+
+void AnimationManager::removeLevelAnimation(AnimationLevel* anim)
+{
+	unsigned int j = 0;
+
+	for(unsigned int i = 0; i < this->animationLevelList->size(); ++i)
+	{
+		if(this->animationLevelList->at(i)->getId() == anim->getId())
+			j = i;
+	}
+
+	this->animationLevelList->erase(this->animationLevelList->begin()+j);
 }

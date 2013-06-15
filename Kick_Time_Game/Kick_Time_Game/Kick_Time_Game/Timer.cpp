@@ -30,11 +30,33 @@ int Timer::getTime()
 	if (this->reverseTime)
 	{
 		int time = this->timerLimit - (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
-		return time < 0 ? 0 : time ;
+		return time < 0 ? 0 : time;
 	}
 	else
 	{
 		int time = (int)this->timerFrame / NUMBER_FRAME_PER_SECOND;
-		return time > this->timerLimit ? this->timerLimit : time ;
+		return time > this->timerLimit ? this->timerLimit : time;
 	}
+}
+
+bool Timer::isOnLimit()
+{
+	if (this->reverseTime)
+	{
+		return this->getTime() == 0;
+	}
+	else
+	{
+		return this->getTime() == this->timerLimit;
+	}
+}
+
+int Timer::getCurrentFrame()
+{
+	return this->timerFrame;
+}
+
+int Timer::getNumberTotalFrame()
+{
+	return this->timerLimit * NUMBER_FRAME_PER_SECOND;
 }

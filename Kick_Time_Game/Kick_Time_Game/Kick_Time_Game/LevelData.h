@@ -26,14 +26,14 @@ public:
 	string getLevelName() const;
 	int getLevelID() const;
 	int getPosYCharacter() const;
-	vector<LevelAnimationData> getLevelAnimationData() const;
+	const vector<LevelAnimationData> getLevelAnimationData() const;
 };
 
 #define NUMBER_LEVELDATA 2
 
 extern const LevelData levelDataArray[NUMBER_LEVELDATA];
 
-extern const map<int,vector<LevelAnimationData>> levelAnimData;
+extern const map<int, vector<LevelAnimationData>> levelAnimDataArray;
 
 #define LEVEL_0 0
 #define LEVEL_1 1

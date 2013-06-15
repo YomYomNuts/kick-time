@@ -16,3 +16,7 @@
 *.log
 *.suo
 *.tlog
+
+*.opensdf
+
+*.exe

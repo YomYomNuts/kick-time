@@ -12,7 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationCharacter.cpp" />
     <ClCompile Include="AnimationData.cpp" />
+    <ClCompile Include="AnimationLevel.cpp" />
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="BattleMode.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -44,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationCharacter.h" />
     <ClInclude Include="AnimationData.h" />
+    <ClInclude Include="AnimationLevel.h" />
     <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="BattleMode.h" />
     <ClInclude Include="Character.h" />
@@ -66,6 +70,7 @@
     <ClInclude Include="LevelAnimationData.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Level_Defines.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />
@@ -81,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Ressources\Characters\MK\Scorpion\Scorpion.png" />
+    <Image Include="..\Ressources\Levels\MK\The_Armory.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D97CC8D9-0639-41DF-B742-EA6BE8CBFF04}</ProjectGuid>

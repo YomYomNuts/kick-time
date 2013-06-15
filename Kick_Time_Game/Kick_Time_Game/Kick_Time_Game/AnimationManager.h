@@ -1,7 +1,8 @@
 #ifndef _ANIMATIONMANAGER_H
 #define _ANIMATIONMANAGER_H
 
-#include "Animation.h"
+#include "AnimationCharacter.h"
+#include "AnimationLevel.h"
 
 #include <vector>
 
@@ -10,15 +11,17 @@ using namespace std;
 class AnimationManager
 {
 private:
-	vector<Animation*> * animationList;
-
+	vector<AnimationCharacter*> * animationCharacterList;
+	vector<AnimationLevel*> * animationLevelList;
 public:
 	AnimationManager(void);
 	~AnimationManager(void);
 	void initializeAnimationManager();
 	void updateAnimationManager();
-	void addAnimation(Animation * anim);
-	void removeAnimation(Animation * anim);
+	void addCharacterAnimation(AnimationCharacter * anim);
+	void removeCharacterAnimation(AnimationCharacter * anim);
+	void addLevelAnimation(AnimationLevel * anim);
+	void removeLevelAnimation(AnimationLevel * anim);
 };
 
 #endif

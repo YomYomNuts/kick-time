@@ -1,7 +1,8 @@
 #ifndef __ANIMATION__
 #define __ANIMATION__
 
-#include "AnimationData.h"
+
+#include "LevelData.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -10,29 +11,29 @@ enum AnimationKind{CHARACTER, LEVEL};
 class Animation
 {
 private:
-	const AnimationData * animationData;
-	int posX;
+	const LevelAnimationData * levelAnimData;
 	int currentFrame;
 	int frameCounter;
 	bool animationDone;
-	static int animationNumber;
 	int id;
 
 public:
 	Animation(void);
-	Animation(int indexAnimationData, AnimationKind kind);
+	Animation(int indexAnimationData);
 	~Animation(void);
 	void updateAnimation();
-	void renderAnimation(sf::Sprite * sprite);
-	int getPosX();
+	void renderAnimationCharacter(sf::Sprite * sprite, AnimationKind kind);
 	int getCurrentFrame();
 	int getId();
-	void setPosX(int x);
+	int getFrameCounter();
+	void setId(int id);
 	void setCurrentFrame(int frame);
+	void setFrameCounter(int frame);
 	void resetAnimation();
 	void changeAnimation(int indexAnimationData);
-	const AnimationData* getAnimationData();
+	const LevelAnimationData * getLevelAnimationData();
 	bool getAnimationDoneState();
+	void setAnimationDoneState(bool state);
 };
 
 #endif

@@ -18,11 +18,13 @@ public:
 	~CharacterManager(void);
 	void initializeCharacterManager();
 	void updateCharacterManager();
-	void addCharacter();
+	void addCharacter(int indexTypeCharacter);
+	void removeCharacter(int indexCharacter);
 	vector<Character*>* getCharacters();
 	void renderCharacterManager();
 	Character* getClosestCharacter(int withoutThisIndex, Position * position);
 	Character* getFarestCharacter(int withoutThisIndex, Position * position);
+	Character* getCharacterWithMaxHp();
 };
 
 #endif

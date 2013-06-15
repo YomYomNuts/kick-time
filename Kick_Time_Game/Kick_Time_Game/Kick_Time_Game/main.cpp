@@ -5,10 +5,12 @@
 using namespace std;
 
 #include "GameManager.h"
-#include "Animation.h"
+#include "AnimationCharacter.h"
+#include "AnimationLevel.h"
 
 GameManager * GameManager::_singleton = NULL;
-int Animation::animationNumber = 0;
+int AnimationCharacter::animationNumber = 0;
+int AnimationLevel::animationNumber = 0;
 
 int main()
 {

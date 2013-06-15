@@ -1,7 +1,7 @@
 #ifndef _CHARACTER_H
 #define _CHARACTER_H
 
-#include "Animation.h"
+#include "AnimationCharacter.h"
 #include "Collider.h"
 #include "Position.h"
 #include "CharacterData.h"
@@ -48,7 +48,7 @@ class Character
 {
 private:
 	sf::Sprite * spriteCharacter;
-	Animation * animation;
+	AnimationCharacter * animation;
 	Collider * collider;
 	Position * positionCharacter;
 	CharacterDirection toward;
@@ -59,6 +59,8 @@ private:
 	int totalHp;
 	int hp;
 	bool endOfScreenReached;
+	int numberRoundWin;
+	bool completelyDead;
 	void updateStand();
 	void updateMoveRight();
 	void updateMoveLeft();
@@ -83,13 +85,13 @@ private:
 	void updateVictory();
 	void updateCrouched();
 	void checkDirection();
-	void updateKickPunch(int damage);
+	void updateKickPunch(int damage, int speed);
 
 public:
 	Character(void);
 	Character(int indexCharacter, int indexTypeCharacter);
 	~Character(void);
-	Animation* getAnimation();
+	AnimationCharacter* getAnimation();
 	void updateCharacter();
 	void renderCharacter();
 	void setPosCharacterX(double posX);
@@ -109,6 +111,10 @@ public:
 	bool getEndOfScreenReachedState();
 	CharacterState getCharacterState();
 	const CharacterData* getCharacterData();
+	void setNumberRoundWin(int numberRoundWin);
+	int getNumberRoundWin();
+	void restoreHp(int hp);
+	void resetInformations();
 };
 
 #endif
