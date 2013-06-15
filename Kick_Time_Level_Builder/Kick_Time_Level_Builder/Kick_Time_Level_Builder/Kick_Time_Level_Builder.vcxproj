@@ -65,11 +65,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationLine.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="LevelLine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationLine.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="LevelLine.h" />
   </ItemGroup>

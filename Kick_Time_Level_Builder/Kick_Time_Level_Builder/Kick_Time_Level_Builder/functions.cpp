@@ -86,3 +86,48 @@ bool isNumeric(const char* pszInput, int nNumberBase)
 	// was all the input successfully consumed/converted?
 	return (iss.rdbuf()->in_avail() == 0);
 }
+
+// Put in a list all the .txt files found in the directory sent. It will also check all the sub-directories
+void getFilesLocation(char* folder, vector<char*> &filesNameList, string typeFile) {
+	
+	char* name = new char [];
+	DIR *dir;
+	struct dirent *entry;
+	char* path = new char []; 
+	struct stat info;
+
+	if ((dir = opendir(folder)) == NULL)
+	{
+		perror("opendir() error");
+	}
+	else
+	{
+		while ((entry = readdir(dir)) != NULL)
+		{
+			vector<string> list = split(entry->d_name, typeFile);
+			// If the current file is a .txt file, we add it to the list
+			if(list.size() > 1 && list.at(1) == "")
+			{
+				name = new char [strlen(folder)+1];
+				strcpy_s(name, strlen(folder)+1, folder);
+				strcat_s(name,strlen(name)+2, "/");
+				strcat_s(name, strlen(name)+strlen(entry->d_name)+1, entry->d_name);
+				filesNameList.push_back(name);
+			}
+			
+			if (entry->d_name[0] != '.')
+			{
+				path = new char[strlen(folder)+1];
+
+				strcpy_s(path,strlen(folder)+1, folder);
+				strcat_s(path,strlen(path)+2, "/");
+				strcat_s(path,strlen(path)+strlen(entry->d_name) + 1, entry->d_name);
+				stat(path, &info);
+				// If the current file is a directory, we go in and check the content
+				if (S_ISDIR(info.st_mode))
+					getFilesLocation(path, filesNameList, typeFile);
+			}
+		}
+		closedir(dir);
+	}
+}

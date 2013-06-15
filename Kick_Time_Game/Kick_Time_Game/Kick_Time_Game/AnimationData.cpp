@@ -99,6 +99,22 @@ AnimationData::AnimationData(string fileName, int animationName, int posX, int p
 	this->colliderKickPunchID = colliderKickPunchID;
 }
 
+AnimationData::AnimationData(string fileName, int animationName, int posX, int posY, int spriteWidth, int spriteHeight, int framerate, int spriteNb, bool animationLoop)
+{
+	this->fileName = fileName;
+	this->animationName = animationName;
+	this->posX = posX;
+	this->posY = posY;
+	this->spriteWidth = spriteWidth;
+	this->spriteHeight = spriteHeight;
+	this->framerate = framerate;
+	this->spriteNb = spriteNb;
+	this->animationLoop = animationLoop;
+	this->shiftPositionXCharacter = 0;
+	this->colliderID = COLLIDER_NULL;
+	this->colliderKickPunchID = COLLIDER_NULL;
+}
+
 AnimationData::~AnimationData(void)
 {
 }
