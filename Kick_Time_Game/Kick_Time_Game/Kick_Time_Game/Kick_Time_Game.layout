@@ -1,24 +1,188 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="OptionMenu.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AnimationData.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3363" topLine="24" />
+			<Cursor1 position="122" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Level.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7272" topLine="222" />
+		</Cursor>
+	</File>
+	<File name="CharacterData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1807" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="LevelAnimationData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="575" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="AnimationData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2985" topLine="59" />
+		</Cursor>
+	</File>
+	<File name="Level.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="242" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="CharacterManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="176" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="LevelData.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="358" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="SoundData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="567" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="LevelData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="811" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="SoundManager.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3700" topLine="49" />
 		</Cursor>
 		<Folding>
-			<Collapse line="37" />
-			<Collapse line="80" />
+			<Collapse line="15" />
+			<Collapse line="22" />
+			<Collapse line="63" />
+			<Collapse line="71" />
+			<Collapse line="87" />
 			<Collapse line="110" />
 		</Folding>
 	</File>
-	<File name="HudManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="CharacterSelectionMenu.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="407" topLine="45" />
+			<Cursor1 position="2002" topLine="27" />
+		</Cursor>
+		<Folding>
+			<Collapse line="54" />
+		</Folding>
+	</File>
+	<File name="SoundManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="421" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="CharacterSelectionMenu.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="225" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="SoundManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="177" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="CharacterSelectionMenu_Defines.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="371" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MainMenu.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1133" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="TextureManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1654" topLine="57" />
+		</Cursor>
+	</File>
+	<File name="Collider.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2301" topLine="90" />
+		</Cursor>
+	</File>
+	<File name="MainMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="257" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MainMenu_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="129" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Menu.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="199" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ColliderData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2830" topLine="47" />
+		</Cursor>
+	</File>
+	<File name="Menu.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="393" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="50" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="279" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MenuManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="156" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="GameManager.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1207" topLine="37" />
+		</Cursor>
+	</File>
+	<File name="AnimationLevel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="846" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="OptionMenu.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1417" topLine="6" />
+		</Cursor>
+		<Folding>
+			<Collapse line="41" />
+		</Folding>
+	</File>
+	<File name="GameManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="197" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="OptionMenu.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="402" topLine="0" />
+			<Cursor1 position="175" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="HudManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6732" topLine="137" />
+		</Cursor>
+	</File>
+	<File name="OptionMenu_Defines.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="102" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="HudManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="407" topLine="45" />
 		</Cursor>
 	</File>
 	<File name="Button.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -29,11 +193,6 @@
 	<File name="InputCharacter.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="781" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="OptionMenu_Defines.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="102" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Button.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -58,7 +217,7 @@
 	</File>
 	<File name="Character.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="30825" topLine="855" />
+			<Cursor1 position="4937" topLine="123" />
 		</Cursor>
 	</File>
 	<File name="InputManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -71,173 +230,14 @@
 			<Cursor1 position="1363" topLine="43" />
 		</Cursor>
 	</File>
+	<File name="AnimationCharacter.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="629" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="InputManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="66" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="AnimationCharacter.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="598" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="Level.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7272" topLine="222" />
-		</Cursor>
-	</File>
-	<File name="CharacterData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1807" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="AnimationData.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="122" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Level.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="242" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="CharacterManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="176" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="AnimationData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2983" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="CharacterSelectionMenu.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3934" topLine="57" />
-		</Cursor>
-		<Folding>
-			<Collapse line="52" />
-		</Folding>
-	</File>
-	<File name="LevelAnimationData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="603" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="CharacterSelectionMenu.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="225" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="LevelData.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="358" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="SoundData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="567" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="CharacterSelectionMenu_Defines.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="371" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="LevelData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="746" topLine="26" />
-		</Cursor>
-	</File>
-	<File name="SoundManager.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3700" topLine="49" />
-		</Cursor>
-		<Folding>
-			<Collapse line="15" />
-			<Collapse line="22" />
-			<Collapse line="63" />
-			<Collapse line="71" />
-			<Collapse line="87" />
-			<Collapse line="110" />
-		</Folding>
-	</File>
-	<File name="SoundManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="421" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="Collider.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2301" topLine="90" />
-		</Cursor>
-	</File>
-	<File name="SoundManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="177" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="MainMenu.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1331" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="TextureManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1654" topLine="57" />
-		</Cursor>
-	</File>
-	<File name="ColliderData.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2830" topLine="54" />
-		</Cursor>
-	</File>
-	<File name="MainMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="257" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="MainMenu_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="129" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Menu.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2306" topLine="28" />
-		</Cursor>
-		<Folding>
-			<Collapse line="38" />
-		</Folding>
-	</File>
-	<File name="Menu.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="618" topLine="14" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="50" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="279" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="GameManager.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1207" topLine="37" />
-		</Cursor>
-	</File>
-	<File name="AnimationLevel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="390" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="GameManager_Defines.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="197" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="HudManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2082" topLine="45" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

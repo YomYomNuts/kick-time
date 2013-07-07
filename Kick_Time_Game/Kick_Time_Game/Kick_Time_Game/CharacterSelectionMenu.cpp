@@ -46,6 +46,8 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 
 CharacterSelectionMenu::~CharacterSelectionMenu()
 {
+	delete this->spriteMenu;
+	delete this->listButtons;
     delete this->listAvatars;
 }
 
@@ -89,7 +91,7 @@ void CharacterSelectionMenu::actionValidateCharacter(Button * button)
     //Inactive all the buttons of this player
 	Button * buttonTemp;
 	int indexButton = 0;
-    for (int i = 0; i < this->listButtons->size(); ++i)
+    for (unsigned int i = 0; i < this->listButtons->size(); ++i)
     {
         buttonTemp = this->listButtons->at(i);
         if (buttonTemp->getIndexPlayer() == button->getIndexPlayer())

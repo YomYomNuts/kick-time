@@ -20,7 +20,7 @@ protected:
 	Button * getNextButton(Button * buttonCurrent, ButtonDirection direction, bool sameOtherPosition);
 public:
 	Menu(void);
-	~Menu(void);
+	virtual ~Menu(void);
 	virtual void updateMenu();
 	virtual void renderMenu();
 	void classicMove(Button * button, ButtonDirection direction);

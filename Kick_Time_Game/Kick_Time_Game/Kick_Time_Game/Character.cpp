@@ -153,6 +153,8 @@ void Character::updateCharacter()
 		case STATE_CHARACTER_CROUCHED:
 			this->updateCrouched();
 			break;
+        default:
+            break;
 		}
 	}
 }
@@ -252,8 +254,6 @@ void Character::updateMoveRight()
 
 				if(farest != NULL)
 				{
-					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
-
 					// IF the enemy is on th edge of the screen
 					if(farest->getPosCharacterX() <= 0)
 					{
@@ -349,8 +349,6 @@ void Character::updateMoveLeft()
 
 		//Get the farest character
 		Character* farest = GameManager::getInstance()->getCharacterManager()->getFarestCharacter(this->indexCharacter, this->positionCharacter);
-
-		int spriteWidth = abs(this->getAnimation()->getAnimationData()->getSpriteWidth());
 
 		this->moveLeft(1.5);
 
@@ -538,8 +536,6 @@ void Character::updateForwardJump()
 
 				if(farest != NULL)
 				{
-					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
-
 					// IF the enemy is on the edge of the screen
 					if(farest->getPosCharacterX() <= 0)
 					{
@@ -732,8 +728,6 @@ void Character::updateBackwardJump()
 
 				if(farest != NULL)
 				{
-					int enemySpriteWidth = abs(farest->getAnimation()->getAnimationData()->getSpriteWidth());
-
 					// IF the enemy is on the edge of the screen
 					if(farest->getPosCharacterX() <= 0)
 					{

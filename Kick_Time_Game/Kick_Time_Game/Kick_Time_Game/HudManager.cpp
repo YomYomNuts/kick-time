@@ -163,6 +163,8 @@ void HudManager::renderHUDLevel()
 				gameManager->getRenderManager()->getWindow()->draw(*this->spriteHUD);
 			}
 			break;
+        default:
+            break;
 		}
 	}
 }

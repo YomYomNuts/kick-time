@@ -32,6 +32,10 @@ OptionMenu::OptionMenu(void) : Menu()
 
 OptionMenu::~OptionMenu(void)
 {
+	delete this->spriteMenu;
+	delete this->listButtons;
+	delete this->renderVolumeSound;
+	delete this->renderVolumeMusic;
 }
 
 void OptionMenu::renderMenu()
