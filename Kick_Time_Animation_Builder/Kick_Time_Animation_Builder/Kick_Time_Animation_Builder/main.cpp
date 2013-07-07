@@ -122,7 +122,7 @@ int main(int argc,const char * argv[])
 	/* Get the location and the name of the animation's files */
 	/**********************************************************/
 
-	getFilesLocation(animLocation, animFilesList, "anim.txt");
+ 	getFilesLocation(animLocation, animFilesList, "anim.txt");
 	
 	// Check if at least one file has been found
 	if(animFilesList.size() == 0){
