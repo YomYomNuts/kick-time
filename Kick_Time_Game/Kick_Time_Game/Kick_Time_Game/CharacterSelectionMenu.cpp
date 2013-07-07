@@ -101,7 +101,11 @@ void CharacterSelectionMenu::renderMenu()
             GameManager::getInstance()->getRenderManager()->getWindow()->draw(*rectangle);
 
             // Number of player
+#ifndef VISUAL
             snprintf(buffer, 3, "%d", button->getIndexPlayer() + 1);
+#else
+			sprintf_s(buffer, "%d", button->getIndexPlayer() + 1);
+#endif
             indexColumn = button->getIndexPlayer() % NUMBER_INDEX_PLAYER_BY_LINE;
             indexLine = (int)(button->getIndexPlayer() / NUMBER_INDEX_PLAYER_BY_LINE);
             text = new sf::Text(buffer, *(GameManager::getInstance()->getFontManager()->getFont(INDEX_PLAYER_FONT)));
