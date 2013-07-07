@@ -4,13 +4,15 @@
 
 const CharacterData characterDataArray[NUMBER_CHARACTERDATA] =
 {
-	CharacterData(SCORPION_STAND_RIGHT, "SCORPION", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION),
+	CharacterData(SCORPION_STAND_RIGHT, "SCORPION", "../Ressources/Characters/MK/Scorpion/scorpionAvatar.png", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION),
+	CharacterData(SCORPION_STAND_RIGHT, "TEST", "../Ressources/Characters/MK/Sub-ZERO/subzeroAvatar.png", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION),
 };
 
 CharacterData::CharacterData()
 {
 	this->animationID = 0;
 	this->name = "";
+	this->pathAvatar = "";
 	this->totalHP = 0;
 	this->damageKick = 0;
 	this->damageKickCrouch = 0;
@@ -32,10 +34,11 @@ CharacterData::CharacterData()
 	this->soundVictory = 0;
 }
 
-CharacterData::CharacterData(int animationID, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory)
+CharacterData::CharacterData(int animationID, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory)
 {
 	this->animationID = animationID;
 	this->name = name;
+	this->pathAvatar = pathAvatar;
 	this->totalHP = totalHP;
 	this->damageKick = damageKick;
 	this->damageKickCrouch = damageKickCrouch;
@@ -69,6 +72,11 @@ int CharacterData::getAnimationID() const
 string CharacterData::getName() const
 {
 	return this->name;
+}
+
+string CharacterData::getPathAvatar() const
+{
+	return this->pathAvatar;
 }
 
 int CharacterData::getTotalHP() const

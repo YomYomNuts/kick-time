@@ -12,8 +12,8 @@ using namespace std;
 
 // Direction character
 enum CharacterDirection {
-	RIGHT,
-	LEFT
+	CHARACTER_DIRECTION_RIGHT,
+	CHARACTER_DIRECTION_LEFT
 };
 
 // State character

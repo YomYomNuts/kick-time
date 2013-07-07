@@ -4,6 +4,7 @@ CharacterLine::CharacterLine()
 {
 	this->animationName = "";
 	this->name = "";
+	this->pathAvatar = "";
 	this->totalHP = 0;
 	this->damageKick = 0;
 	this->damageKickCrouch = 0;
@@ -25,10 +26,11 @@ CharacterLine::CharacterLine()
 	this->soundVictory = "";
 }
 
-CharacterLine::CharacterLine(string animationName, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, string soundKick, string soundPunch, string soundJump, string soundHit, string soundGuard, string soundVictory)
+CharacterLine::CharacterLine(string animationName, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, string soundKick, string soundPunch, string soundJump, string soundHit, string soundGuard, string soundVictory)
 {
 	this->animationName = animationName;
 	this->name = name;
+	this->pathAvatar = pathAvatar;
 	this->totalHP = totalHP;
 	this->damageKick = damageKick;
 	this->damageKickCrouch = damageKickCrouch;
@@ -62,6 +64,11 @@ string CharacterLine::getAnimationName()
 string CharacterLine::getName()
 {
 	return this->name;
+}
+
+string CharacterLine::getPathAvatar()
+{
+	return this->pathAvatar;
 }
 
 int CharacterLine::getTotalHP()

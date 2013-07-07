@@ -5,6 +5,8 @@
 #include "Character_Defines.h"
 #include "CharacterData.h"
 
+#include <climits>
+#include <cmath>
 
 CharacterManager::CharacterManager(void)
 {
@@ -57,7 +59,7 @@ Character* CharacterManager::getClosestCharacter(int withoutThisIndex, Position 
 	Character * closest = NULL;
 	for(unsigned int i = 0; i < this->characterList->size(); ++i)
 	{
-		tempDistance = abs(position->getX() - this->characterList->at(i)->getPosCharacterX()) + abs(position->getY() - this->characterList->at(i)->getPosCharacterY());
+		tempDistance = fabs(position->getX() - this->characterList->at(i)->getPosCharacterX()) + fabs(position->getY() - this->characterList->at(i)->getPosCharacterY());
 		if (this->characterList->at(i)->getIndexCharacter() != withoutThisIndex && tempDistance < distance)
 		{
 			distance = tempDistance;

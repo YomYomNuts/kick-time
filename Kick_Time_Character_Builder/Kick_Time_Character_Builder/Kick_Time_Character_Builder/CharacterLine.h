@@ -10,6 +10,7 @@ class CharacterLine
 private:
 	string animationName;
 	string name;
+	string pathAvatar;
 	int totalHP;
 	int damageKick;
 	int damageKickCrouch;
@@ -31,10 +32,11 @@ private:
 	string soundVictory;
 public:
 	CharacterLine();
-	CharacterLine(string animationName, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, string soundKick, string soundPunch, string soundJump, string soundHit, string soundGuard, string soundVictory);
+	CharacterLine(string animationName, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, string soundKick, string soundPunch, string soundJump, string soundHit, string soundGuard, string soundVictory);
 	~CharacterLine(void);
 	string getAnimationName();
 	string getName();
+	string getPathAvatar();
 	int getTotalHP();
 	int getDamageKick();
 	int getDamageKickCrouch();

@@ -15,7 +15,7 @@ private:
 	Position * originalSpritePosition;
 public:
 	AnimationLevel(void);
-	AnimationLevel::AnimationLevel(int levelNumber,int indexAnimation);
+	AnimationLevel(int levelNumber,int indexAnimation);
 	~AnimationLevel(void);
 	const LevelAnimationData* getAnimationData();
 	void updateAnimation();

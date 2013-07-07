@@ -17,24 +17,30 @@
     <ClCompile Include="AnimationLevel.cpp" />
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="BattleMode.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterData.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
+    <ClCompile Include="CharacterSelectionMenu.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ColliderData.cpp" />
     <ClCompile Include="FontData.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HudManager.cpp" />
+    <ClCompile Include="InputCharacter.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelAnimationData.cpp" />
     <ClCompile Include="LevelData.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Mode.cpp" />
     <ClCompile Include="ModeManager.cpp" />
+    <ClCompile Include="OptionMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="RenderManager.cpp" />
@@ -51,9 +57,13 @@
     <ClInclude Include="AnimationLevel.h" />
     <ClInclude Include="AnimationManager.h" />
     <ClInclude Include="BattleMode.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Button_Defines.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterData.h" />
     <ClInclude Include="CharacterManager.h" />
+    <ClInclude Include="CharacterSelectionMenu.h" />
+    <ClInclude Include="CharacterSelectionMenu_Defines.h" />
     <ClInclude Include="Character_Defines.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderData.h" />
@@ -64,6 +74,7 @@
     <ClInclude Include="GameManager_Defines.h" />
     <ClInclude Include="HudManager.h" />
     <ClInclude Include="HudManager_Defines.h" />
+    <ClInclude Include="InputCharacter.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputManager_Defines.h" />
     <ClInclude Include="Level.h" />
@@ -71,15 +82,21 @@
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Level_Defines.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MainMenu_Defines.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />
+    <ClInclude Include="OptionMenu.h" />
+    <ClInclude Include="OptionMenu_Defines.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SoundData.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SoundManager_Defines.h" />
     <ClInclude Include="Templates.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Timer.h" />
@@ -119,9 +136,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>objVS\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IntDir>objVS\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

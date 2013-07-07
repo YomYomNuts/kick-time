@@ -6,7 +6,7 @@ const LevelData levelDataArray[NUMBER_LEVELDATA] =
 	LevelData("../Ressources/Levels/MK/The_Armory.png", "THE_ARMORY", LEVEL_1, 290),
 };
 
-const map<int, vector<LevelAnimationData>> levelAnimDataArray = create_map<int, vector<LevelAnimationData>>
+const map<int, vector<LevelAnimationData> > levelAnimDataArray = create_map<int, vector<LevelAnimationData> >
 	(LEVEL_1, create_vector<LevelAnimationData>
 		(LevelAnimationData("../Ressources/Levels/MK/The_Armory.png", 0, 0, 0, 11, 87, 3, 13, true, 678, 222))
 		(LevelAnimationData("../Ressources/Levels/MK/The_Armory.png", 1, 170, 0, 11, 87, 3, 13, true, 112, 222))

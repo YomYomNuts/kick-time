@@ -28,6 +28,7 @@ void RenderManager::updateRenderManager()
 
 
     this->window->clear();
+	GameManager::getInstance()->getMenuManager()->renderMenuManager();
 	GameManager::getInstance()->getLevelManager()->renderLevelManager();
 	GameManager::getInstance()->getCharacterManager()->renderCharacterManager();
 	GameManager::getInstance()->getHudManager()->renderHudManager();

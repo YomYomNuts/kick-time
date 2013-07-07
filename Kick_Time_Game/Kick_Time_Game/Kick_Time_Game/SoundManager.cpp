@@ -8,6 +8,8 @@ SoundManager::SoundManager(void)
 	this->soundBuffer = new std::vector<sf::SoundBuffer>();
     this->listSounds = new std::vector<sf::Sound*>();
 	this->listMusics = new std::vector<sf::Music*>();
+	this->volumeSound = 100;
+	this->volumeMusic = 100;
 }
 
 SoundManager::~SoundManager(void)
@@ -79,6 +81,7 @@ void SoundManager::playSound(int indexSound)
 	sound->setBuffer(this->soundBuffer->at(indexSound));
 	sound->setLoop(soundDataArray[indexSound].getIsLoop());
 	sound->play();
+	sound->setVolume(this->volumeSound);
 }
 
 void SoundManager::playMusic(int indexMusic)
@@ -96,6 +99,7 @@ void SoundManager::playMusic(int indexMusic)
 	{
 		music->setLoop(soundData->getIsLoop());
 		music->play();
+        music->setVolume(this->volumeMusic);
 	}
 	else
 	{
@@ -118,5 +122,41 @@ void SoundManager::stopAll()
 		music->stop();
 		this->listMusics->erase(this->listMusics->begin() + i);
 		--i;
+	}
+}
+
+float SoundManager::getVolumeSound()
+{
+    return this->volumeSound;
+}
+
+void SoundManager::setVolumeSound(float volumeSound)
+{
+    this->volumeSound = volumeSound;
+    if (this->volumeSound > MAX_VOLUME)
+        this->volumeSound = MAX_VOLUME;
+    else if (this->volumeSound < 0)
+        this->volumeSound = 0;
+	for (unsigned int i = 0; i < this->listSounds->size(); ++i)
+	{
+		this->listSounds->at(i)->setVolume(this->volumeSound);
+	}
+}
+
+float SoundManager::getVolumeMusic()
+{
+    return this->volumeMusic;
+}
+
+void SoundManager::setVolumeMusic(float volumeMusic)
+{
+    this->volumeMusic = volumeMusic;
+    if (this->volumeMusic > MAX_VOLUME)
+        this->volumeMusic = MAX_VOLUME;
+    else if (this->volumeMusic < 0)
+        this->volumeMusic = 0;
+	for (unsigned int i = 0; i < this->listMusics->size(); ++i)
+	{
+		this->listMusics->at(i)->setVolume(this->volumeMusic);
 	}
 }

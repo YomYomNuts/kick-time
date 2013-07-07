@@ -1,9 +1,11 @@
 #include "TextureManager.h"
 #include "AnimationData.h"
 #include "LevelData.h"
+#include "CharacterData.h"
 #include "HudManager_Defines.h"
 
 #include <iostream>
+#include <string.h>
 
 TextureManager::TextureManager(void)
 {
@@ -21,7 +23,7 @@ void TextureManager::initializeTextureManager()
 	int i;
 	string currentFile = "";
 	sf::Texture currentTexture;
-	
+
 	// Textures Animations
 	for(i = 0; i < NUMBER_ANIMATIONDATA; ++i)
 	{
@@ -46,6 +48,24 @@ void TextureManager::initializeTextureManager()
 		if(strcmp(currentFile.c_str(),levelDataArray[i].getFileName().c_str()) != 0)
 		{
 			currentFile = levelDataArray[i].getFileName();
+			if (!currentTexture.loadFromFile(currentFile))
+			{
+				cout << "Sprite didn't find!" << endl << currentFile << endl;
+			}
+			else
+			{
+				this->textureList->insert(pair<string, sf::Texture>(currentFile, currentTexture));
+			}
+		}
+	}
+
+	// Textures Character
+	currentFile = "";
+	for(i = 0; i < NUMBER_CHARACTERDATA; ++i)
+	{
+		if(strcmp(currentFile.c_str(),characterDataArray[i].getPathAvatar().c_str()) != 0)
+		{
+			currentFile = characterDataArray[i].getPathAvatar();
 			if (!currentTexture.loadFromFile(currentFile))
 			{
 				cout << "Sprite didn't find!" << endl << currentFile << endl;

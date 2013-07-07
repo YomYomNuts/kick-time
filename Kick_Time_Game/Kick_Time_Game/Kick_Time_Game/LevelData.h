@@ -33,7 +33,7 @@ public:
 
 extern const LevelData levelDataArray[NUMBER_LEVELDATA];
 
-extern const map<int, vector<LevelAnimationData>> levelAnimDataArray;
+extern const map<int, vector<LevelAnimationData> > levelAnimDataArray;
 
 #define LEVEL_0 0
 #define LEVEL_1 1

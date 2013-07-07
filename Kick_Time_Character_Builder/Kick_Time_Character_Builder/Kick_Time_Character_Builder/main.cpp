@@ -33,6 +33,7 @@ int main(int argc,const char * argv[])
 	vector<string> tempInformations;
 	string animationName;
 	string name;
+	string pathAvatar;
 	int totalHP;
 	int damageKick;
 	int damageKickCrouch;
@@ -174,6 +175,10 @@ int main(int argc,const char * argv[])
 						else if (tempInformations[0] == "NAME")
 						{
 							name = tempInformations[1];
+						}
+						else if (tempInformations[0] == "PATHAVATAR")
+						{
+							pathAvatar = tempInformations[1];
 						}
 						else if (tempInformations[0] == "TOTALHP")
 						{
@@ -364,7 +369,7 @@ int main(int argc,const char * argv[])
 					}
 				}
 			}
-			characterArray.push_back(*new CharacterLine(animationName, name, totalHP, damageKick, damageKickCrouch, damageKickJumped, damagePunch, damagePunchCrouch, damagePunchJumped, speedKick, speedKickCrouch, speedKickJumped, speedPunch, speedPunchCrouch, speedPunchJumped, soundKick, soundPunch, soundJump, soundHit, soundGuard, soundVictory));
+			characterArray.push_back(*new CharacterLine(animationName, name, pathAvatar, totalHP, damageKick, damageKickCrouch, damageKickJumped, damagePunch, damagePunchCrouch, damagePunchJumped, speedKick, speedKickCrouch, speedKickJumped, speedPunch, speedPunchCrouch, speedPunchJumped, soundKick, soundPunch, soundJump, soundHit, soundGuard, soundVictory));
 			characterFile.close();
 		}
 		else
@@ -402,6 +407,7 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "private:\n";
 		headerContent = headerContent + "\tint animationID;\n";
 		headerContent = headerContent + "\tstring name;\n";
+		headerContent = headerContent + "\tstring pathAvatar;\n";
 		headerContent = headerContent + "\tint totalHP;\n";
 		headerContent = headerContent + "\tint damageKick;\n";
 		headerContent = headerContent + "\tint damageKickCrouch;\n";
@@ -424,10 +430,11 @@ int main(int argc,const char * argv[])
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "public:\n";
 		headerContent = headerContent + "\tCharacterData();\n";
-		headerContent = headerContent + "\CharacterData(int animationID, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory);\n";
+		headerContent = headerContent + "\tCharacterData(int animationID, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory);\n";
 		headerContent = headerContent + "\t~CharacterData(void);\n";
 		headerContent = headerContent + "\tint getAnimationID() const;\n";
 		headerContent = headerContent + "\tstring getName() const;\n";
+		headerContent = headerContent + "\tstring getPathAvatar() const;\n";
 		headerContent = headerContent + "\tint getTotalHP() const;\n";
 		headerContent = headerContent + "\tint getDamageKick() const;\n";
 		headerContent = headerContent + "\tint getDamageKickCrouch() const;\n";
@@ -511,6 +518,9 @@ int main(int argc,const char * argv[])
 			// Put : name
 			cppContent = cppContent + "\"" + it->getName() + "\", ";
 
+			// Put : pathAvatar
+			cppContent = cppContent + "\"" + it->getPathAvatar() + "\", ";
+
 			// Put : totalHP
 			sprintf_s(buffer, "%d", it->getTotalHP());
 			cppContent = cppContent + buffer + ", ";
@@ -590,6 +600,7 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\tthis->animationID = 0;\n";
 		cppContent = cppContent + "\tthis->name = \"\";\n";
+		cppContent = cppContent + "\tthis->pathAvatar = \"\";\n";
 		cppContent = cppContent + "\tthis->totalHP = 0;\n";
 		cppContent = cppContent + "\tthis->damageKick = 0;\n";
 		cppContent = cppContent + "\tthis->damageKickCrouch = 0;\n";
@@ -611,10 +622,11 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "\tthis->soundVictory = 0;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
-		cppContent = cppContent + "CharacterData::CharacterData(int animationID, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory)\n";
+		cppContent = cppContent + "CharacterData::CharacterData(int animationID, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory)\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\tthis->animationID = animationID;\n";
 		cppContent = cppContent + "\tthis->name = name;\n";
+		cppContent = cppContent + "\tthis->pathAvatar = pathAvatar;\n";
 		cppContent = cppContent + "\tthis->totalHP = totalHP;\n";
 		cppContent = cppContent + "\tthis->damageKick = damageKick;\n";
 		cppContent = cppContent + "\tthis->damageKickCrouch = damageKickCrouch;\n";
@@ -648,6 +660,11 @@ int main(int argc,const char * argv[])
 		cppContent = cppContent + "string CharacterData::getName() const\n";
 		cppContent = cppContent + "{\n";
 		cppContent = cppContent + "\treturn this->name;\n";
+		cppContent = cppContent + "}\n";
+		cppContent = cppContent + "\n";
+		cppContent = cppContent + "string CharacterData::getPathAvatar() const\n";
+		cppContent = cppContent + "{\n";
+		cppContent = cppContent + "\treturn this->pathAvatar;\n";
 		cppContent = cppContent + "}\n";
 		cppContent = cppContent + "\n";
 		cppContent = cppContent + "int CharacterData::getTotalHP() const\n";

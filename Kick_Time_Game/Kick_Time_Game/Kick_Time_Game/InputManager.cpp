@@ -1,69 +1,52 @@
 #include "InputManager.h"
+#include "GameManager_Defines.h"
+
 
 InputManager::InputManager(void)
 {
+    this->listInputCharacter = new vector<InputCharacter*>();
 }
 
 InputManager::~InputManager(void)
 {
+    delete this->listInputCharacter;
 }
 
 void InputManager::initializeInputManager()
 {
+    for (int i = 0; i < NUMBER_FIGHTERS; ++i)
+        this->listInputCharacter->push_back(new InputCharacter());
+
 	//Input Player 1
-	this->listInputs[0][POSITION_INPUT_MOVE_UP] = sf::Keyboard::Z;
-	this->listInputs[0][POSITION_INPUT_MOVE_DOWN] = sf::Keyboard::S;
-	this->listInputs[0][POSITION_INPUT_MOVE_LEFT] = sf::Keyboard::Q;
-	this->listInputs[0][POSITION_INPUT_MOVE_RIGHT] = sf::Keyboard::D;
-	this->listInputs[0][POSITION_INPUT_ACTION_1] = sf::Keyboard::I;
-	this->listInputs[0][POSITION_INPUT_ACTION_2] = sf::Keyboard::J;
-	this->listInputs[0][POSITION_INPUT_ACTION_3] = sf::Keyboard::K;
-	this->listInputs[0][POSITION_INPUT_ACTION_4] = sf::Keyboard::L;
-	
+	vector<sf::Keyboard::Key> * listInputs = new vector<sf::Keyboard::Key>();
+	listInputs->push_back(sf::Keyboard::Z);
+	listInputs->push_back(sf::Keyboard::S);
+	listInputs->push_back(sf::Keyboard::Q);
+	listInputs->push_back(sf::Keyboard::D);
+	listInputs->push_back(sf::Keyboard::I);
+	listInputs->push_back(sf::Keyboard::J);
+	listInputs->push_back(sf::Keyboard::K);
+	listInputs->push_back(sf::Keyboard::L);
+	this->listInputCharacter->at(0)->setListInputs(listInputs);
+
 	//Input Player 2
-	this->listInputs[1][POSITION_INPUT_MOVE_UP] = sf::Keyboard::Up;
-	this->listInputs[1][POSITION_INPUT_MOVE_DOWN] = sf::Keyboard::Down;
-	this->listInputs[1][POSITION_INPUT_MOVE_LEFT] = sf::Keyboard::Left;
-	this->listInputs[1][POSITION_INPUT_MOVE_RIGHT] = sf::Keyboard::Right;
-	this->listInputs[1][POSITION_INPUT_ACTION_1] = sf::Keyboard::Num5;
-	this->listInputs[1][POSITION_INPUT_ACTION_2] = sf::Keyboard::Num1;
-	this->listInputs[1][POSITION_INPUT_ACTION_3] = sf::Keyboard::Num2;
-	this->listInputs[1][POSITION_INPUT_ACTION_4] = sf::Keyboard::Num3;
+	vector<sf::Keyboard::Key> * listInputs2 = new vector<sf::Keyboard::Key>();
+	listInputs2->push_back(sf::Keyboard::Up);
+	listInputs2->push_back(sf::Keyboard::Down);
+	listInputs2->push_back(sf::Keyboard::Left);
+	listInputs2->push_back(sf::Keyboard::Right);
+	listInputs2->push_back(sf::Keyboard::Num5);
+	listInputs2->push_back(sf::Keyboard::Num1);
+	listInputs2->push_back(sf::Keyboard::Num2);
+	listInputs2->push_back(sf::Keyboard::Num3);
+	this->listInputCharacter->at(1)->setListInputs(listInputs2);
 }
 
 void InputManager::updateInputManager()
 {
 }
 
-Position InputManager::getPositionMovement(int indexPlayer, int indexJoystick)
+bool InputManager::isPressed(int indexPlayer, int indexAction)
 {
-	Position position;
-
-	if (indexJoystick == -1 || (indexJoystick != -1 && sf::Joystick::isConnected(indexJoystick)))
-	{
-		//Use keyboard
-		if (sf::Keyboard::isKeyPressed(this->listInputs[indexPlayer][POSITION_INPUT_MOVE_UP]))
-			position.setY(1);
-		if (sf::Keyboard::isKeyPressed(this->listInputs[indexPlayer][POSITION_INPUT_MOVE_DOWN]))
-			position.setY(position.getY() - 1);
-		if (sf::Keyboard::isKeyPressed(this->listInputs[indexPlayer][POSITION_INPUT_MOVE_LEFT]))
-			position.setX(-1);
-		if (sf::Keyboard::isKeyPressed(this->listInputs[indexPlayer][POSITION_INPUT_MOVE_RIGHT]))
-			position.setX(position.getX() + 1);
-	}
-	else
-	{
-		position.setY((int)sf::Joystick::getAxisPosition(indexJoystick, sf::Joystick::Y));
-		position.setX((int)sf::Joystick::getAxisPosition(indexJoystick, sf::Joystick::X));
-	}
-
-	return position;
-}
-
-bool InputManager::isPressed(int indexPlayer, int indexAction, int indexJoystick)
-{
-	if (indexJoystick == -1 || (indexJoystick != -1 && sf::Joystick::isConnected(indexJoystick)))
-		return sf::Keyboard::isKeyPressed(this->listInputs[indexPlayer][indexAction]);
-	else
-		return sf::Joystick::isButtonPressed(indexJoystick, indexAction);
+    return this->listInputCharacter->at(indexPlayer)->isPressed(indexAction);
 }

@@ -134,14 +134,14 @@ void HudManager::renderHUDLevel()
 	{
 		switch (level->getLevelState())
 		{
-		case LevelState::START_ROUND:
+		case STATE_LEVEL_START_ROUND:
 			{
 				this->spriteHUD->setTextureRect(sf::IntRect(TEXT_FIGHT_X, TEXT_FIGHT_Y, TEXT_FIGHT_WIDTH, TEXT_FIGHT_HEIGHT));
 				this->spriteHUD->setPosition(FIGHT_POSITION_X, FIGHT_POSITION_Y);
 				gameManager->getRenderManager()->getWindow()->draw(*this->spriteHUD);
 			}
 			break;
-		case LevelState::END_ROUND:
+		case STATE_LEVEL_END_ROUND:
 			{
 				Character * character = GameManager::getInstance()->getCharacterManager()->getCharacterWithMaxHp();
 				if (character != NULL)
@@ -156,7 +156,7 @@ void HudManager::renderHUDLevel()
 				}
 			}
 			break;
-		case LevelState::END_MATCH:
+		case STATE_LEVEL_END_MATCH:
 			{
 				this->spriteHUD->setTextureRect(sf::IntRect(TEXT_FINISH_HIM_X, TEXT_FINISH_HIM_Y, TEXT_FINISH_HIM_WIDTH, TEXT_FINISH_HIM_HEIGHT));
 				this->spriteHUD->setPosition(FINISH_HIM_POSITION_X, FINISH_HIM_POSITION_Y);

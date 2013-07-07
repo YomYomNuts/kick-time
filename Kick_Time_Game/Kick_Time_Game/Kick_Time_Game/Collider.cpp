@@ -1,6 +1,7 @@
 #include "Collider.h"
 #include "GameManager.h"
 
+#include <cmath>
 
 Collider::Collider(void)
 {
@@ -94,8 +95,8 @@ void  Collider::setHalfSizeY(int halfSizeY)
 
 bool Collider::AreColliding(Collider * collider) const
 {
-	return	abs((this->position->getX() + this->shiftX) - (collider->position->getX() + collider->getShiftX())) < this->halfSizeX + collider->getHalfSizeX() &&
-			abs((this->position->getY() - this->shiftY) - (collider->position->getY() - collider->getShiftY())) < this->halfSizeY + collider->getHalfSizeY();
+	return	fabs((this->position->getX() + this->shiftX) - (collider->position->getX() + collider->getShiftX())) < this->halfSizeX + collider->getHalfSizeX() &&
+			fabs((this->position->getY() - this->shiftY) - (collider->position->getY() - collider->getShiftY())) < this->halfSizeY + collider->getHalfSizeY();
 }
 
 void Collider::renderCollider(const sf::Color color)

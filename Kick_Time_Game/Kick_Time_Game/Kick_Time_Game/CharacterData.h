@@ -10,6 +10,7 @@ class CharacterData
 private:
 	int animationID;
 	string name;
+	string pathAvatar;
 	int totalHP;
 	int damageKick;
 	int damageKickCrouch;
@@ -32,10 +33,11 @@ private:
 
 public:
 	CharacterData();
-CharacterData(int animationID, string name, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory);
+	CharacterData(int animationID, string name, string pathAvatar, int totalHP, int damageKick, int damageKickCrouch, int damageKickJumped, int damagePunch, int damagePunchCrouch, int damagePunchJumped, int speedKick, int speedKickCrouch, int speedKickJumped, int speedPunch, int speedPunchCrouch, int speedPunchJumped, int soundKick, int soundPunch, int soundJump, int soundHit, int soundGuard, int soundVictory);
 	~CharacterData(void);
 	int getAnimationID() const;
 	string getName() const;
+	string getPathAvatar() const;
 	int getTotalHP() const;
 	int getDamageKick() const;
 	int getDamageKickCrouch() const;
@@ -57,10 +59,11 @@ CharacterData(int animationID, string name, int totalHP, int damageKick, int dam
 	int getSoundVictory() const;
 };
 
-#define NUMBER_CHARACTERDATA 1
+#define NUMBER_CHARACTERDATA 2
 
 extern const CharacterData characterDataArray[NUMBER_CHARACTERDATA];
 
 #define SCORPION 0
+#define TEST 1
 
 #endif _CHARACTERDATA_H
