@@ -28,6 +28,8 @@ OptionMenu::OptionMenu(void) : Menu()
 	this->renderVolumeMusic = new sf::Text("", *(GameManager::getInstance()->getFontManager()->getFont(BUTTON_FONT)));
 	this->renderVolumeMusic->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
 	this->renderVolumeMusic->setPosition((float)(POSITION_BAR_MUSIC_X), (float)(POSITION_BAR_MUSIC_Y));
+
+	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU));
 }
 
 OptionMenu::~OptionMenu(void)

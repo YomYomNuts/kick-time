@@ -20,7 +20,6 @@ public:
 	void renderMenu();
 	void actionBack(Button * button);
 	void actionValidateCharacter(Button * button);
-    void characterMove(Button * button, ButtonDirection direction);
 };
 
 #endif // _CHARACTERSELECTIONMENU_H

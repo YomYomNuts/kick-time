@@ -34,6 +34,7 @@
     <ClCompile Include="LevelAnimationData.cpp" />
     <ClCompile Include="LevelData.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="LevelSelectionMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -81,6 +82,8 @@
     <ClInclude Include="LevelAnimationData.h" />
     <ClInclude Include="LevelData.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="LevelSelectionMenu.h" />
+    <ClInclude Include="LevelSelectionMenu_Defines.h" />
     <ClInclude Include="Level_Defines.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenu_Defines.h" />

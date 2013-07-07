@@ -3,6 +3,7 @@
 #include "LevelData.h"
 #include "CharacterData.h"
 #include "HudManager_Defines.h"
+#include "Menu_Defines.h"
 
 #include <iostream>
 #include <string.h>
@@ -75,6 +76,26 @@ void TextureManager::initializeTextureManager()
 				this->textureList->insert(pair<string, sf::Texture>(currentFile, currentTexture));
 			}
 		}
+	}
+
+	// Texture Menu
+	if (!currentTexture.loadFromFile(FILE_MENU))
+	{
+		cout << "Sprite didn't find!" << endl << FILE_MENU << endl;
+	}
+	else
+	{
+		this->textureList->insert(pair<string, sf::Texture>(FILE_MENU, currentTexture));
+	}
+
+	// Texture Menu Selection
+	if (!currentTexture.loadFromFile(FILE_MENU_SELECTION))
+	{
+		cout << "Sprite didn't find!" << endl << FILE_MENU_SELECTION << endl;
+	}
+	else
+	{
+		this->textureList->insert(pair<string, sf::Texture>(FILE_MENU_SELECTION, currentTexture));
 	}
 
 	// Texture HUD

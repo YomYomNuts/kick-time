@@ -1,6 +1,7 @@
 #ifndef _MENU_H
 #define _MENU_H
 
+#include "Menu_Defines.h"
 #include "Button.h"
 #include "Button_Defines.h"
 
@@ -24,6 +25,7 @@ public:
 	virtual void updateMenu();
 	virtual void renderMenu();
 	void classicMove(Button * button, ButtonDirection direction);
+    void listMove(Button * button, ButtonDirection direction);
 	virtual void actionBack(Button * button) {};
 	virtual void actionExit(Button * button) {};
 	virtual void actionGoToOption(Button * button) {};
@@ -33,7 +35,7 @@ public:
     virtual void volumeSoundMove(Button * button, ButtonDirection direction) {};
     virtual void volumeMusicMove(Button * button, ButtonDirection direction) {};
 	virtual void actionValidateCharacter(Button * button) {};
-    virtual void characterMove(Button * button, ButtonDirection direction) {};
+	virtual void actionValidateLevel(Button * button) {};
 };
 
 #endif

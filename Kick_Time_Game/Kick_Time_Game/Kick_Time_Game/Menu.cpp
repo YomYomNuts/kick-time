@@ -87,3 +87,67 @@ void Menu::classicMove(Button * button, ButtonDirection direction)
 		break;
 	}
 }
+
+void Menu::listMove(Button * button, ButtonDirection direction)
+{
+	switch (direction)
+	{
+	case BUTTON_DIRECTION_UP:
+	case BUTTON_DIRECTION_DOWN:
+		{
+			Button * nextButton = Menu::getNextButton(button, direction, false);
+			if (nextButton != NULL)
+			{
+				button->setIsActive(false);
+				nextButton->setIsActive(true);
+			}
+		}
+		break;
+	case BUTTON_DIRECTION_LEFT:
+	    {
+			Button * nextButton = Menu::getNextButton(button, direction, true);
+			if (nextButton != NULL)
+			{
+				button->setIsActive(false);
+				nextButton->setIsActive(true);
+			}
+			else
+            {
+                Button * tempButton = button;
+				nextButton = button;
+                while (tempButton != NULL)
+                {
+                    tempButton = Menu::getNextButton(nextButton, BUTTON_DIRECTION_RIGHT, true);
+                    if (tempButton != NULL)
+                        nextButton = tempButton;
+                }
+				button->setIsActive(false);
+				nextButton->setIsActive(true);
+            }
+	    }
+        break;
+	case BUTTON_DIRECTION_RIGHT:
+	    {
+			Button * nextButton = Menu::getNextButton(button, direction, true);
+			if (nextButton != NULL)
+			{
+				button->setIsActive(false);
+				nextButton->setIsActive(true);
+			}
+			else
+            {
+                Button * tempButton = button;
+				nextButton = button;
+                while (tempButton != NULL)
+                {
+                    tempButton = Menu::getNextButton(nextButton, BUTTON_DIRECTION_LEFT, true);
+                    if (tempButton != NULL)
+                        nextButton = tempButton;
+                }
+				button->setIsActive(false);
+				nextButton->setIsActive(true);
+            }
+	    }
+		break;
+	}
+}

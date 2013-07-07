@@ -1,2 +1,2 @@
-../Ressources/Levels/MK/TheTower.png;LEVEL_0;THE_TOWER;290
+../Ressources/Levels/MK/The_courtyard.png;LEVEL_0;THE_COURTYARD;290
 ../Ressources/Levels/MK/The_Armory.png;LEVEL_1;THE_ARMORY;290

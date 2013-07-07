@@ -3,7 +3,11 @@
 #include "CharacterData.h"
 #include "GameManager.h"
 #include "MainMenu.h"
+#include "LevelSelectionMenu.h"
 
+#include <stdio.h>
+
+using namespace std;
 
 CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 {
@@ -12,9 +16,10 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 
     Button * button;
     int indexLine = 0, indexColumn = 0;
-    bool active = true;
+    vector<bool> * active = new vector<bool>(NUMBER_FIGHTERS, true);
     sf::Sprite * sprite;
     TextureManager * textureManager = GameManager::getInstance()->getTextureManager();
+    CharacterManager * characterManager = GameManager::getInstance()->getCharacterManager();
     Position * position;
 	for (int i = 0; i < NUMBER_CHARACTERDATA; ++i)
     {
@@ -23,25 +28,38 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
         position = new Position(POSITION_FIRST_CHARACTER_X + indexColumn * OFFSET_CHARACTER_X, POSITION_FIRST_CHARACTER_Y + indexLine * OFFSET_CHARACTER_Y);
         for (int j = 0; j < NUMBER_FIGHTERS; ++j)
         {
-            this->listButtons->push_back(new Button("", position, true, active, false, j));
+            if (characterManager->getCharactersDataIndex()->size() > j)
+            {
+                if (characterManager->getCharactersDataIndex()->at(j) == i)
+                    this->listButtons->push_back(new Button("", position, true, true, false, j));
+                else
+                    this->listButtons->push_back(new Button("", position, true, false, false, j));
+                active->at(j) = false;
+            }
+            else
+            {
+                this->listButtons->push_back(new Button("", position, true, active->at(j), false, j));
+                active->at(j) = false;
+            }
             button = this->listButtons->at(this->listButtons->size() - 1);
             button->setAction(&Menu::actionValidateCharacter);
-            button->setActionMove(&Menu::characterMove);
+            button->setActionMove(&Menu::listMove);
         }
 
         this->listAvatars->push_back(new sf::Sprite());
         sprite = this->listAvatars->at(this->listAvatars->size() - 1);
         sprite->setTexture(*textureManager->getTexture(characterDataArray[i].getPathAvatar()));
         sprite->setPosition((float)(position->getX() - sprite->getTextureRect().width / 2), (float)(position->getY() - sprite->getTextureRect().height / 2));
-
-        active = false;
     }
+    characterManager->getCharactersDataIndex()->clear();
 
     // Button back
 	this->listButtons->push_back(new Button("Back", new Position(POSITION_BACK_X, POSITION_BACK_Y), true, false, true, 0));
 	button = this->listButtons->at(this->listButtons->size() - 1);
 	button->setAction(&Menu::actionBack);
 	button->setActionMove(&Menu::classicMove);
+
+	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU_SELECTION));
 }
 
 CharacterSelectionMenu::~CharacterSelectionMenu()
@@ -64,12 +82,16 @@ void CharacterSelectionMenu::renderMenu()
     // Render selection
     Button * button;
     sf::RectangleShape * rectangle;
+    sf::Text * text;
+	char buffer[3];
+    int indexLine = 0, indexColumn = 0;
 	int max = (int)this->listButtons->size();
     for (int i = 0; i < max - 1; ++i)
     {
         button = this->listButtons->at(i);
         if (button->getIsActive())
         {
+            // Rectangle of selection
             rectangle = new sf::RectangleShape();
             rectangle->setFillColor(sf::Color::Transparent);
             rectangle->setOutlineColor(sf::Color::Green);
@@ -77,6 +99,16 @@ void CharacterSelectionMenu::renderMenu()
             rectangle->setSize(sf::Vector2f((float)(this->listAvatars->at(i / NUMBER_FIGHTERS)->getTextureRect().width), (float)(this->listAvatars->at(i / NUMBER_FIGHTERS)->getTextureRect().height)));
             rectangle->setPosition((float)button->getCenter()->getX() - rectangle->getSize().x / 2, (float)button->getCenter()->getY() - rectangle->getSize().y / 2);
             GameManager::getInstance()->getRenderManager()->getWindow()->draw(*rectangle);
+
+            // Number of player
+            snprintf(buffer, 3, "%d", button->getIndexPlayer() + 1);
+            indexColumn = button->getIndexPlayer() % NUMBER_INDEX_PLAYER_BY_LINE;
+            indexLine = (int)(button->getIndexPlayer() / NUMBER_INDEX_PLAYER_BY_LINE);
+            text = new sf::Text(buffer, *(GameManager::getInstance()->getFontManager()->getFont(INDEX_PLAYER_FONT)));
+            text->setColor(sf::Color(INDEX_PLAYER_COLOR_RED, INDEX_PLAYER_COLOR_GREEN, INDEX_PLAYER_COLOR_BLUE));
+            text->setScale((float)INDEX_PLAYER_SCALE_X, (float)INDEX_PLAYER_SCALE_Y);
+            text->setPosition((float)button->getCenter()->getX() - rectangle->getSize().x / 2 + POSITION_FIRST_INDEX_PLAYER_X + indexColumn * OFFSET_INDEX_PLAYER_X, (float)button->getCenter()->getY() - rectangle->getSize().y / 2 + POSITION_FIRST_INDEX_PLAYER_Y + indexLine * POSITION_FIRST_INDEX_PLAYER_Y);
+            GameManager::getInstance()->getRenderManager()->getWindow()->draw(*text);
         }
     }
 }
@@ -84,6 +116,7 @@ void CharacterSelectionMenu::renderMenu()
 void CharacterSelectionMenu::actionBack(Button * button)
 {
 	GameManager::getInstance()->getMenuManager()->setActiveMenu(new MainMenu());
+    GameManager::getInstance()->getCharacterManager()->getCharactersDataIndex()->clear();
 }
 
 void CharacterSelectionMenu::actionValidateCharacter(Button * button)
@@ -101,73 +134,9 @@ void CharacterSelectionMenu::actionValidateCharacter(Button * button)
                 indexButton = i;
         }
     }
-    //GameManager::getInstance()->getCharacterManager()->addCharacter((int)(indexButton / NUMBER_FIGHTERS));
+    GameManager::getInstance()->getCharacterManager()->addCharacterDataIndexAt(button->getIndexPlayer(), (int)(indexButton / NUMBER_FIGHTERS));
 
     ++this->numberPlayerValidate;
-    //if (this->numberPlayerValidate == NUMBER_FIGHTERS)
-    //    GameManager::getInstance()->getMenuManager()->setActiveMenu(new LevelSelectionMenu());
-}
-
-void CharacterSelectionMenu::characterMove(Button * button, ButtonDirection direction)
-{
-	switch (direction)
-	{
-	case BUTTON_DIRECTION_UP:
-	case BUTTON_DIRECTION_DOWN:
-		{
-			Button * nextButton = Menu::getNextButton(button, direction, false);
-			if (nextButton != NULL)
-			{
-				button->setIsActive(false);
-				nextButton->setIsActive(true);
-			}
-		}
-		break;
-	case BUTTON_DIRECTION_LEFT:
-	    {
-			Button * nextButton = Menu::getNextButton(button, direction, true);
-			if (nextButton != NULL)
-			{
-				button->setIsActive(false);
-				nextButton->setIsActive(true);
-			}
-			else
-            {
-                Button * tempButton = button;
-				nextButton = button;
-                while (tempButton != NULL)
-                {
-                    tempButton = Menu::getNextButton(nextButton, BUTTON_DIRECTION_RIGHT, true);
-                    if (tempButton != NULL)
-                        nextButton = tempButton;
-                }
-				button->setIsActive(false);
-				nextButton->setIsActive(true);
-            }
-	    }
-        break;
-	case BUTTON_DIRECTION_RIGHT:
-	    {
-			Button * nextButton = Menu::getNextButton(button, direction, true);
-			if (nextButton != NULL)
-			{
-				button->setIsActive(false);
-				nextButton->setIsActive(true);
-			}
-			else
-            {
-                Button * tempButton = button;
-				nextButton = button;
-                while (tempButton != NULL)
-                {
-                    tempButton = Menu::getNextButton(nextButton, BUTTON_DIRECTION_LEFT, true);
-                    if (tempButton != NULL)
-                        nextButton = tempButton;
-                }
-				button->setIsActive(false);
-				nextButton->setIsActive(true);
-            }
-	    }
-		break;
-	}
+    if (this->numberPlayerValidate == NUMBER_FIGHTERS)
+        GameManager::getInstance()->getMenuManager()->setActiveMenu(new LevelSelectionMenu());
 }

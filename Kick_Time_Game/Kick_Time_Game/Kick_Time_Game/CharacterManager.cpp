@@ -11,11 +11,13 @@
 CharacterManager::CharacterManager(void)
 {
 	this->characterList = new vector<Character*>();
+	this->characterDataIndex = new vector<int>();
 }
 
 CharacterManager::~CharacterManager(void)
 {
-	delete characterList;
+	delete this->characterList;
+	delete this->characterDataIndex;
 }
 
 void CharacterManager::initializeCharacterManager()
@@ -28,6 +30,33 @@ void CharacterManager::updateCharacterManager()
 	{
 		this->characterList->at(i)->updateCharacter();
 	}
+}
+
+void CharacterManager::addCharacterDataIndexAt(int indexCharacter, int indexTypeCharacter)
+{
+	if (this->characterDataIndex->size() > indexCharacter)
+		this->characterDataIndex->insert(this->characterDataIndex->begin() + indexCharacter, indexTypeCharacter);
+	else
+		this->characterDataIndex->push_back(indexTypeCharacter);
+}
+
+void CharacterManager::removeCharacterDataIndex(int indexCharacter)
+{
+	this->characterDataIndex->erase(this->characterDataIndex->begin() + indexCharacter);
+}
+
+vector<int>* CharacterManager::getCharactersDataIndex()
+{
+	return this->characterDataIndex;
+}
+
+void CharacterManager::loadCharacters()
+{
+    this->characterList->clear();
+    for (unsigned int i = 0; i < this->characterDataIndex->size(); ++i)
+    {
+        this->addCharacter(this->characterDataIndex->at(i));
+    }
 }
 
 void CharacterManager::addCharacter(int indexTypeCharacter)

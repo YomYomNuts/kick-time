@@ -12,14 +12,18 @@ class CharacterManager
 {
 private:
 	vector<Character*> * characterList;
-
+    vector<int> * characterDataIndex;
+	void addCharacter(int indexTypeCharacter);
+	void removeCharacter(int indexCharacter);
 public:
 	CharacterManager(void);
 	~CharacterManager(void);
 	void initializeCharacterManager();
 	void updateCharacterManager();
-	void addCharacter(int indexTypeCharacter);
-	void removeCharacter(int indexCharacter);
+	void addCharacterDataIndexAt(int indexCharacter, int indexTypeCharacter);
+	void removeCharacterDataIndex(int indexCharacter);
+	vector<int>* getCharactersDataIndex();
+	void loadCharacters();
 	vector<Character*>* getCharacters();
 	void renderCharacterManager();
 	Character* getClosestCharacter(int withoutThisIndex, Position * position);

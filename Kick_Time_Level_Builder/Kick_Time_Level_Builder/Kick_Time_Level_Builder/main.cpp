@@ -447,7 +447,7 @@ int main(int argc, const char * argv[])
 		headerContent = headerContent + "\n";
 		headerContent = headerContent + "extern const LevelData levelDataArray[NUMBER_LEVELDATA];\n";
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "extern const map<int, vector<LevelAnimationData>> levelAnimDataArray;\n";
+		headerContent = headerContent + "extern const map<int, vector<LevelAnimationData> > levelAnimDataArray;\n";
 		headerContent = headerContent + "\n";
 		
 
@@ -506,7 +506,7 @@ int main(int argc, const char * argv[])
 		cppContent = cppContent + "};\n";
 		cppContent = cppContent + "\n";
 
-		cppContent = cppContent + "const map<int, vector<LevelAnimationData>> levelAnimDataArray = create_map<int, vector<LevelAnimationData>>\n";
+		cppContent = cppContent + "const map<int, vector<LevelAnimationData> > levelAnimDataArray = create_map<int, vector<LevelAnimationData> >\n";
 
 		// Put all the data into the map in the cpp file
 		tempLevelNumber = -1;

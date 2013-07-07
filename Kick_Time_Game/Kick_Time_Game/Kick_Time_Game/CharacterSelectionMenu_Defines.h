@@ -1,13 +1,28 @@
 #ifndef CHARACTERSELECTIONMENU_DEFINES_H
 #define CHARACTERSELECTIONMENU_DEFINES_H
 
-#define NUMBER_CHARACTER_BY_LINE    4
+#include "FontData.h"
 
-#define POSITION_BACK_X             250
-#define POSITION_BACK_Y             220
-#define POSITION_FIRST_CHARACTER_X  100
-#define POSITION_FIRST_CHARACTER_Y  100
-#define OFFSET_CHARACTER_X          60
-#define OFFSET_CHARACTER_Y          80
+#define NUMBER_CHARACTER_BY_LINE        6
+
+#define POSITION_BACK_X                 250
+#define POSITION_BACK_Y                 220
+#define POSITION_FIRST_CHARACTER_X      130
+#define POSITION_FIRST_CHARACTER_Y      100
+#define OFFSET_CHARACTER_X              60
+#define OFFSET_CHARACTER_Y              80
+
+//Index of player
+#define INDEX_PLAYER_FONT			    FONT_ARIAL
+#define INDEX_PLAYER_COLOR_RED		    255
+#define INDEX_PLAYER_COLOR_GREEN	    255
+#define INDEX_PLAYER_COLOR_BLUE		    255
+#define INDEX_PLAYER_SCALE_X		    (0.3)
+#define INDEX_PLAYER_SCALE_Y		    (0.3)
+#define NUMBER_INDEX_PLAYER_BY_LINE     2
+#define POSITION_FIRST_INDEX_PLAYER_X   9
+#define POSITION_FIRST_INDEX_PLAYER_Y   5
+#define OFFSET_INDEX_PLAYER_X           30
+#define OFFSET_INDEX_PLAYER_Y           10
 
 #endif // CHARACTERSELECTIONMENU_DEFINES_H

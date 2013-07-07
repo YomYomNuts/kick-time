@@ -16,7 +16,6 @@ Animation::~Animation(void)
 {
 }
 
-
 int Animation::getCurrentFrame()
 {
 	return this->currentFrame;

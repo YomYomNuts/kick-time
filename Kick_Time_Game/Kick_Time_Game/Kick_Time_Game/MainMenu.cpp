@@ -20,6 +20,8 @@ MainMenu::MainMenu(void) : Menu()
 	button = this->listButtons->at(this->listButtons->size() - 1);
 	button->setAction(&Menu::actionExit);
 	button->setActionMove(&Menu::classicMove);
+
+	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU));
 }
 
 MainMenu::~MainMenu(void)
