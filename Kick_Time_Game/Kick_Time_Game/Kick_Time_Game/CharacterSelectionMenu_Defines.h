@@ -6,7 +6,7 @@
 #define NUMBER_CHARACTER_BY_LINE        6
 
 #define POSITION_BACK_X                 250
-#define POSITION_BACK_Y                 220
+#define POSITION_BACK_Y                 260
 #define POSITION_FIRST_CHARACTER_X      130
 #define POSITION_FIRST_CHARACTER_Y      100
 #define OFFSET_CHARACTER_X              60
