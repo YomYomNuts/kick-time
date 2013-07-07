@@ -104,6 +104,9 @@
 		<Unit filename="LevelData.h" />
 		<Unit filename="LevelManager.cpp" />
 		<Unit filename="LevelManager.h" />
+		<Unit filename="LevelSelectionMenu.cpp" />
+		<Unit filename="LevelSelectionMenu.h" />
+		<Unit filename="LevelSelectionMenu_Defines.h" />
 		<Unit filename="Level_Defines.h" />
 		<Unit filename="MainMenu.cpp" />
 		<Unit filename="MainMenu.h" />
@@ -112,6 +115,7 @@
 		<Unit filename="Menu.h" />
 		<Unit filename="MenuManager.cpp" />
 		<Unit filename="MenuManager.h" />
+		<Unit filename="Menu_Defines.h" />
 		<Unit filename="Mode.cpp" />
 		<Unit filename="Mode.h" />
 		<Unit filename="ModeManager.cpp" />
