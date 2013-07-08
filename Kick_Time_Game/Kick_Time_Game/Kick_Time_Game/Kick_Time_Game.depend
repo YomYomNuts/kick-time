@@ -811,7 +811,7 @@
 	<SFML/Graphics.hpp>
 	<string>
 
-1373246589 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button_defines.h
+1373240098 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button_defines.h
 	"FontData.h"
 
 1371081099 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\fontdata.h
@@ -868,7 +868,7 @@
 	"Character.h"
 	<vector>
 
-1373247924 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationmanager.h
+1371313140 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationmanager.h
 	"AnimationCharacter.h"
 	"AnimationLevel.h"
 	<vector>
@@ -877,7 +877,7 @@
 	<SFML\Graphics.hpp>
 	<vector>
 
-1373269810 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationcharacter.cpp
+1373243436 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationcharacter.cpp
 	"AnimationCharacter.h"
 	"GameManager.h"
 
@@ -885,11 +885,11 @@
 	"AnimationData.h"
 	"ColliderData.h"
 
-1373269823 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationlevel.cpp
+1373243440 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationlevel.cpp
 	"AnimationLevel.h"
 	"GameManager.h"
 
-1373251821 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationmanager.cpp
+1371313140 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationmanager.cpp
 	"AnimationManager.h"
 
 1366756834 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\battlemode.cpp
@@ -898,11 +898,11 @@
 1370732532 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\battlemode.h
 	"Mode.h"
 
-1373248179 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.cpp
+1373237871 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.cpp
 	"Button.h"
 	"GameManager.h"
 
-1373269854 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\character.cpp
+1373244252 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\character.cpp
 	"Character.h"
 	"Character_Defines.h"
 	"TextureManager.h"
@@ -922,7 +922,7 @@
 1373243361 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\sounddata.h
 	<string>
 
-1373266916 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.cpp
+1373204279 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.cpp
 	"CharacterManager.h"
 	"GameManager.h"
 	"SoundData.h"
@@ -932,7 +932,7 @@
 	<climits>
 	<cmath>
 
-1373269916 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\collider.cpp
+1373129937 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\collider.cpp
 	"Collider.h"
 	"GameManager.h"
 	<cmath>
@@ -967,7 +967,7 @@
 	"InputManager.h"
 	"GameManager_Defines.h"
 
-1373270002 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\level.cpp
+1373243463 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\level.cpp
 	"Level.h"
 	"Level_Defines.h"
 	"GameManager.h"
@@ -1042,7 +1042,7 @@
 1373243361 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\sounddata.cpp
 	"SoundData.h"
 
-1373251815 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\soundmanager.cpp
+1373243532 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\soundmanager.cpp
 	"SoundManager.h"
 	"SoundData.h"
 	<iostream>
@@ -1072,7 +1072,7 @@
 
 1373241310 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu_defines.h
 
-1373266927 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.cpp
+1373242816 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.cpp
 	"CharacterSelectionMenu.h"
 	"CharacterSelectionMenu_Defines.h"
 	"CharacterData.h"
@@ -1081,7 +1081,7 @@
 	"LevelSelectionMenu.h"
 	<stdio.h>
 
-1373266535 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.h
+1373187372 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.h
 	"Menu.h"
 	<SFML/Graphics.hpp>
 	<vector>
@@ -1509,7 +1509,7 @@
 
 1373200071 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu_defines.h
 
-1373251005 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmenu.cpp
+1373243458 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmenu.cpp
 	"InputMenu.h"
 	"InputMenu_Defines.h"
 	"GameManager.h"

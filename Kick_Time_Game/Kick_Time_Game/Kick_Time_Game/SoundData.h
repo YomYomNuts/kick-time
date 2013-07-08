@@ -23,7 +23,7 @@ public:
 	bool getIsLoop() const;
 };
 
-#define NUMBER_SOUNDDATA 4
+#define NUMBER_SOUNDDATA 6
 
 extern const SoundData soundDataArray[NUMBER_SOUNDDATA];
 
@@ -31,5 +31,7 @@ extern const SoundData soundDataArray[NUMBER_SOUNDDATA];
 #define SOUND_SCORPION 1
 #define SOUND_LEVEL_SUBZERO 2
 #define SOUND_SUBZERO 3
+#define SOUND_LEVEL_REPTILE 4
+#define SOUND_REPTILE 5
 
 #endif _SOUNDDATA_H

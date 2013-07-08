@@ -121,7 +121,7 @@ void InputMenu::updateMenu()
 	for (unsigned int i = 0; i < this->listButtons->size(); ++i)
 	{
 	    button = this->listButtons->at(i);
-		if (i < this->listButtons->size() - 3)
+		if (i < this->listButtons->size() - NUMBER_FIGHTERS - 1)
 		{
 			if (!this->listInputsChange->at(button->getIndexPlayer()))
 				button->updateButton();
