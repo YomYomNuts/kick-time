@@ -220,14 +220,14 @@ void Character::updateMoveRight()
 		{
 			this->state = STATE_CHARACTER_FORWARD_JUMP;
 			this->updateAnimationCharacter();
-		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+            GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_MOVE_UP) && this->toward == CHARACTER_DIRECTION_LEFT)
 		{
 			this->state = STATE_CHARACTER_BACKWARD_JUMP;
 			this->updateAnimationCharacter();
-		GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
+            GameManager::getInstance()->getSoundManager()->playSoundMusic(this->characterData->getSoundJump());
 		}
 
 		if (GameManager::getInstance()->getInputManager()->isPressed(this->indexCharacter, POSITION_INPUT_ACTION_4))
@@ -1203,7 +1203,7 @@ void Character::moveDown(double speedCoef)
 void Character::updateAnimationCharacter()
 {
 	this->positionCharacter->setX(this->positionCharacter->getX() + this->animation->getAnimationData()->getShiftPositionXCharacter());
-	this->animation->changeAnimation(this->state + this->toward * NUMBER_STATE_CHARACTER);
+	this->animation->changeAnimation(this->characterData->getAnimationID() + this->state + this->toward * NUMBER_STATE_CHARACTER);
 	this->positionCharacter->setX(this->positionCharacter->getX() - this->animation->getAnimationData()->getShiftPositionXCharacter());
 	this->collider->changeColliderData(this->animation->getAnimationData()->getColliderID());
 	this->colliderKickPunch->changeColliderData(this->animation->getAnimationData()->getColliderKickPunchID());
