@@ -4,7 +4,6 @@
 #include "Character.h"
 
 #include <vector>
-#include <iostream>
 
 using namespace std;
 

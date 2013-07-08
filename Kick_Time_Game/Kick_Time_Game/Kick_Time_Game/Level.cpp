@@ -3,7 +3,6 @@
 #include "GameManager.h"
 #include "CharacterSelectionMenu.h"
 
-#include <iostream>
 
 Level::Level(void)
 {

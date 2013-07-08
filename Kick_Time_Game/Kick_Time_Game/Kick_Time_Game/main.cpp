@@ -1,12 +1,11 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <iostream>
-
-using namespace std;
-
 #include "GameManager.h"
 #include "AnimationCharacter.h"
 #include "AnimationLevel.h"
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+
+using namespace std;
 
 GameManager * GameManager::_singleton = NULL;
 int AnimationCharacter::animationNumber = 0;
@@ -17,7 +16,7 @@ int main()
 	GameManager * gameManager = GameManager::getInstance();
 	gameManager->initializeGameManager();
 	gameManager->updateGameManager();
-	
+
 	/*
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
 	window.setVerticalSyncEnabled(true);
@@ -41,7 +40,7 @@ int main()
 	text.setRotation(-25.f);
 	text.setScale(1.f, 1.f);
 	text.move(100.f, 100.f);
-	
+
 
 	sf::Texture scorpionSheet;
 	if (!scorpionSheet.loadFromFile("../Ressources/Characters/MK/Scorpion/Scorpion.png"))
@@ -57,7 +56,7 @@ int main()
 	scorpion.setPosition(50,50);
 
 	enum state{Stance,Punch};
-	
+
 	state persoState = Stance;
 	int posXSprite = 364;
 	int i = 1;
@@ -79,7 +78,7 @@ int main()
         window.display();
 
 		sf::Time frameTime;
-		
+
 		sf::Clock pf;
 		frameTime = pf.restart();
 		float pd = pf.getElapsedTime().asMilliseconds();
@@ -102,7 +101,7 @@ int main()
 
 		framerate++;
 
-		
+
     }
 	*/
     return 0;

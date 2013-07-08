@@ -1,8 +1,6 @@
 #include "Animation.h"
 #include "GameManager.h"
 
-#include <iostream>
-
 
 Animation::Animation(void)
 {

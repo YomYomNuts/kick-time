@@ -5,8 +5,9 @@
 #include "HudManager_Defines.h"
 #include "Menu_Defines.h"
 
-#include <iostream>
 #include <string.h>
+#include <iostream>
+
 
 TextureManager::TextureManager(void)
 {

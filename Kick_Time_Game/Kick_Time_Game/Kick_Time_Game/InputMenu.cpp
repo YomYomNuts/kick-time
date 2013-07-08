@@ -6,7 +6,6 @@
 #include "OptionMenu.h"
 
 #include <stdio.h>
-#include <iostream>
 
 InputMenu::InputMenu()
 {

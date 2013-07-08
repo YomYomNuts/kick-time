@@ -5,7 +5,7 @@
 const CharacterData characterDataArray[NUMBER_CHARACTERDATA] =
 {
 	CharacterData(SCORPION_STAND_RIGHT, "SCORPION", "../Ressources/Characters/MK/Scorpion/scorpionAvatar.png", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION),
-	CharacterData(SCORPION_STAND_RIGHT, "TEST", "../Ressources/Characters/MK/Sub-ZERO/subzeroAvatar.png", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION, SOUND_SCORPION),
+	CharacterData(SUBZERO_STAND_RIGHT, "SUBZERO", "../Ressources/Characters/MK/Subzero/subzeroAvatar.png", 100, 3, 2, 2, 2, 2, 1, 100, 100, 100, 100, 100, 100, SOUND_SUBZERO, SOUND_SUBZERO, SOUND_SUBZERO, SOUND_SUBZERO, SOUND_SUBZERO, SOUND_SUBZERO),
 };
 
 CharacterData::CharacterData()

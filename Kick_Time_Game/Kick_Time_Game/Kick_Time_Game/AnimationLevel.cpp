@@ -1,7 +1,6 @@
 #include "AnimationLevel.h"
 #include "GameManager.h"
 
-#include <iostream>
 
 AnimationLevel::AnimationLevel(void)
 {
@@ -38,7 +37,7 @@ void AnimationLevel::updateAnimation()
 	bool animationDone = Animation::getAnimationDoneState();
 	int frameCounter = Animation::getFrameCounter();
 	int currentFrame  = Animation::getCurrentFrame();
-	
+
 	if(!animationDone && frameCounter == animationData->getFramerate())
 	{
 		if(currentFrame == 0)
@@ -67,7 +66,7 @@ void AnimationLevel::updateAnimation()
 		Animation::setFrameCounter(-1);
 		frameCounter = -1;
 	}
-	
+
 	Animation::setFrameCounter(++frameCounter);
 }
 
@@ -84,7 +83,7 @@ void AnimationLevel::renderAnimation(sf::Sprite * sprite)
 	width = this->animationData->getSpriteWidth();
 	height = this->animationData->getSpriteHeight();
 	name = this->animationData->getFileName();
-	
+
 	if (width < 0)
 	{
 		posX += width;

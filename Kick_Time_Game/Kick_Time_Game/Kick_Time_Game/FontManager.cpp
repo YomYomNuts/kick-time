@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 FontManager::FontManager(void)
 {
 	this->listFonts = new vector<sf::Font>();

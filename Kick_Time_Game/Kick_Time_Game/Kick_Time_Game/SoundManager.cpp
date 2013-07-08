@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 SoundManager::SoundManager(void)
 {
 	this->soundBuffer = new std::vector<sf::SoundBuffer>();

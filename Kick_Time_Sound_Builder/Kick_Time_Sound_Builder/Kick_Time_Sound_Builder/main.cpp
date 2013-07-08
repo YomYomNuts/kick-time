@@ -115,7 +115,7 @@ int main(int argc, const char * argv[])
 	// Check if it's a text file
 	if(strcmp(subChar(soundLocation, findChar(soundLocation,'.',LAST), strlen(soundLocation)-1), ".txt") != 0)
 	{
-		cout << "Please select an sound file as a '.txt' file" << endl;
+		cout << "Please select a sound file as a '.txt' file" << endl;
 		system("Pause");
 		return 1;
 	}

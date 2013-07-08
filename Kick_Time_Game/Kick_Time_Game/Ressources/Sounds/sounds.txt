@@ -1,2 +1,4 @@
 ../Ressources/Sounds/19 Triangle X2.wav;SOUND_LEVEL_SCORPION;true;true
 ../Ressources/Sounds/19 Triangle X2.wav;SOUND_SCORPION;false;false
+../Ressources/Sounds/19 Triangle X2.wav;SOUND_LEVEL_SUBZERO;true;true
+../Ressources/Sounds/19 Triangle X2.wav;SOUND_SUBZERO;false;false

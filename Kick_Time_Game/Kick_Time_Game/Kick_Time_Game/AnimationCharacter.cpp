@@ -1,7 +1,6 @@
 #include "AnimationCharacter.h"
 #include "GameManager.h"
 
-#include <iostream>
 
 AnimationCharacter::AnimationCharacter(void)
 {
@@ -32,7 +31,7 @@ void AnimationCharacter::updateAnimation()
 	bool animationDone = Animation::getAnimationDoneState();
 	int frameCounter = Animation::getFrameCounter();
 	int currentFrame  = Animation::getCurrentFrame();
-	
+
 	if(!animationDone && frameCounter == animationData->getFramerate())
 	{
 		if(currentFrame == 0)
@@ -61,7 +60,7 @@ void AnimationCharacter::updateAnimation()
 		Animation::setFrameCounter(-1);
 		frameCounter = -1;
 	}
-	
+
 	Animation::setFrameCounter(++frameCounter);
 }
 
@@ -78,7 +77,7 @@ void AnimationCharacter::renderAnimation(sf::Sprite * sprite)
 	width = this->animationData->getSpriteWidth();
 	height = this->animationData->getSpriteHeight();
 	name = this->animationData->getFileName();
-	
+
 	if (width < 0)
 	{
 		posX += width;

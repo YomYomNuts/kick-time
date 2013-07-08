@@ -5,7 +5,6 @@
 #include "GameManager.h"
 #include "Debug.h"
 
-#include <iostream>
 
 Character::Character(void)
 {
