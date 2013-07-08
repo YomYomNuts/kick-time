@@ -1,4 +1,8 @@
 #include "InputCharacter.h"
+#include "InputManager_Defines.h"
+#include "GameManager.h"
+
+#include <math.h>
 
 
 InputCharacter::InputCharacter()
@@ -41,7 +45,70 @@ bool InputCharacter::isPressed(int indexAction)
 	if (this->indexJoystick == -1 || (this->indexJoystick != -1 && !sf::Joystick::isConnected(this->indexJoystick)))
 		return sf::Keyboard::isKeyPressed(this->listInputs->at(indexAction));
 	else
-		return sf::Joystick::isButtonPressed(this->indexJoystick, indexAction);
+    {
+        sf::Event * event = GameManager::getInstance()->getRenderManager()->getEvent();
+        switch(indexAction)
+        {
+        case POSITION_INPUT_MOVE_UP:
+            {
+                if (event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_MOVE_DOWN:
+            {
+                if (event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_MOVE_LEFT:
+            {
+                if (event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT
+                    || fabs(event->joystickMove.position) != 100 && event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_MOVE_RIGHT:
+            {
+                if (event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT
+                    || fabs(event->joystickMove.position) != 100 && event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_ACTION_1:
+            {
+                if (sf::Joystick::isButtonPressed(this->indexJoystick, POSITION_JOYSTICK_INPUT_ACTION_1))
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_ACTION_2:
+            {
+                if (sf::Joystick::isButtonPressed(this->indexJoystick, POSITION_JOYSTICK_INPUT_ACTION_2))
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_ACTION_3:
+            {
+                if (sf::Joystick::isButtonPressed(this->indexJoystick, POSITION_JOYSTICK_INPUT_ACTION_3))
+                    return true;
+                return false;
+            }
+            break;
+        case POSITION_INPUT_ACTION_4:
+            {
+                if (sf::Joystick::isButtonPressed(this->indexJoystick, POSITION_JOYSTICK_INPUT_ACTION_4))
+                    return true;
+                return false;
+            }
+            break;
+        }
+    }
 }
 
 void InputCharacter::setInput(int indexAction, sf::Keyboard::Key key)
