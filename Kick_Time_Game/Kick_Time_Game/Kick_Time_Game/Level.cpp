@@ -115,6 +115,7 @@ void Level::updateLevel()
 			{
 			    GameManager::getInstance()->getCharacterManager()->unloadCharacters();
 			    GameManager::getInstance()->getLevelManager()->unloadActiveLevel();
+				GameManager::getInstance()->getAnimationManager()->cleanAnimations();
                 GameManager::getInstance()->getMenuManager()->setActiveMenu(new CharacterSelectionMenu());
 			}
 		}
@@ -132,6 +133,11 @@ void Level::renderLevel()
 	int height;
 	double posAnimX;
 	double posAnimY;
+	Collider * colliderLevel = new Collider();
+	colliderLevel->setPosition(this->positionDisplay);
+	colliderLevel->setHalfSizeX(SCREEN_SIZE_WIDTH / 2);
+	colliderLevel->setHalfSizeY(SCREEN_SIZE_HEIGHT / 2);
+	Collider * colliderAnim = new Collider();
 
 	for(unsigned int i = 0; i < this->levelData->getLevelAnimationData().size(); ++i)
 	{
@@ -139,8 +145,15 @@ void Level::renderLevel()
 		posAnimX = this->listAnimation->at(i)->getPosXSprite();
 		posAnimY = this->listAnimation->at(i)->getPosYSprite();
 
-		this->listSpriteLevelAnim->at(i)->setPosition((float)posAnimX, (float)(posAnimY - height));
-		this->listAnimation->at(i)->renderAnimation(this->listSpriteLevelAnim->at(i));
+		colliderAnim->setPosition(new Position(posAnimX, posAnimY - height));
+		colliderAnim->setHalfSizeX(this->listAnimation->at(i)->getAnimationData()->getSpriteWidth() / 2);
+		colliderAnim->setHalfSizeY(height / 2);
+
+		//if (colliderLevel->AreColliding(colliderAnim))
+		//{
+            this->listSpriteLevelAnim->at(i)->setPosition((float)posAnimX, (float)(posAnimY - height));
+            this->listAnimation->at(i)->renderAnimation(this->listSpriteLevelAnim->at(i));
+		//}
 	}
 }
 

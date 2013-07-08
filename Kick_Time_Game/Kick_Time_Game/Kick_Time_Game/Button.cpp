@@ -14,6 +14,7 @@ Button::Button(void)
 	this->indexPlayer = 0;
 	this->timerFrameGetInput = 0;
 	this->textRender = new sf::Text(this->name, *(GameManager::getInstance()->getFontManager()->getFont(BUTTON_FONT)));
+	this->textRender->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
 }
 
 Button::Button(string name, Position * center, bool canBeActive, bool isActive, bool display, int indexPlayer)
@@ -28,6 +29,7 @@ Button::Button(string name, Position * center, bool canBeActive, bool isActive, 
 	this->timerFrameGetInput = 0;
 	this->indexPlayer = indexPlayer;
 	this->textRender = new sf::Text(this->name, *(GameManager::getInstance()->getFontManager()->getFont(BUTTON_FONT)));
+	this->textRender->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
 }
 
 Button::~Button(void)
@@ -88,7 +90,6 @@ void Button::renderButton()
 	else
 		this->textRender->setColor(sf::Color(BUTTON_COLOR_RED, BUTTON_COLOR_GREEN, BUTTON_COLOR_BLUE));
 
-	this->textRender->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
 	this->textRender->setPosition((float)(this->center->getX()), (float)(this->center->getY()));
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->textRender);
 }

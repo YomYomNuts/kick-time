@@ -22,6 +22,7 @@ public:
 	void removeCharacterAnimation(AnimationCharacter * anim);
 	void addLevelAnimation(AnimationLevel * anim);
 	void removeLevelAnimation(AnimationLevel * anim);
+	void cleanAnimations();
 };
 
 #endif

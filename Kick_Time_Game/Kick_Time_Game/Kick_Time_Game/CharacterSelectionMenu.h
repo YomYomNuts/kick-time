@@ -13,7 +13,7 @@ class CharacterSelectionMenu : public Menu
 {
 private:
     vector<sf::Sprite *> * listAvatars;
-    int numberPlayerValidate;
+    vector<bool> * listValidation;
 public:
     CharacterSelectionMenu();
     ~CharacterSelectionMenu();

@@ -42,20 +42,22 @@ void SoundManager::updateSoundManager()
 	for (unsigned int i = 0; i < this->listSounds->size(); ++i)
 	{
 		sf::Sound * sound = this->listSounds->at(i);
-		if (sound->getPlayingOffset() == sound->getBuffer()->getDuration())
+		if (!sound->getStatus())
 		{
 			sound->stop();
 			this->listSounds->erase(this->listSounds->begin() + i);
+			delete sound;
 			--i;
 		}
 	}
 	for (unsigned int i = 0; i < this->listMusics->size(); ++i)
 	{
 		sf::Music * music = this->listMusics->at(i);
-		if (music->getPlayingOffset() == music->getDuration())
+		if (!music->getStatus())
 		{
 			music->stop();
 			this->listMusics->erase(this->listMusics->begin() + i);
+			delete music;
 			--i;
 		}
 	}
@@ -75,6 +77,7 @@ void SoundManager::playSound(int indexSound)
 	{
 		this->listSounds->at(0)->stop();
 		this->listSounds->erase(this->listSounds->begin());
+		delete this->listSounds->at(0);
 	}
 
 	this->listSounds->push_back(new sf::Sound());
@@ -91,6 +94,7 @@ void SoundManager::playMusic(int indexMusic)
 	{
 		this->listSounds->at(0)->stop();
 		this->listSounds->erase(this->listSounds->begin());
+		delete this->listSounds->at(0);
 	}
 
 	this->listMusics->push_back(new sf::Music());
@@ -115,6 +119,7 @@ void SoundManager::stopAll()
 		sf::Sound * sound = this->listSounds->at(i);
 		sound->stop();
 		this->listSounds->erase(this->listSounds->begin() + i);
+        delete sound;
 		--i;
 	}
 	for (unsigned int i = 0; i < this->listMusics->size(); ++i)
@@ -122,6 +127,7 @@ void SoundManager::stopAll()
 		sf::Music * music = this->listMusics->at(i);
 		music->stop();
 		this->listMusics->erase(this->listMusics->begin() + i);
+        delete music;
 		--i;
 	}
 }
