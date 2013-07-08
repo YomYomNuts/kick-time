@@ -34,8 +34,8 @@ void CharacterManager::updateCharacterManager()
 
 void CharacterManager::addCharacterDataIndexAt(int indexCharacter, int indexTypeCharacter)
 {
-	if (this->characterDataIndex->size() > indexCharacter)
-		this->characterDataIndex->insert(this->characterDataIndex->begin() + indexCharacter, indexTypeCharacter);
+	if ((int)this->characterDataIndex->size() > indexCharacter)
+		this->characterDataIndex->at(indexCharacter) = indexTypeCharacter;
 	else
 		this->characterDataIndex->push_back(indexTypeCharacter);
 }
@@ -52,7 +52,7 @@ vector<int>* CharacterManager::getCharactersDataIndex()
 
 void CharacterManager::loadCharacters()
 {
-    this->characterList->clear();
+    this->unloadCharacters();
     for (unsigned int i = 0; i < this->characterDataIndex->size(); ++i)
     {
         this->addCharacter(this->characterDataIndex->at(i));
@@ -71,6 +71,7 @@ void CharacterManager::addCharacter(int indexTypeCharacter)
 
 void CharacterManager::removeCharacter(int indexCharacter)
 {
+    delete this->characterList->at(indexCharacter);
 	this->characterList->erase(this->characterList->begin() + indexCharacter);
 }
 

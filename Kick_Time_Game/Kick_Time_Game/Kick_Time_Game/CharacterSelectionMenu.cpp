@@ -12,7 +12,7 @@ using namespace std;
 CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 {
     this->listAvatars = new vector<sf::Sprite*>();
-    this->numberPlayerValidate = 0;
+    this->listValidation = new vector<bool>(NUMBER_FIGHTERS, false);
 
     Button * button;
     int indexLine = 0, indexColumn = 0;
@@ -26,7 +26,7 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
         indexColumn = i % NUMBER_CHARACTER_BY_LINE;
         indexLine = (int)(i / NUMBER_CHARACTER_BY_LINE);
         position = new Position(POSITION_FIRST_CHARACTER_X + indexColumn * OFFSET_CHARACTER_X, POSITION_FIRST_CHARACTER_Y + indexLine * OFFSET_CHARACTER_Y);
-        for (int j = 0; j < NUMBER_FIGHTERS; ++j)
+        for (unsigned int j = 0; j < NUMBER_FIGHTERS; ++j)
         {
             if (characterManager->getCharactersDataIndex()->size() > j)
             {
@@ -74,6 +74,7 @@ CharacterSelectionMenu::~CharacterSelectionMenu()
 	delete this->title;
 	delete this->listButtons;
     delete this->listAvatars;
+    delete this->listValidation;
 }
 
 void CharacterSelectionMenu::renderMenu()
@@ -147,7 +148,17 @@ void CharacterSelectionMenu::actionValidateCharacter(Button * button)
     }
     GameManager::getInstance()->getCharacterManager()->addCharacterDataIndexAt(button->getIndexPlayer(), (int)(indexButton / NUMBER_FIGHTERS));
 
-    ++this->numberPlayerValidate;
-    if (this->numberPlayerValidate == NUMBER_FIGHTERS)
+    if (this->listValidation->size() > button->getIndexPlayer())
+        this->listValidation->at(button->getIndexPlayer()) = true;
+    else
+        this->listValidation->push_back(true);
+
+    int allValidate = 0;
+    for (unsigned int i = 0; i < this->listValidation->size(); ++i)
+    {
+        if (this->listValidation->at(i))
+            ++allValidate;
+    }
+    if (allValidate == NUMBER_FIGHTERS)
         GameManager::getInstance()->getMenuManager()->setActiveMenu(new LevelSelectionMenu());
 }

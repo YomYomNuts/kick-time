@@ -45,6 +45,7 @@ void AnimationManager::removeCharacterAnimation(AnimationCharacter* anim)
 			j = i;
 	}
 
+    delete this->animationCharacterList->at(j);
 	this->animationCharacterList->erase(this->animationCharacterList->begin()+j);
 }
 
@@ -63,5 +64,20 @@ void AnimationManager::removeLevelAnimation(AnimationLevel* anim)
 			j = i;
 	}
 
+    delete this->animationLevelList->at(j);
 	this->animationLevelList->erase(this->animationLevelList->begin()+j);
+}
+
+void AnimationManager::cleanAnimations()
+{
+	for(unsigned int i = 0; i < this->animationCharacterList->size(); ++i)
+	{
+	    delete this->animationCharacterList->at(i);
+	}
+	this->animationCharacterList->clear();
+	for(unsigned int i = 0; i < this->animationLevelList->size(); ++i)
+	{
+        delete this->animationLevelList->at(i);
+	}
+	this->animationLevelList->clear();
 }
