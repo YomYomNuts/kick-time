@@ -35,7 +35,7 @@ void InputManager::initializeInputManager()
 	listInputs2->push_back(sf::Keyboard::Down);
 	listInputs2->push_back(sf::Keyboard::Left);
 	listInputs2->push_back(sf::Keyboard::Right);
-	listInputs2->push_back(sf::Keyboard::Num5);
+	listInputs2->push_back(sf::Keyboard::M);
 	listInputs2->push_back(sf::Keyboard::Num1);
 	listInputs2->push_back(sf::Keyboard::Num2);
 	listInputs2->push_back(sf::Keyboard::Num3);
