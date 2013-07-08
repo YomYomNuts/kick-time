@@ -1,0 +1,2 @@
+0;../Ressources/Levels/MK/The_courtyard.png;0;0;0;11;87;3;13;true;678;228
+0;../Ressources/Levels/MK/The_courtyard.png;1;170;0;11;87;3;13;true;112;229
