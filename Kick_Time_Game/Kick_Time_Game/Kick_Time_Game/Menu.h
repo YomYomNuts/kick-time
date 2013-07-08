@@ -17,6 +17,7 @@ class Menu
 {
 protected:
 	sf::Sprite * spriteMenu;
+	sf::Text * title;
 	vector<Button*> * listButtons;
 	Button * getNextButton(Button * buttonCurrent, ButtonDirection direction, bool sameOtherPosition);
 public:
@@ -32,10 +33,12 @@ public:
 	virtual void actionNewGame(Button * button) {};
 	virtual void actionChangeVolumeSound(Button * button) {};
 	virtual void actionChangeVolumeMusic(Button * button) {};
+	virtual void actionGoToChangeInputs(Button * button) {};
     virtual void volumeSoundMove(Button * button, ButtonDirection direction) {};
     virtual void volumeMusicMove(Button * button, ButtonDirection direction) {};
 	virtual void actionValidateCharacter(Button * button) {};
 	virtual void actionValidateLevel(Button * button) {};
+	virtual void actionChangeInputs(Button * button) {};
 };
 
 #endif

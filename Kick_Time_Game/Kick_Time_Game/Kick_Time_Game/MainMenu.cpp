@@ -27,6 +27,7 @@ MainMenu::MainMenu(void) : Menu()
 MainMenu::~MainMenu(void)
 {
 	delete this->spriteMenu;
+	delete this->title;
 	delete this->listButtons;
 }
 

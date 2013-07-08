@@ -46,16 +46,15 @@ void Button::updateButton()
 		++this->timerFrameGetInput;
 		if (activeMenu != NULL && this->timerFrameGetInput >= TIMER_GET_INPUT_BUTTON)
 		{
-			// Action validate
 			if (this->action != NULL && gameManager->getInputManager()->isPressed(this->indexPlayer, POSITION_INPUT_ACTION_1))
 			{
+                // Action validate
 				this->timerFrameGetInput = 0;
 				(activeMenu->*action)(this);
 			}
-
-			// Action move
-			if (this->actionMove != NULL)
+			else if (this->actionMove != NULL)
 			{
+                // Action move
 				if (gameManager->getInputManager()->isPressed(this->indexPlayer, POSITION_INPUT_MOVE_UP))
 				{
 					this->timerFrameGetInput = 0;
@@ -132,4 +131,25 @@ void Button::setActionMove(void (Menu::*actionMove)(Button*, ButtonDirection))
 int Button::getIndexPlayer()
 {
     return this->indexPlayer;
+}
+
+void Button::setName(string name)
+{
+    this->name = name;
+    this->textRender->setString(this->name);
+}
+
+int Button::getTimerFrameGetInput()
+{
+    return this->timerFrameGetInput;
+}
+
+void Button::updateTimerFrameGetInput()
+{
+    ++this->timerFrameGetInput;
+}
+
+void Button::resetTimerFrameGetInput()
+{
+    this->timerFrameGetInput = 0;
 }

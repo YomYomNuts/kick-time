@@ -4,10 +4,13 @@
 RenderManager::RenderManager(void)
 {
 	this->window = new sf::RenderWindow();
+	this->event = new sf::Event();
 }
 
 RenderManager::~RenderManager(void)
 {
+	delete this->window;
+	delete this->event;
 }
 
 void RenderManager::initializeRenderManager()
@@ -19,10 +22,9 @@ void RenderManager::initializeRenderManager()
 void RenderManager::updateRenderManager()
 {
 	// Close the window
-	sf::Event event;
-    while (this->window->pollEvent(event))
+    while (this->window->pollEvent(*this->event))
     {
-        if (event.type == sf::Event::Closed)
+        if (this->event->type == sf::Event::Closed)
 			this->window->close();
     }
 
@@ -34,7 +36,13 @@ void RenderManager::updateRenderManager()
 	GameManager::getInstance()->getHudManager()->renderHudManager();
     window->display();
 }
+
 sf::RenderWindow* RenderManager::getWindow()
 {
 	return this->window;
+}
+
+sf::Event* RenderManager::getEvent()
+{
+    return this->event;
 }

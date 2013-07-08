@@ -59,6 +59,11 @@ void CharacterManager::loadCharacters()
     }
 }
 
+void CharacterManager::unloadCharacters()
+{
+    this->characterList->clear();
+}
+
 void CharacterManager::addCharacter(int indexTypeCharacter)
 {
 	this->characterList->push_back(new Character(this->characterList->size(), indexTypeCharacter));

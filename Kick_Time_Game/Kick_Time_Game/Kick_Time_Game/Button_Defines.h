@@ -11,10 +11,10 @@
 #define BUTTON_ACTIVE_COLOR_RED     255
 #define BUTTON_ACTIVE_COLOR_GREEN	255
 #define BUTTON_ACTIVE_COLOR_BLUE	41
-#define BUTTON_SCALE_X				(0.3)
-#define BUTTON_SCALE_Y				(0.3)
+#define BUTTON_SCALE_X				(0.5)
+#define BUTTON_SCALE_Y				(0.5)
 
 //Timer get input
-#define TIMER_GET_INPUT_BUTTON			15
+#define TIMER_GET_INPUT_BUTTON		15
 
 #endif

@@ -5,17 +5,22 @@
 #include "SoundManager_Defines.h"
 #include "Button_Defines.h"
 #include "MainMenu.h"
+#include "InputMenu.h"
 
 
 OptionMenu::OptionMenu(void) : Menu()
 {
 	Button * button;
-	this->listButtons->push_back(new Button("Volume Sound", new Position(POSITION_VOLUME_SOUND_X, POSITION_VOLUME_SOUND_Y), true, true, true, 0));
+	this->listButtons->push_back(new Button("SFX", new Position(POSITION_VOLUME_SOUND_X, POSITION_VOLUME_SOUND_Y), true, true, true, 0));
     button = this->listButtons->at(this->listButtons->size() - 1);
 	button->setActionMove(&Menu::volumeSoundMove);
-	this->listButtons->push_back(new Button("Volume Music", new Position(POSITION_VOLUME_MUSIC_X, POSITION_VOLUME_MUSIC_Y), true, false, true, 0));
+	this->listButtons->push_back(new Button("Music", new Position(POSITION_VOLUME_MUSIC_X, POSITION_VOLUME_MUSIC_Y), true, false, true, 0));
 	button = this->listButtons->at(this->listButtons->size() - 1);
 	button->setActionMove(&Menu::volumeMusicMove);
+	this->listButtons->push_back(new Button("Change Inputs", new Position(POSITION_CHANGE_INPUTS_X, POSITION_CHANGE_INPUTS_Y), true, false, true, 0));
+	button = this->listButtons->at(this->listButtons->size() - 1);
+	button->setAction(&Menu::actionGoToChangeInputs);
+	button->setActionMove(&Menu::classicMove);
 	this->listButtons->push_back(new Button("Back", new Position(POSITION_BACK_X, POSITION_BACK_Y), true, false, true, 0));
 	button = this->listButtons->at(this->listButtons->size() - 1);
 	button->setAction(&Menu::actionBack);
@@ -23,10 +28,10 @@ OptionMenu::OptionMenu(void) : Menu()
 
 	// Set the render
 	this->renderVolumeSound = new sf::Text("", *(GameManager::getInstance()->getFontManager()->getFont(BUTTON_FONT)));
-	this->renderVolumeSound->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
+	this->renderVolumeSound->setScale((float)BAR_SCALE_X, (float)BAR_SCALE_Y);
 	this->renderVolumeSound->setPosition((float)(POSITION_BAR_SOUND_X), (float)(POSITION_BAR_SOUND_Y));
 	this->renderVolumeMusic = new sf::Text("", *(GameManager::getInstance()->getFontManager()->getFont(BUTTON_FONT)));
-	this->renderVolumeMusic->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
+	this->renderVolumeMusic->setScale((float)BAR_SCALE_X, (float)BAR_SCALE_Y);
 	this->renderVolumeMusic->setPosition((float)(POSITION_BAR_MUSIC_X), (float)(POSITION_BAR_MUSIC_Y));
 
 	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU));
@@ -35,6 +40,7 @@ OptionMenu::OptionMenu(void) : Menu()
 OptionMenu::~OptionMenu(void)
 {
 	delete this->spriteMenu;
+	delete this->title;
 	delete this->listButtons;
 	delete this->renderVolumeSound;
 	delete this->renderVolumeMusic;
@@ -141,4 +147,9 @@ void OptionMenu::volumeMusicMove(Button * button, ButtonDirection direction)
 	    }
 		break;
 	}
+}
+
+void OptionMenu::actionGoToChangeInputs(Button * button)
+{
+	GameManager::getInstance()->getMenuManager()->setActiveMenu(new InputMenu());
 }

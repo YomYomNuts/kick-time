@@ -18,8 +18,12 @@ public:
     InputCharacter();
     ~InputCharacter();
     void setListInputs(vector<sf::Keyboard::Key> * listInputs);
+	vector<sf::Keyboard::Key>* getListInputs();
     void setIndexJoystick(int indexJoystick);
+	int getIndexJoystick();
 	bool isPressed(int indexAction);
+	void setInput(int indexAction, sf::Keyboard::Key key);
+    string getKeyName(int indexAction);
 };
 
 #endif // _INPUTCHARACTER_H

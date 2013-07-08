@@ -13,6 +13,12 @@ Position::Position(double x, double y)
 	this->y = y;
 }
 
+Position::Position(const Position & position)
+{
+	this->x = position.x;
+	this->y = position.y;
+}
+
 Position::~Position(void)
 {
 }

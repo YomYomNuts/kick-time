@@ -24,6 +24,7 @@ public:
 	void removeCharacterDataIndex(int indexCharacter);
 	vector<int>* getCharactersDataIndex();
 	void loadCharacters();
+	void unloadCharacters();
 	vector<Character*>* getCharacters();
 	void renderCharacterManager();
 	Character* getClosestCharacter(int withoutThisIndex, Position * position);

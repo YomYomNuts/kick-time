@@ -96,6 +96,9 @@
 		<Unit filename="InputManager.cpp" />
 		<Unit filename="InputManager.h" />
 		<Unit filename="InputManager_Defines.h" />
+		<Unit filename="InputMenu.cpp" />
+		<Unit filename="InputMenu.h" />
+		<Unit filename="InputMenu_Defines.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="LevelAnimationData.cpp" />

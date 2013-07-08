@@ -15,7 +15,7 @@ using namespace std;
 class InputManager
 {
 private:
-	vector<InputCharacter*> * listInputCharacter;
+	vector<InputCharacter*> * listInputsCharacter;
 
 public:
 	InputManager(void);
@@ -23,6 +23,7 @@ public:
 	void initializeInputManager();
 	void updateInputManager();
 	bool isPressed(int indexPlayer, int indexAction);
+	vector<InputCharacter*>* getListInputsCharacter();
 };
 
 #endif

@@ -7,6 +7,7 @@ class RenderManager
 {
 private:
 	sf::RenderWindow * window;
+	sf::Event * event;
 
 public:
 	RenderManager(void);
@@ -14,6 +15,7 @@ public:
 	void initializeRenderManager();
 	void updateRenderManager();
 	sf::RenderWindow* getWindow();
+	sf::Event* getEvent();
 };
 
 #endif

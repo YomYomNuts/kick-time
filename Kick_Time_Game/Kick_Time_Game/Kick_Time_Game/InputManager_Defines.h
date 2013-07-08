@@ -9,5 +9,6 @@
 #define POSITION_INPUT_ACTION_2		5
 #define POSITION_INPUT_ACTION_3		6
 #define POSITION_INPUT_ACTION_4		7
+#define NUMBER_INPUT_NEED           8
 
 #endif

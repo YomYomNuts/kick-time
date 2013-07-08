@@ -59,12 +59,19 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 	button->setAction(&Menu::actionBack);
 	button->setActionMove(&Menu::classicMove);
 
+	this->title->setString("SELECT YOUR FIGHTER");
+	this->title->setFont(*(GameManager::getInstance()->getFontManager()->getFont(TITLE_PLAYER_FONT)));
+	this->title->setScale((float)TITLE_PLAYER_SCALE_X, (float)TITLE_PLAYER_SCALE_Y);
+	this->title->setPosition((float)(POSITION_TITLE_PLAYER_X), (float)(POSITION_TITLE_PLAYER_Y));
+    this->title->setColor(sf::Color(TITLE_PLAYER_COLOR_RED, TITLE_PLAYER_COLOR_GREEN, TITLE_PLAYER_COLOR_BLUE));
+
 	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU_SELECTION));
 }
 
 CharacterSelectionMenu::~CharacterSelectionMenu()
 {
 	delete this->spriteMenu;
+	delete this->title;
 	delete this->listButtons;
     delete this->listAvatars;
 }

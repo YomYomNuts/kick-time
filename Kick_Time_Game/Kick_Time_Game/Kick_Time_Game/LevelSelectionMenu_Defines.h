@@ -5,12 +5,22 @@
 #define SIZE_SPRITE_LEVEL_X         80
 #define SIZE_SPRITE_LEVEL_Y         50
 
-#define POSITION_BACK_X             250
+#define POSITION_BACK_X             230
 #define POSITION_BACK_Y             260
 #define POSITION_FIRST_LEVEL_X      140
 #define POSITION_FIRST_LEVEL_Y      100
 #define OFFSET_LEVEL_X              90
 #define OFFSET_LEVEL_Y              60
+
+// Title
+#define TITLE_LEVEL_FONT			FONT_ARIAL
+#define TITLE_LEVEL_COLOR_RED		179
+#define TITLE_LEVEL_COLOR_GREEN	    228
+#define TITLE_LEVEL_COLOR_BLUE		5
+#define TITLE_LEVEL_SCALE_X		    (0.8)
+#define TITLE_LEVEL_SCALE_Y		    (0.8)
+#define POSITION_TITLE_LEVEL_X      140
+#define POSITION_TITLE_LEVEL_Y      20
 
 
 #endif // _LEVELSELECTIONMENU_DEFINES_H

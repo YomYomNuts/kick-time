@@ -1,6 +1,7 @@
 #include "Level.h"
 #include "Level_Defines.h"
 #include "GameManager.h"
+#include "CharacterSelectionMenu.h"
 
 #include <iostream>
 
@@ -113,16 +114,9 @@ void Level::updateLevel()
 			this->timer->updateTimer();
 			if (this->timer->isOnLimit())
 			{
-				this->timer = new Timer(true, 1);
-				this->levelState = STATE_LEVEL_START_ROUND;
-				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
-				vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
-				for(unsigned int i = 0; i < listCharacters->size(); ++i)
-				{
-					listCharacters->at(i)->resetInformations();
-					listCharacters->at(i)->setNumberRoundWin(0);
-					listCharacters->at(i)->setNumberRoundWin(0);
-				}
+			    GameManager::getInstance()->getCharacterManager()->unloadCharacters();
+			    GameManager::getInstance()->getLevelManager()->unloadActiveLevel();
+                GameManager::getInstance()->getMenuManager()->setActiveMenu(new CharacterSelectionMenu());
 			}
 		}
 		break;

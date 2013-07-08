@@ -38,3 +38,8 @@ void LevelManager::setActiveLevel(int indexLevel)
 {
 	this->activeLevel = new Level(&levelDataArray[indexLevel]);
 }
+
+void LevelManager::unloadActiveLevel()
+{
+	this->activeLevel = NULL;
+}

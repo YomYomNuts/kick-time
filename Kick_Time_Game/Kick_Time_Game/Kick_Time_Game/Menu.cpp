@@ -6,12 +6,14 @@
 Menu::Menu(void)
 {
 	this->spriteMenu = new sf::Sprite();
+	this->title = new sf::Text();
 	this->listButtons = new vector<Button*>();
 }
 
 Menu::~Menu(void)
 {
 	delete this->spriteMenu;
+	delete this->title;
 	delete this->listButtons;
 }
 
@@ -27,6 +29,9 @@ void Menu::renderMenu()
 {
 	//Draw the background
 	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->spriteMenu);
+
+	//Draw the title
+	GameManager::getInstance()->getRenderManager()->getWindow()->draw(*this->title);
 
 	//Draw the buttons
 	for(unsigned int i = 0; i < this->listButtons->size(); ++i)

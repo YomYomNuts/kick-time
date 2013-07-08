@@ -49,6 +49,10 @@ public:
 	void setAction(void (Menu::*action)(Button*));
 	void setActionMove(void (Menu::*actionMove)(Button*, ButtonDirection));
 	int getIndexPlayer();
+	void setName(string name);
+	int getTimerFrameGetInput();
+	void updateTimerFrameGetInput();
+	void resetTimerFrameGetInput();
 };
 
 #endif

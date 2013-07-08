@@ -19,6 +19,7 @@ public:
 	void actionBack(Button * button);
     void volumeSoundMove(Button * button, ButtonDirection direction);
     void volumeMusicMove(Button * button, ButtonDirection direction);
+	void actionGoToChangeInputs(Button * button);
 };
 
 #endif

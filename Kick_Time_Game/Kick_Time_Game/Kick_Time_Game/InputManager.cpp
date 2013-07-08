@@ -4,18 +4,18 @@
 
 InputManager::InputManager(void)
 {
-    this->listInputCharacter = new vector<InputCharacter*>();
+    this->listInputsCharacter = new vector<InputCharacter*>();
 }
 
 InputManager::~InputManager(void)
 {
-    delete this->listInputCharacter;
+    delete this->listInputsCharacter;
 }
 
 void InputManager::initializeInputManager()
 {
     for (int i = 0; i < NUMBER_FIGHTERS; ++i)
-        this->listInputCharacter->push_back(new InputCharacter());
+        this->listInputsCharacter->push_back(new InputCharacter());
 
 	//Input Player 1
 	vector<sf::Keyboard::Key> * listInputs = new vector<sf::Keyboard::Key>();
@@ -27,7 +27,7 @@ void InputManager::initializeInputManager()
 	listInputs->push_back(sf::Keyboard::J);
 	listInputs->push_back(sf::Keyboard::K);
 	listInputs->push_back(sf::Keyboard::L);
-	this->listInputCharacter->at(0)->setListInputs(listInputs);
+	this->listInputsCharacter->at(0)->setListInputs(listInputs);
 
 	//Input Player 2
 	vector<sf::Keyboard::Key> * listInputs2 = new vector<sf::Keyboard::Key>();
@@ -39,7 +39,7 @@ void InputManager::initializeInputManager()
 	listInputs2->push_back(sf::Keyboard::Num1);
 	listInputs2->push_back(sf::Keyboard::Num2);
 	listInputs2->push_back(sf::Keyboard::Num3);
-	this->listInputCharacter->at(1)->setListInputs(listInputs2);
+	this->listInputsCharacter->at(1)->setListInputs(listInputs2);
 }
 
 void InputManager::updateInputManager()
@@ -48,5 +48,11 @@ void InputManager::updateInputManager()
 
 bool InputManager::isPressed(int indexPlayer, int indexAction)
 {
-    return this->listInputCharacter->at(indexPlayer)->isPressed(indexAction);
+    return this->listInputsCharacter->at(indexPlayer)->isPressed(indexAction);
+}
+
+
+vector<InputCharacter*>* InputManager::getListInputsCharacter()
+{
+    return this->listInputsCharacter;
 }

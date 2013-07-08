@@ -749,9 +749,9 @@
 1373130170 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\animationdata.h
 	<string>
 
-1370799372 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\position.h
+1373222121 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\position.h
 
-1371079579 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\gamemanager.h
+1373227786 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\gamemanager.h
 	"TextureManager.h"
 	"ModeManager.h"
 	"SaveManager.h"
@@ -778,7 +778,7 @@
 
 1370732950 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\savemanager.h
 
-1373157007 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager.h
+1373209366 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager.h
 	"InputCharacter.h"
 	"GameManager_Defines.h"
 	"InputManager_Defines.h"
@@ -788,7 +788,7 @@
 
 1370984471 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\gamemanager_defines.h
 
-1373156959 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager_defines.h
+1373211072 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager_defines.h
 
 1373139096 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\soundmanager.h
 	"SoundManager_Defines.h"
@@ -798,21 +798,21 @@
 1373132661 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menumanager.h
 	"Menu.h"
 
-1373200270 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu.h
+1373239757 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu.h
 	"Menu_Defines.h"
 	"Button.h"
 	"Button_Defines.h"
 	<SFML/Graphics.hpp>
 	<vector>
 
-1373195664 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.h
+1373234319 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.h
 	"Button_Defines.h"
 	"Position.h"
 	"Menu.h"
 	<SFML/Graphics.hpp>
 	<string>
 
-1373155246 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button_defines.h
+1373240098 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button_defines.h
 	"FontData.h"
 
 1371081099 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\fontdata.h
@@ -821,10 +821,10 @@
 1371163984 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\hudmanager.h
 	<SFML/Graphics.hpp>
 
-1370732630 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\rendermanager.h
+1373227789 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\rendermanager.h
 	<SFML/Graphics.hpp>
 
-1373191733 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelmanager.h
+1373205734 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelmanager.h
 	"Level.h"
 	<vector>
 
@@ -865,7 +865,7 @@
 1373151761 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterdata.h
 	<string>
 
-1373193982 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.h
+1373204252 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.h
 	"Character.h"
 	<vector>
 	<iostream>
@@ -902,7 +902,7 @@
 1370732532 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\battlemode.h
 	"Mode.h"
 
-1373195695 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.cpp
+1373237871 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\button.cpp
 	"Button.h"
 	"GameManager.h"
 
@@ -927,7 +927,7 @@
 1371077930 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\sounddata.h
 	<string>
 
-1373194245 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.cpp
+1373204279 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\charactermanager.cpp
 	"CharacterManager.h"
 	"GameManager.h"
 	"SoundData.h"
@@ -953,7 +953,7 @@
 	"FontData.h"
 	<iostream>
 
-1373202659 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\gamemanager.cpp
+1373227802 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\gamemanager.cpp
 	"GameManager.h"
 
 1373161036 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\hudmanager.cpp
@@ -968,14 +968,15 @@
 
 1371160275 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\level_defines.h
 
-1373158505 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager.cpp
+1373209435 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmanager.cpp
 	"InputManager.h"
 	"GameManager_Defines.h"
 
-1373130018 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\level.cpp
+1373239579 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\level.cpp
 	"Level.h"
 	"Level_Defines.h"
 	"GameManager.h"
+	"CharacterSelectionMenu.h"
 	<iostream>
 
 1371329213 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelanimationdata.cpp
@@ -984,7 +985,7 @@
 1373193369 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\leveldata.cpp
 	"LevelData.h"
 
-1371150055 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelmanager.cpp
+1373205753 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelmanager.cpp
 	"LevelManager.h"
 	"LevelData.h"
 
@@ -996,7 +997,7 @@
 	"AnimationCharacter.h"
 	"AnimationLevel.h"
 
-1373195743 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu.cpp
+1373239853 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu.cpp
 	"Menu.h"
 	"GameManager.h"
 	<climits>
@@ -1015,7 +1016,7 @@
 	"ModeManager.h"
 	<stdio.h>
 
-1373200293 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu.cpp
+1373241206 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu.cpp
 	"OptionMenu.h"
 	"OptionMenu_Defines.h"
 	"GameManager.h"
@@ -1023,8 +1024,9 @@
 	"SoundManager_Defines.h"
 	"Button_Defines.h"
 	"MainMenu.h"
+	"InputMenu.h"
 
-1373159186 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu.h
+1373219907 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu.h
 	"Menu.h"
 	<SFML/Graphics.hpp>
 
@@ -1034,10 +1036,10 @@
 1370732882 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\player.h
 	"Character.h"
 
-1370799381 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\position.cpp
+1373222116 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\position.cpp
 	"Position.h"
 
-1373069856 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\rendermanager.cpp
+1373228011 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\rendermanager.cpp
 	"RenderManager.h"
 	"GameManager.h"
 
@@ -1066,7 +1068,7 @@
 	"Timer.h"
 	"GameManager_Defines.h"
 
-1373200251 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\mainmenu.cpp
+1373239891 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\mainmenu.cpp
 	"MainMenu.h"
 	"MainMenu_Defines.h"
 	"GameManager.h"
@@ -1075,9 +1077,9 @@
 
 1373136590 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\soundmanager_defines.h
 
-1373141481 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu_defines.h
+1373241310 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\optionmenu_defines.h
 
-1373201937 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.cpp
+1373242816 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu.cpp
 	"CharacterSelectionMenu.h"
 	"CharacterSelectionMenu_Defines.h"
 	"CharacterData.h"
@@ -1091,17 +1093,17 @@
 	<SFML/Graphics.hpp>
 	<vector>
 
-1373202484 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu_defines.h
+1373243066 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\characterselectionmenu_defines.h
 	"FontData.h"
 
-1373142941 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\mainmenu_defines.h
+1373240327 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\mainmenu_defines.h
 
-1373157860 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputcharacter.h
+1373223127 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputcharacter.h
 	"Position.h"
 	<SFML/Graphics.hpp>
 	<vector>
 
-1373158000 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputcharacter.cpp
+1373239263 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputcharacter.cpp
 	"InputCharacter.h"
 
 1365233434 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\sfml-2.0\include\sfml\graphics.hpp
@@ -1498,7 +1500,7 @@
 	<SFML/System/Thread.hpp>
 	<vector>
 
-1373200340 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelselectionmenu.cpp
+1373243159 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelselectionmenu.cpp
 	"LevelSelectionMenu.h"
 	"LevelSelectionMenu_Defines.h"
 	"LevelData.h"
@@ -1510,7 +1512,22 @@
 	<SFML/Graphics.hpp>
 	<vector>
 
-1373202489 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelselectionmenu_defines.h
+1373243224 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\levelselectionmenu_defines.h
 
 1373200071 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\menu_defines.h
+
+1373242392 source:c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmenu.cpp
+	"InputMenu.h"
+	"InputMenu_Defines.h"
+	"GameManager.h"
+	"InputManager.h"
+	"InputCharacter.h"
+	"OptionMenu.h"
+	<stdio.h>
+	<iostream>
+
+1373220137 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmenu.h
+	"Menu.h"
+
+1373242349 c:\users\administrateur\documents\m1 jeux video\c++\kick-time\kick_time_game\kick_time_game\kick_time_game\inputmenu_defines.h
 

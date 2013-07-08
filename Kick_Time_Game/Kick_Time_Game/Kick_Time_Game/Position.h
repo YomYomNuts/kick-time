@@ -12,6 +12,7 @@ private:
 public:
 	Position(void);
 	Position(double x, double y);
+	Position(const Position & position);
 	~Position(void);
 	double getX() const;
 	void setX(double x);

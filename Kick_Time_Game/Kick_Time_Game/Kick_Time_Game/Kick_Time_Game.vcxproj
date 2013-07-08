@@ -30,6 +30,7 @@
     <ClCompile Include="HudManager.cpp" />
     <ClCompile Include="InputCharacter.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InputMenu.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelAnimationData.cpp" />
     <ClCompile Include="LevelData.cpp" />
@@ -78,6 +79,8 @@
     <ClInclude Include="InputCharacter.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputManager_Defines.h" />
+    <ClInclude Include="InputMenu.h" />
+    <ClInclude Include="InputMenu_Defines.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelAnimationData.h" />
     <ClInclude Include="LevelData.h" />
@@ -89,6 +92,7 @@
     <ClInclude Include="MainMenu_Defines.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuManager.h" />
+    <ClInclude Include="Menu_Defines.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="ModeManager.h" />
     <ClInclude Include="OptionMenu.h" />

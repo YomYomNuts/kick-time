@@ -21,6 +21,7 @@ public:
 	void renderLevelManager();
 	Level* getActiveLevel();
 	void setActiveLevel(int indexLevel);
+	void unloadActiveLevel();
 };
 
 #endif

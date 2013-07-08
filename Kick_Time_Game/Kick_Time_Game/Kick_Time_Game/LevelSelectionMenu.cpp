@@ -42,12 +42,19 @@ LevelSelectionMenu::LevelSelectionMenu()
 	button->setAction(&Menu::actionBack);
 	button->setActionMove(&Menu::classicMove);
 
+	this->title->setString("SELECT YOUR RING");
+	this->title->setFont(*(GameManager::getInstance()->getFontManager()->getFont(TITLE_LEVEL_FONT)));
+	this->title->setScale((float)TITLE_LEVEL_SCALE_X, (float)TITLE_LEVEL_SCALE_Y);
+	this->title->setPosition((float)(POSITION_TITLE_LEVEL_X), (float)(POSITION_TITLE_LEVEL_Y));
+    this->title->setColor(sf::Color(TITLE_LEVEL_COLOR_RED, TITLE_LEVEL_COLOR_GREEN, TITLE_LEVEL_COLOR_BLUE));
+
 	this->spriteMenu->setTexture(*GameManager::getInstance()->getTextureManager()->getTexture(FILE_MENU_SELECTION));
 }
 
 LevelSelectionMenu::~LevelSelectionMenu()
 {
 	delete this->spriteMenu;
+	delete this->title;
 	delete this->listButtons;
 }
 
