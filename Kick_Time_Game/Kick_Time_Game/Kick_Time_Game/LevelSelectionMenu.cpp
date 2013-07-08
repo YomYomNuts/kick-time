@@ -42,7 +42,7 @@ LevelSelectionMenu::LevelSelectionMenu()
 	button->setAction(&Menu::actionBack);
 	button->setActionMove(&Menu::classicMove);
 
-	this->title->setString("SELECT YOUR RING");
+	this->title->setString("SELECT THE ARENA");
 	this->title->setFont(*(GameManager::getInstance()->getFontManager()->getFont(TITLE_LEVEL_FONT)));
 	this->title->setScale((float)TITLE_LEVEL_SCALE_X, (float)TITLE_LEVEL_SCALE_Y);
 	this->title->setPosition((float)(POSITION_TITLE_LEVEL_X), (float)(POSITION_TITLE_LEVEL_Y));

@@ -59,11 +59,12 @@ public:
 	int getSoundVictory() const;
 };
 
-#define NUMBER_CHARACTERDATA 2
+#define NUMBER_CHARACTERDATA 3
 
 extern const CharacterData characterDataArray[NUMBER_CHARACTERDATA];
 
-#define SCORPION 0
-#define SUBZERO 1
+#define REPTILE 0
+#define SCORPION 1
+#define SUBZERO 2
 
 #endif _CHARACTERDATA_H
