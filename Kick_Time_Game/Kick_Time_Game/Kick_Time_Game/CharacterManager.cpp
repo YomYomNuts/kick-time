@@ -16,7 +16,14 @@ CharacterManager::CharacterManager(void)
 
 CharacterManager::~CharacterManager(void)
 {
-	delete this->characterList;
+    if (this->characterList != NULL)
+    {
+        for (unsigned int i = 0; i < this->characterList->size(); ++i)
+        {
+            delete this->characterList->at(i);
+        }
+        delete this->characterList;
+    }
 	delete this->characterDataIndex;
 }
 
@@ -35,7 +42,11 @@ void CharacterManager::updateCharacterManager()
 void CharacterManager::addCharacterDataIndexAt(int indexCharacter, int indexTypeCharacter)
 {
 	if ((int)this->characterDataIndex->size() > indexCharacter)
+    {
+        int previous = this->characterDataIndex->at(indexCharacter);
 		this->characterDataIndex->at(indexCharacter) = indexTypeCharacter;
+		this->characterDataIndex->push_back(previous);
+    }
 	else
 		this->characterDataIndex->push_back(indexTypeCharacter);
 }
@@ -61,6 +72,10 @@ void CharacterManager::loadCharacters()
 
 void CharacterManager::unloadCharacters()
 {
+    for (unsigned int i = 0; i < this->characterList->size(); ++i)
+    {
+        delete this->characterList->at(i);
+    }
     this->characterList->clear();
 }
 

@@ -183,4 +183,4 @@ extern const AnimationData animationDataArray[NUMBER_ANIMATIONDATA];
 #define SUBZERO_VICTORY_LEFT 136
 #define SUBZERO_CROUCHED_LEFT 137
 
-#endif _ANIMATIONDATA_H
+#endif //_ANIMATIONDATA_H

@@ -9,7 +9,15 @@ AnimationManager::AnimationManager(void)
 
 AnimationManager::~AnimationManager(void)
 {
+    for (unsigned int i = 0; i < this->animationCharacterList->size(); ++i)
+    {
+        delete this->animationCharacterList->at(i);
+    }
 	delete this->animationCharacterList;
+    for (unsigned int i = 0; i < this->animationLevelList->size(); ++i)
+    {
+        delete this->animationLevelList->at(i);
+    }
 	delete this->animationLevelList;
 }
 

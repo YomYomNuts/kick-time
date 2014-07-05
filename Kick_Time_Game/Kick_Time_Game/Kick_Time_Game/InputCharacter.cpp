@@ -65,16 +65,16 @@ bool InputCharacter::isPressed(int indexAction)
             break;
         case POSITION_INPUT_MOVE_LEFT:
             {
-                if (event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT
-                    || fabs(event->joystickMove.position) != 100 && event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                if ((event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT)
+                    || (fabs(event->joystickMove.position) != 100 && event->joystickMove.position < 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN))
                     return true;
                 return false;
             }
             break;
         case POSITION_INPUT_MOVE_RIGHT:
             {
-                if (event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT
-                    || fabs(event->joystickMove.position) != 100 && event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN)
+                if ((event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_LEFT_RIGHT)
+                    || (fabs(event->joystickMove.position) != 100 && event->joystickMove.position > 0 && event->joystickMove.axis == POSITION_JOYSTICK_INPUT_MOVE_UP_DOWN))
                     return true;
                 return false;
             }
@@ -109,6 +109,7 @@ bool InputCharacter::isPressed(int indexAction)
             break;
         }
     }
+    return false;
 }
 
 void InputCharacter::setInput(int indexAction, sf::Keyboard::Key key)

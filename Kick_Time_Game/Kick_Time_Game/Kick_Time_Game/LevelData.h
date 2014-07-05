@@ -38,4 +38,4 @@ extern const map<int, vector<LevelAnimationData> > levelAnimDataArray;
 #define LEVEL_0 0
 #define LEVEL_1 1
 
-#endif _LEVELDATA_H_
+#endif //_LEVELDATA_H_

@@ -25,9 +25,9 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
     {
         indexColumn = i % NUMBER_CHARACTER_BY_LINE;
         indexLine = (int)(i / NUMBER_CHARACTER_BY_LINE);
-        position = new Position(POSITION_FIRST_CHARACTER_X + indexColumn * OFFSET_CHARACTER_X, POSITION_FIRST_CHARACTER_Y + indexLine * OFFSET_CHARACTER_Y);
         for (unsigned int j = 0; j < NUMBER_FIGHTERS; ++j)
         {
+            position = new Position(POSITION_FIRST_CHARACTER_X + indexColumn * OFFSET_CHARACTER_X, POSITION_FIRST_CHARACTER_Y + indexLine * OFFSET_CHARACTER_Y);
             if (characterManager->getCharactersDataIndex()->size() > j)
             {
                 if (characterManager->getCharactersDataIndex()->at(j) == i)
@@ -70,9 +70,10 @@ CharacterSelectionMenu::CharacterSelectionMenu() : Menu()
 
 CharacterSelectionMenu::~CharacterSelectionMenu()
 {
-	delete this->spriteMenu;
-	delete this->title;
-	delete this->listButtons;
+	for (unsigned int i = 0; i < this->listAvatars->size(); ++i)
+	{
+        delete this->listAvatars->at(i);
+	}
     delete this->listAvatars;
     delete this->listValidation;
 }
@@ -128,7 +129,7 @@ void CharacterSelectionMenu::renderMenu()
 void CharacterSelectionMenu::actionBack(Button * button)
 {
 	GameManager::getInstance()->getMenuManager()->setActiveMenu(new MainMenu());
-    GameManager::getInstance()->getCharacterManager()->getCharactersDataIndex()->clear();
+	GameManager::getInstance()->getCharacterManager()->getCharactersDataIndex()->clear();
 }
 
 void CharacterSelectionMenu::actionValidateCharacter(Button * button)

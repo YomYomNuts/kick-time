@@ -67,4 +67,4 @@ extern const CharacterData characterDataArray[NUMBER_CHARACTERDATA];
 #define SCORPION 1
 #define SUBZERO 2
 
-#endif _CHARACTERDATA_H
+#endif //_CHARACTERDATA_H

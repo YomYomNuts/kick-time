@@ -29,7 +29,7 @@ private:
 	bool endOfLevelReached;
 	vector<AnimationLevel*> * listAnimation;
 	vector<sf::Sprite*> * listSpriteLevelAnim;
-	AnimationLevel * anim;
+	//AnimationLevel * anim;
 
 public:
 	Level(void);

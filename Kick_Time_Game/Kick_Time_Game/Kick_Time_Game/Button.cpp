@@ -17,7 +17,7 @@ Button::Button(void)
 	this->textRender->setScale((float)BUTTON_SCALE_X, (float)BUTTON_SCALE_Y);
 }
 
-Button::Button(string name, Position * center, bool canBeActive, bool isActive, bool display, int indexPlayer)
+Button::Button(string name, Position * center, bool canBeActive, bool isActive, bool display, unsigned int indexPlayer)
 {
 	this->name = name;
 	this->center = center;
@@ -129,7 +129,7 @@ void Button::setActionMove(void (Menu::*actionMove)(Button*, ButtonDirection))
 	this->actionMove = actionMove;
 }
 
-int Button::getIndexPlayer()
+unsigned int Button::getIndexPlayer()
 {
     return this->indexPlayer;
 }

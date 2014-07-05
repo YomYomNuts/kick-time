@@ -10,7 +10,6 @@ using namespace std;
 class LevelManager
 {
 private:
-	vector<Level> * listLevels;
 	Level * activeLevel;
 
 public:

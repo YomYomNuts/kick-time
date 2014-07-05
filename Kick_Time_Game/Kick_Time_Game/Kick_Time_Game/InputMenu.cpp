@@ -108,9 +108,10 @@ InputMenu::InputMenu()
 
 InputMenu::~InputMenu()
 {
-	delete this->spriteMenu;
-	delete this->title;
-	delete this->listButtons;
+	for (unsigned int i = 0; i < this->listButtonsInformations->size(); ++i)
+	{
+        delete this->listButtonsInformations->at(i);
+	}
 	delete this->listButtonsInformations;
 	delete this->listInputsChange;
 }
@@ -151,9 +152,9 @@ void InputMenu::renderMenu()
             if (button->getIsActive())
                 active = true;
         }
-        this->listButtonsInformations->at(i)->setIsActive(active);
-        this->listButtonsInformations->at(i)->renderButton();
-        this->listButtonsInformations->at(i)->setIsActive(false);
+        other->setIsActive(active);
+        other->renderButton();
+        other->setIsActive(false);
     }
 }
 

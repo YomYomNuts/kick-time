@@ -16,7 +16,15 @@ SoundManager::SoundManager(void)
 SoundManager::~SoundManager(void)
 {
 	delete this->soundBuffer;
+    for (unsigned int i = 0; i < this->listSounds->size(); ++i)
+    {
+        delete this->listSounds->at(i);
+    }
 	delete this->listSounds;
+    for (unsigned int i = 0; i < this->listMusics->size(); ++i)
+    {
+        delete this->listMusics->at(i);
+    }
 	delete this->listMusics;
 }
 

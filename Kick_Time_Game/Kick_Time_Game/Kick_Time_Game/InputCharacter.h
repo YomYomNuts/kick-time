@@ -26,4 +26,4 @@ public:
     string getKeyName(int indexAction);
 };
 
-#endif  _INPUTCHARACTER_H
+#endif //_INPUTCHARACTER_H

@@ -271,7 +271,7 @@ int main(int argc,const char * argv[])
 		}
 
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#endif _COLLIDERDATA_H\n";
+		headerContent = headerContent + "#endif //_COLLIDERDATA_H\n";
 
 		headerFile << headerContent;
 	}

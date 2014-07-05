@@ -25,8 +25,8 @@ Collider::Collider(int indexColliderData, Position * positionReference)
 
 Collider::~Collider(void)
 {
-	delete this->colliderData;
-	delete this->position;
+    if (this->position != NULL)
+        delete this->position;
 }
 
 void Collider::changeColliderData(int indexColliderData)

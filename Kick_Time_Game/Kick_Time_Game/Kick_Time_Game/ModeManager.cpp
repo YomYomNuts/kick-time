@@ -10,6 +10,8 @@ ModeManager::ModeManager(void)
 
 ModeManager::~ModeManager(void)
 {
+    if (this->activeMode != NULL)
+        delete this->activeMode;
 }
 
 void ModeManager::initializeModeManager()
@@ -24,6 +26,8 @@ void ModeManager::updateModeManager()
 
 void ModeManager::setActiveMode(Mode * mode)
 {
+    if (this->activeMode != NULL)
+        delete this->activeMode;
 	this->activeMode = mode;
 }
 

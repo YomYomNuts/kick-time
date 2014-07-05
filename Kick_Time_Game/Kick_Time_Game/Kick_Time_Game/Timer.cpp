@@ -60,3 +60,10 @@ int Timer::getNumberTotalFrame()
 {
 	return this->timerLimit * NUMBER_FRAME_PER_SECOND;
 }
+
+void Timer::reset(bool reverseTime, int timerLimit)
+{
+	this->reverseTime = reverseTime;
+	this->timerLimit = timerLimit;
+	this->timerFrame = 0;
+}

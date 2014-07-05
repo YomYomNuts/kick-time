@@ -14,6 +14,10 @@ Menu::~Menu(void)
 {
 	delete this->spriteMenu;
 	delete this->title;
+	for (unsigned int i = 0; i < this->listButtons->size(); ++i)
+	{
+        delete this->listButtons->at(i);
+	}
 	delete this->listButtons;
 }
 

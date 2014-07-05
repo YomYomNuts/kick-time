@@ -7,6 +7,7 @@ class MenuManager
 {
 private:
 	Menu * activeMenu;
+	Menu * previousMenu;
 public:
 	MenuManager(void);
 	~MenuManager(void);

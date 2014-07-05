@@ -23,4 +23,4 @@ public:
 	int getPosX();
 };
 
-#endif __ANIMATIONCHARACTER__
+#endif //__ANIMATIONCHARACTER__

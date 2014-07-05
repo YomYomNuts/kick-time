@@ -19,4 +19,4 @@ public:
 	double getAnimPosY() const;
 };
 
-#endif _LEVELANIMATIONDATA_H
+#endif //_LEVELANIMATIONDATA_H

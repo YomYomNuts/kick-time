@@ -461,7 +461,7 @@ int main(int argc, const char * argv[])
 		}
 
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#endif _LEVELDATA_H_\n";
+		headerContent = headerContent + "#endif //_LEVELDATA_H_\n";
 
 		headerFile << headerContent;
 	}

@@ -30,6 +30,7 @@ HudManager::HudManager(void)
 
 HudManager::~HudManager(void)
 {
+    delete this->spriteHUD;
 }
 
 void HudManager::initializeHudManager()
@@ -143,7 +144,7 @@ void HudManager::renderHUDLevel()
 			break;
 		case STATE_LEVEL_END_ROUND:
 			{
-				Character * character = GameManager::getInstance()->getCharacterManager()->getCharacterWithMaxHp();
+				Character * character = gameManager->getCharacterManager()->getCharacterWithMaxHp();
 				if (character != NULL)
 				{
 					string winner = character->getCharacterData()->getName() + " WINNER";

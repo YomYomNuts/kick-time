@@ -25,4 +25,4 @@ extern const FontData fontDataArray[NUMBER_FONTDATA];
 
 #define FONT_ARIAL 0
 
-#endif _FONTDATA_H
+#endif //_FONTDATA_H

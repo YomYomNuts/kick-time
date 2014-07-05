@@ -31,5 +31,5 @@ public:
 	double getPosYOriginalSpritePosition();
 };
 
-#endif __ANIMATIONLEVEL__
+#endif //__ANIMATIONLEVEL__
 

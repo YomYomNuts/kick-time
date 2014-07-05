@@ -5,11 +5,15 @@
 MenuManager::MenuManager(void)
 {
 	this->activeMenu = NULL;
+	this->previousMenu = NULL;
 }
 
 MenuManager::~MenuManager(void)
 {
-	delete this->activeMenu;
+	if (this->activeMenu != NULL)
+        delete this->activeMenu;
+	if (this->previousMenu != NULL)
+        delete this->previousMenu;
 }
 
 void MenuManager::initializeMenuManager()
@@ -19,6 +23,11 @@ void MenuManager::initializeMenuManager()
 
 void MenuManager::updateMenuManager()
 {
+	if (this->previousMenu != NULL)
+    {
+        delete this->previousMenu;
+        this->previousMenu = NULL;
+    }
 	if (this->activeMenu != NULL)
 		this->activeMenu->updateMenu();
 }
@@ -36,5 +45,6 @@ Menu * MenuManager::getActiveMenu()
 
 void MenuManager::setActiveMenu(Menu * newMenu)
 {
+    this->previousMenu = this->activeMenu;
 	this->activeMenu = newMenu;
 }

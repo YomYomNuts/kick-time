@@ -26,14 +26,11 @@ MainMenu::MainMenu(void) : Menu()
 
 MainMenu::~MainMenu(void)
 {
-	delete this->spriteMenu;
-	delete this->title;
-	delete this->listButtons;
 }
 
 void MainMenu::actionExit(Button * button)
 {
-	exit(0);
+    GameManager::getInstance()->stopTheGame();
 }
 
 void MainMenu::actionGoToOption(Button * button)

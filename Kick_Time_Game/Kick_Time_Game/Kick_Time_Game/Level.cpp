@@ -40,10 +40,14 @@ Level::Level(const LevelData * levelData)
 Level::~Level(void)
 {
 	delete this->positionDisplay;
-	delete this->levelData;
 	delete this->spriteLevel;
 	delete this->timer;
-	delete this->anim;
+	//delete this->anim;
+	for(unsigned int i = 0; i < this->levelData->getLevelAnimationData().size(); ++i)
+	{
+        delete this->listAnimation->at(i);
+        delete this->listSpriteLevelAnim->at(i);
+	}
 	delete this->listAnimation;
 	delete this->listSpriteLevelAnim;
 }
@@ -64,7 +68,7 @@ void Level::updateLevel()
 			this->timer->updateTimer();
 			if (this->timer->isOnLimit())
 			{
-				this->timer = new Timer(true, 99);
+				this->timer->reset(true, 99);
 				this->levelState = STATE_LEVEL_ROUND;
 				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(true);
 				for(unsigned int i = 0; i < listCharacters->size(); ++i)
@@ -79,7 +83,7 @@ void Level::updateLevel()
 			this->timer->updateTimer();
 			if (this->timer->isOnLimit())
 			{
-				this->timer = new Timer(true, 2);
+				this->timer->reset(true, 2);
 				Character * character = GameManager::getInstance()->getCharacterManager()->getCharacterWithMaxHp();
 				if (character != NULL)
 				{
@@ -97,7 +101,7 @@ void Level::updateLevel()
 			this->timer->updateTimer();
 			if (this->timer->isOnLimit())
 			{
-				this->timer = new Timer(true, 1);
+				this->timer->reset(true, 1);
 				this->levelState = STATE_LEVEL_START_ROUND;
 				GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
 				vector<Character*> * listCharacters = GameManager::getInstance()->getCharacterManager()->getCharacters();
@@ -133,11 +137,11 @@ void Level::renderLevel()
 	int height;
 	double posAnimX;
 	double posAnimY;
-	Collider * colliderLevel = new Collider();
-	colliderLevel->setPosition(this->positionDisplay);
+	/*Collider * colliderLevel = new Collider();
+	colliderLevel->setPosition(new Position(*this->positionDisplay));
 	colliderLevel->setHalfSizeX(SCREEN_SIZE_WIDTH / 2);
 	colliderLevel->setHalfSizeY(SCREEN_SIZE_HEIGHT / 2);
-	Collider * colliderAnim = new Collider();
+	Collider * colliderAnim = new Collider();*/
 
 	for(unsigned int i = 0; i < this->levelData->getLevelAnimationData().size(); ++i)
 	{
@@ -145,16 +149,18 @@ void Level::renderLevel()
 		posAnimX = this->listAnimation->at(i)->getPosXSprite();
 		posAnimY = this->listAnimation->at(i)->getPosYSprite();
 
-		colliderAnim->setPosition(new Position(posAnimX, posAnimY - height));
+		/*colliderAnim->setPosition(new Position(posAnimX, posAnimY - height));
 		colliderAnim->setHalfSizeX(this->listAnimation->at(i)->getAnimationData()->getSpriteWidth() / 2);
 		colliderAnim->setHalfSizeY(height / 2);
 
-		//if (colliderLevel->AreColliding(colliderAnim))
-		//{
+		if (colliderLevel->AreColliding(colliderAnim))
+		{*/
             this->listSpriteLevelAnim->at(i)->setPosition((float)posAnimX, (float)(posAnimY - height));
             this->listAnimation->at(i)->renderAnimation(this->listSpriteLevelAnim->at(i));
 		//}
 	}
+	/*delete colliderLevel;
+	delete colliderAnim;*/
 }
 
 int Level::getTimer()
@@ -241,6 +247,6 @@ void Level::nextStateLevel(Character * characterWin)
 		this->levelState = STATE_LEVEL_END_MATCH;
 	else
 		this->levelState = STATE_LEVEL_END_ROUND;
-	this->timer = new Timer(true, 2);
+    this->timer->reset(true, 2);
 	GameManager::getInstance()->getHudManager()->setDoRenderHUDTime(false);
 }

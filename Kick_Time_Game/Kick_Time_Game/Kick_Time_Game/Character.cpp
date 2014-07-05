@@ -65,10 +65,10 @@ Character::~Character(void)
 {
 	delete this->spriteCharacter;
 	delete this->animation;
-	delete this->collider;
 	delete this->positionCharacter;
+	this->positionCharacter = NULL;
+	delete this->collider;
 	delete this->colliderKickPunch;
-	delete this->characterData;
 }
 
 AnimationCharacter* Character::getAnimation()

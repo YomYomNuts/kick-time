@@ -474,7 +474,7 @@ int main(int argc,const char * argv[])
 		}
 
 		headerContent = headerContent + "\n";
-		headerContent = headerContent + "#endif _CHARACTERDATA_H\n";
+		headerContent = headerContent + "#endif //_CHARACTERDATA_H\n";
 
 		headerFile << headerContent;
 	}

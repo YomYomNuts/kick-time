@@ -53,9 +53,11 @@ LevelSelectionMenu::LevelSelectionMenu()
 
 LevelSelectionMenu::~LevelSelectionMenu()
 {
-	delete this->spriteMenu;
-	delete this->title;
-	delete this->listButtons;
+	for (unsigned int i = 0; i < this->listLevelsSprites->size(); ++i)
+	{
+        delete this->listLevelsSprites->at(i);
+	}
+	delete this->listLevelsSprites;
 }
 
 void LevelSelectionMenu::renderMenu()

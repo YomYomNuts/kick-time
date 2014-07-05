@@ -22,7 +22,6 @@ AnimationLevel::AnimationLevel(int levelNumber, int indexAnimation)
 
 AnimationLevel::~AnimationLevel(void)
 {
-	delete this->animationData;
 	delete this->spritePosition;
 	delete this->originalSpritePosition;
 }

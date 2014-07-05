@@ -3,18 +3,19 @@
 
 LevelManager::LevelManager(void)
 {
-	this->listLevels = new std::vector<Level>();
 	this->activeLevel = NULL;
 }
 
 LevelManager::~LevelManager(void)
 {
-	delete this->listLevels;
-	delete this->activeLevel;
+    if (this->activeLevel != NULL)
+        delete this->activeLevel;
 }
 
 void LevelManager::initializeLevelManager()
 {
+    if (this->activeLevel != NULL)
+        delete this->activeLevel;
 }
 
 void LevelManager::updateLevelManager()
@@ -41,5 +42,7 @@ void LevelManager::setActiveLevel(int indexLevel)
 
 void LevelManager::unloadActiveLevel()
 {
+    if (this->activeLevel != NULL)
+        delete this->activeLevel;
 	this->activeLevel = NULL;
 }

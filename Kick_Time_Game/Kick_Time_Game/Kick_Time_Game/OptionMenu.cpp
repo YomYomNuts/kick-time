@@ -39,9 +39,6 @@ OptionMenu::OptionMenu(void) : Menu()
 
 OptionMenu::~OptionMenu(void)
 {
-	delete this->spriteMenu;
-	delete this->title;
-	delete this->listButtons;
 	delete this->renderVolumeSound;
 	delete this->renderVolumeMusic;
 }

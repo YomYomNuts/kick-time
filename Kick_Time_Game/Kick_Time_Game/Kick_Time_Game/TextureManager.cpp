@@ -14,7 +14,6 @@ TextureManager::TextureManager(void)
 	this->textureList = new map<string, sf::Texture>();
 }
 
-
 TextureManager::~TextureManager(void)
 {
 	delete textureList;
@@ -112,7 +111,6 @@ void TextureManager::initializeTextureManager()
 
 void TextureManager::updateTextureManager()
 {
-
 }
 
 sf::Texture* TextureManager::getTexture(string textureName)

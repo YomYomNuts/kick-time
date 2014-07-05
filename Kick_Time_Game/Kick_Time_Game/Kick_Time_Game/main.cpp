@@ -16,6 +16,7 @@ int main()
 	GameManager * gameManager = GameManager::getInstance();
 	gameManager->initializeGameManager();
 	gameManager->updateGameManager();
+    delete gameManager;
 
     return 0;
 }

@@ -3,6 +3,7 @@
 
 GameManager::GameManager(void)
 {
+	this->stopGame = false;
 	this->modeManager = new ModeManager();
 	this->saveManager = new SaveManager();
 	this->inputManager = new InputManager();
@@ -59,7 +60,7 @@ void GameManager::initializeGameManager()
 
 void GameManager::updateGameManager()
 {
-    while (this->renderManager->getWindow()->isOpen())
+    while (this->renderManager->getWindow()->isOpen() && !this->stopGame)
 	{
 		this->fontManager->updateFontManager();
 		this->textureManager->updateTextureManager();
@@ -74,6 +75,11 @@ void GameManager::updateGameManager()
 		this->animationManager->updateAnimationManager();
 		this->renderManager->updateRenderManager();
 	}
+}
+
+void GameManager::stopTheGame()
+{
+    this->stopGame = true;
 }
 
 ModeManager* GameManager::getModeManager()

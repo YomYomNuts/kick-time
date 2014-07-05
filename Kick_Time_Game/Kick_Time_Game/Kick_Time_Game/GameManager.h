@@ -18,6 +18,7 @@
 class GameManager
 {
 private:
+	bool stopGame;
 	TextureManager * textureManager;
 	ModeManager * modeManager;
 	SaveManager * saveManager;
@@ -38,6 +39,7 @@ public:
 	static GameManager* getInstance();
 	void initializeGameManager();
 	void updateGameManager();
+	void stopTheGame();
 	ModeManager* getModeManager();
 	SaveManager* getSaveManager();
 	InputManager* getInputManager();

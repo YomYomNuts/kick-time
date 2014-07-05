@@ -18,7 +18,6 @@ AnimationCharacter::AnimationCharacter(int indexAnimation)
 
 AnimationCharacter::~AnimationCharacter(void)
 {
-	delete this->animationData;
 }
 
 const AnimationData* AnimationCharacter::getAnimationData()

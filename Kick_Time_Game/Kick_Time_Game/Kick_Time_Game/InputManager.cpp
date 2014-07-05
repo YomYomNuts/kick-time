@@ -9,6 +9,10 @@ InputManager::InputManager(void)
 
 InputManager::~InputManager(void)
 {
+    for (unsigned int i = 0; i < this->listInputsCharacter->size(); ++i)
+    {
+        delete this->listInputsCharacter->at(i);
+    }
     delete this->listInputsCharacter;
 }
 
@@ -35,10 +39,10 @@ void InputManager::initializeInputManager()
 	listInputs2->push_back(sf::Keyboard::Down);
 	listInputs2->push_back(sf::Keyboard::Left);
 	listInputs2->push_back(sf::Keyboard::Right);
-	listInputs2->push_back(sf::Keyboard::M);
-	listInputs2->push_back(sf::Keyboard::Num1);
-	listInputs2->push_back(sf::Keyboard::Num2);
-	listInputs2->push_back(sf::Keyboard::Num3);
+	listInputs2->push_back(sf::Keyboard::Numpad5);
+	listInputs2->push_back(sf::Keyboard::Numpad1);
+	listInputs2->push_back(sf::Keyboard::Numpad2);
+	listInputs2->push_back(sf::Keyboard::Numpad3);
 	this->listInputsCharacter->at(1)->setListInputs(listInputs2);
 }
 
@@ -50,7 +54,6 @@ bool InputManager::isPressed(int indexPlayer, int indexAction)
 {
     return this->listInputsCharacter->at(indexPlayer)->isPressed(indexAction);
 }
-
 
 vector<InputCharacter*>* InputManager::getListInputsCharacter()
 {

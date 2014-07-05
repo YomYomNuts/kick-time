@@ -19,6 +19,7 @@ public:
 	bool isOnLimit();
 	int getCurrentFrame();
 	int getNumberTotalFrame();
+	void reset(bool reverseTime, int timerLimit);
 };
 
 #endif

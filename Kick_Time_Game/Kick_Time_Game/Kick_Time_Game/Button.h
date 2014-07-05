@@ -33,11 +33,11 @@ private:
 	void (Menu::*action)(Button*);
 	void (Menu::*actionMove)(Button*, ButtonDirection);
 	int timerFrameGetInput;
-	int indexPlayer;
+	unsigned int indexPlayer;
 	sf::Text * textRender;
 public:
 	Button(void);
-    Button(string name, Position * center, bool canBeActive, bool isActive, bool display, int indexPlayer);
+    Button(string name, Position * center, bool canBeActive, bool isActive, bool display, unsigned int indexPlayer);
 	~Button(void);
 	void updateButton();
 	void renderButton();
@@ -48,7 +48,7 @@ public:
 	Position * getCenter();
 	void setAction(void (Menu::*action)(Button*));
 	void setActionMove(void (Menu::*actionMove)(Button*, ButtonDirection));
-	int getIndexPlayer();
+	unsigned int getIndexPlayer();
 	void setName(string name);
 	int getTimerFrameGetInput();
 	void updateTimerFrameGetInput();
